@@ -58,6 +58,10 @@
       <Project>{c5d5ff66-56df-40aa-b239-81765bdd8799}</Project>
       <Name>Entity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IDAL\IDAL.csproj">
+      <Project>{058babe4-a23e-49b7-b342-106449f1a666}</Project>
+      <Name>IDAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
