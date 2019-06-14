@@ -51,6 +51,60 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="bonus.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="config_file_first_kind.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="config_file_second_kind.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="config_file_third_kind.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="config_major.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="config_major_kind.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="config_primary_key.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="config_public_char.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="config_question_first_kind.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="config_question_second_kind.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="engage_answer.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="engage_answer_details.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="engage_exam.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="engage_exam_details.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="engage_interview.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="engage_major_release.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="engage_resume.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="engage_subjects.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
     <Compile Include="hr.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -66,20 +120,48 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>hr.edmx</DependentUpon>
     </Compile>
+    <Compile Include="human_file.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="human_file_dig.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="major_change.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="salary_grant.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="salary_grant_details.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="salary_standard.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="salary_standard_details.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="training.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="users.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="hr.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>hr.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="hr.edmx.diagram">
       <DependentUpon>hr.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="hr.Context.tt">
@@ -92,9 +174,6 @@
       <DependentUpon>hr.edmx</DependentUpon>
       <LastGenOutput>hr.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
