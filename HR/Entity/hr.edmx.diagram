@@ -4,36 +4,34 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="99fc1eb0eee94dfb9fa1689c493f236f" Name="Diagram1" >
-        <EntityTypeShape EntityType="HRModel.bonus" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="HRModel.config_file_first_kind" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="HRModel.config_file_second_kind" Width="1.5" PointX="2.75" PointY="3.75" />
-        <EntityTypeShape EntityType="HRModel.config_file_third_kind" Width="1.5" PointX="4.75" PointY="0.75" />
-        <EntityTypeShape EntityType="HRModel.config_major" Width="1.5" PointX="4.75" PointY="4.75" />
-        <EntityTypeShape EntityType="HRModel.config_major_kind" Width="1.5" PointX="6.75" PointY="0.75" />
-        <EntityTypeShape EntityType="HRModel.config_primary_key" Width="1.5" PointX="6.75" PointY="3.75" />
-        <EntityTypeShape EntityType="HRModel.config_public_char" Width="1.5" PointX="6.75" PointY="6.75" />
-        <EntityTypeShape EntityType="HRModel.config_question_first_kind" Width="1.5" PointX="0.75" PointY="7.75" />
-        <EntityTypeShape EntityType="HRModel.config_question_second_kind" Width="1.5" PointX="2.75" PointY="7.75" />
-        <EntityTypeShape EntityType="HRModel.engage_answer" Width="1.5" PointX="8.75" PointY="0.75" />
-        <EntityTypeShape EntityType="HRModel.engage_answer_details" Width="1.5" PointX="8.75" PointY="5.75" />
-        <EntityTypeShape EntityType="HRModel.engage_exam" Width="1.5" PointX="8.75" PointY="8.75" />
-        <EntityTypeShape EntityType="HRModel.engage_exam_details" Width="1.5" PointX="4.75" PointY="9.75" />
-        <EntityTypeShape EntityType="HRModel.engage_interview" Width="1.5" PointX="10.75" PointY="0.75" />
-        <EntityTypeShape EntityType="HRModel.engage_major_release" Width="1.5" PointX="0.75" PointY="10.75" />
-        <EntityTypeShape EntityType="HRModel.engage_resume" Width="1.5" PointX="10.75" PointY="7.75" />
-        <EntityTypeShape EntityType="HRModel.engage_subjects" Width="1.5" PointX="12.75" PointY="0.75" />
-        <EntityTypeShape EntityType="HRModel.human_file" Width="1.5" PointX="12.75" PointY="6.75" />
-        <EntityTypeShape EntityType="HRModel.human_file_dig" Width="1.5" PointX="6.75" PointY="12.75" />
-        <EntityTypeShape EntityType="HRModel.major_change" Width="1.5" PointX="2.75" PointY="13.75" />
-        <EntityTypeShape EntityType="HRModel.Quan" Width="1.5" PointX="14.75" PointY="0.75" />
-        <EntityTypeShape EntityType="HRModel.Role" Width="1.5" PointX="14.75" PointY="3.75" />
-        <EntityTypeShape EntityType="HRModel.salary_grant" Width="1.5" PointX="14.75" PointY="6.75" />
-        <EntityTypeShape EntityType="HRModel.salary_grant_details" Width="1.5" PointX="14.75" PointY="12.75" />
-        <EntityTypeShape EntityType="HRModel.salary_standard" Width="1.5" PointX="16.75" PointY="0.75" />
-        <EntityTypeShape EntityType="HRModel.salary_standard_details" Width="1.5" PointX="16.75" PointY="5.75" />
-        <EntityTypeShape EntityType="HRModel.training" Width="1.5" PointX="16.75" PointY="8.75" />
-        <EntityTypeShape EntityType="HRModel.users" Width="1.5" PointX="16.75" PointY="14.75" />
+      <Diagram DiagramId="09790d43e8764f48a6210e56db5f044b" Name="Diagram1">
+        <EntityTypeShape EntityType="HRModel.bonus" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRModel.config_file_first_kind" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRModel.config_file_second_kind" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRModel.config_file_third_kind" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRModel.config_major" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRModel.config_major_kind" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRModel.config_primary_key" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRModel.config_public_char" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRModel.config_question_first_kind" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRModel.config_question_second_kind" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRModel.engage_answer" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRModel.engage_answer_details" Width="1.5" PointX="8.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRModel.engage_exam" Width="1.5" PointX="8.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRModel.engage_exam_details" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRModel.engage_interview" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRModel.engage_major_release" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRModel.engage_resume" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRModel.engage_subjects" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRModel.human_file" Width="1.5" PointX="12.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRModel.human_file_dig" Width="1.5" PointX="6.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRModel.major_change" Width="1.5" PointX="2.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRModel.salary_grant" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRModel.salary_grant_details" Width="1.5" PointX="14.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRModel.salary_standard" Width="1.5" PointX="14.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRModel.salary_standard_details" Width="1.5" PointX="14.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRModel.training" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRModel.users" Width="1.5" PointX="16.75" PointY="5.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
