@@ -7,20 +7,20 @@ using UI.Filters;
 
 namespace UI.Controllers
 {
-    
     public class UserController : Controller
     {
         
-        // GET: User
+            // GET: User
         
         public ActionResult Index()
         {
+            
             return View();
         }
-        [Login]
-        public ActionResult ccc() {
-            return View();
-        }
+        //[Login]
+        //public ActionResult ccc() {
+        //    return View();
+        //}
         //public ActionResult Error() {
         //    throw new Exception("报错了！！");
         //}

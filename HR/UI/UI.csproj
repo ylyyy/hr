@@ -167,6 +167,8 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Controllers\salaryCriterionController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\ErrorAttribute.cs" />
     <Compile Include="Filters\LoginAttribute.cs" />
@@ -752,6 +754,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Unity.config" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Index\Index.cshtml" />
+    <Content Include="Views\Index\top.cshtml" />
+    <Content Include="Views\Index\left.cshtml" />
+    <Content Include="Views\Index\main.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
