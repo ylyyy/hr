@@ -13,10 +13,10 @@ namespace Entity
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class HREntities : DbContext
+    public partial class HREntities1 : DbContext
     {
-        public HREntities()
-            : base("name=HREntities")
+        public HREntities1()
+            : base("name=HREntities1")
         {
         }
     

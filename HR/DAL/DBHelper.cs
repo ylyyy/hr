@@ -11,7 +11,7 @@ namespace DAL
 {
     public class DBHelper
     {
-        public static string str = "Data Source=.;Initial Catalog=ecsshop;User ID=sa;Password=sasa";
+        public static string str = "Data Source=.;Initial Catalog=HR;User ID=sa;Password=123";
         public static void WRZ(string fileName, Exception e)
         {
             using (StreamWriter sw = new StreamWriter("D:/错误日志.txt", true))
