@@ -23,5 +23,6 @@ function doLogin() {
 		$.messager.show("消息提示", "登录密码格式不正确！长度必须大于6位且不能有空格！", 2000);
 		return false;
 	}
-	location.href = "page/index.html";
+	return true;
+	//location.href = "page/index.html";
 }

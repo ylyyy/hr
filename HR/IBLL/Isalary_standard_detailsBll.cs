@@ -16,6 +16,6 @@ namespace IBLL
         int Delete(salary_standard_details t);
         int Update(salary_standard_details t);
         List<salary_standard_details> FenYe(Expression<Func<salary_standard_details, bool>> where, out int rows, int currentPage, int pageSize);
-        
+        string bianHao();
     }
 }

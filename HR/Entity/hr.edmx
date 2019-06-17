@@ -478,6 +478,13 @@
           <Property Name="regist_time" Type="datetime" />
           <Property Name="check_time" Type="datetime" />
         </EntityType>
+        <EntityType Name="salary">
+          <Key>
+            <PropertyRef Name="sid_id" />
+          </Key>
+          <Property Name="sid_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sid_sname" Type="nchar" MaxLength="10" />
+        </EntityType>
         <EntityType Name="salary_grant">
           <Key>
             <PropertyRef Name="sgr_id" />
@@ -598,6 +605,7 @@
           <EntitySet Name="human_file" EntityType="Self.human_file" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="human_file_dig" EntityType="Self.human_file_dig" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="major_change" EntityType="Self.major_change" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="salary" EntityType="Self.salary" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="salary_grant" EntityType="Self.salary_grant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="salary_grant_details" EntityType="Self.salary_grant_details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="salary_standard" EntityType="Self.salary_standard" Schema="dbo" store:Type="Tables" />
@@ -1208,7 +1216,15 @@
           <EntitySet Name="salary_standard_details" EntityType="Self.salary_standard_details" />
           <EntitySet Name="training" EntityType="Self.training" />
           <EntitySet Name="users" EntityType="Self.users" />
+          <EntitySet Name="salary" EntityType="HRModel.salary" />
         </EntityContainer>
+        <EntityType Name="salary">
+          <Key>
+            <PropertyRef Name="sid_id" />
+          </Key>
+          <Property Name="sid_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sid_sname" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1810,6 +1826,14 @@
                 <ScalarProperty Name="u_name" ColumnName="u_name" />
                 <ScalarProperty Name="u_true_name" ColumnName="u_true_name" />
                 <ScalarProperty Name="u_password" ColumnName="u_password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="salary">
+            <EntityTypeMapping TypeName="HRModel.salary">
+              <MappingFragment StoreEntitySet="salary">
+                <ScalarProperty Name="sid_sname" ColumnName="sid_sname" />
+                <ScalarProperty Name="sid_id" ColumnName="sid_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

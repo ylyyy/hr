@@ -13,10 +13,10 @@ namespace Entity
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class HREntities1 : DbContext
+    public partial class HREntities : DbContext
     {
-        public HREntities1()
-            : base("name=HREntities1")
+        public HREntities()
+            : base("name=HREntities")
         {
         }
     
@@ -52,5 +52,6 @@ namespace Entity
         public virtual DbSet<salary_standard_details> salary_standard_details { get; set; }
         public virtual DbSet<training> training { get; set; }
         public virtual DbSet<users> users { get; set; }
+        public virtual DbSet<salary> salary { get; set; }
     }
 }

@@ -17,6 +17,9 @@ namespace UI.Controllers
             
             return View();
         }
+        public ActionResult Login() {
+            return Content("<script>alert('登录成功！');location.href='/Index/Index';</script>");
+        }
         //[Login]
         //public ActionResult ccc() {
         //    return View();

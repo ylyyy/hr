@@ -20,6 +20,11 @@ namespace BLL
             return isd.Add(t);
         }
 
+        public string bianHao()
+        {
+            return isd.bianHao();
+        }
+
         public int Delete(salary_standard_details t)
         {
             return isd.Delete(t);
