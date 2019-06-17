@@ -167,6 +167,8 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\clientController.cs" />
+    <Compile Include="Controllers\positionController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\ErrorAttribute.cs" />
     <Compile Include="Filters\LoginAttribute.cs" />
@@ -750,8 +752,13 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Unity.config" />
+    <Content Include="Unity.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\position\position_register.cshtml" />
+    <Content Include="Views\client\first_kind.cshtml" />
+    <Content Include="Views\client\first_kindCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
