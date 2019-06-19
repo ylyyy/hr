@@ -169,6 +169,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\clientController.cs" />
+    <Compile Include="Controllers\positionController.cs" />
+    <Compile Include="Controllers\clientController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\salaryCriterionController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -776,6 +778,24 @@
     <Content Include="Views\salaryCriterion\salarystandard_change_list.cshtml" />
     <Content Include="Views\salaryCriterion\salarystandard_change.cshtml" />
     <Content Include="Views\salaryCriterion\salarystandard_change_success_cg.cshtml" />
+    <Content Include="Views\position\position_register.cshtml" />
+    <Content Include="Views\client\first_kind.cshtml" />
+    <Content Include="Views\client\first_kind_register.cshtml" />
+    <Content Include="Views\client\first_kind_register_success.cshtml" />
+    <Content Include="Views\client\first_kind_change.cshtml" />
+    <Content Include="Views\client\first_kind_change_success.cshtml" />
+    <Content Include="Views\client\first_delete_success.cshtml" />
+    <Content Include="Views\client\second_kind.cshtml" />
+    <Content Include="Views\client\second_kind_register.cshtml" />
+    <Content Include="Views\client\second_kind_change_success.cshtml" />
+    <Content Include="Views\client\second_kind_register_success.cshtml" />
+    <Content Include="Views\client\second_kind_change.cshtml" />
+    <Content Include="Views\client\second_delete_success.cshtml" />
+    <Content Include="Views\client\third_kind.cshtml" />
+    <Content Include="Views\client\third_kind_register.cshtml" />
+    <Content Include="Views\client\third_kind_register_success.cshtml" />
+    <Content Include="Views\client\third_kind_change_success.cshtml" />
+    <Content Include="Views\client\third_kind_change.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -49,6 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Iconfig_file_first_kindDao.cs" />
+    <Compile Include="Iconfig_file_second_kindDao.cs" />
+    <Compile Include="Iconfig_file_third_kindDao.cs" />
     <Compile Include="Father.cs" />
     <Compile Include="ISalaryDal.cs" />
     <Compile Include="ISalary_strandardDal.cs" />
@@ -58,6 +61,12 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entity\Entity.csproj">
+      <Project>{c5d5ff66-56df-40aa-b239-81765bdd8799}</Project>
+      <Name>Entity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
