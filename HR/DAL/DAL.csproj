@@ -53,6 +53,7 @@
     <Compile Include="DBHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SalaryDal.cs" />
+    <Compile Include="Salary_strandardDal.cs" />
     <Compile Include="salary_standard_detailsDal.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class SalaryDal:BaseDao,ISalaryDal
+    public class Salary_strandardDal:BaseDao,ISalary_strandardDal
     {
-        
 
     }
 }

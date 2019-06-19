@@ -1,4 +1,4 @@
-﻿@*@Model List<salary_standard_details>*@
+﻿
 @{
     Layout = null;
 }
@@ -15,13 +15,13 @@
 </head>
 <body>
     @*@foreach (salary_standard_details item in Model)
-    {
+        {
 
-    }*@
+        }*@
     @*@using (Html.BeginForm("salarystandard_register_success", "salaryCriterion", FormMethod.Post)) {*@
 
-    
-    <form method="post" action="/salaryCriterion/salarystandard_register_success">
+
+    <form>
         <table width="100%">
             <tr>
                 <td>
@@ -32,7 +32,7 @@
             </tr>
             <tr>
                 <td align="right">
-                    <input type="button" value="提 交" onclick="check()" class="BUTTON_STYLE1">
+                    <input type="button" value="提 交" onclick="tijiao()" class="BUTTON_STYLE1">
                     <input type="reset" value="返 回" class="BUTTON_STYLE1">
                 </td>
             </tr>
@@ -115,198 +115,161 @@
                 </td>
             </tr>
             <tbody>
+                @{List<salary> list = ViewData["list"] as List<salary>;}
 
-                <tr class="TD_STYLE2">
-                    <td align="center">
-                        1
-                        <input type="hidden" name="details0itemId" value="1">
-                    </td>
-                    <td colspan="3">
-                        出差补助
-                        <input type="hidden" id="details1" name="details0itemName" value="出差补助">
-                    </td>
-                    <td>
-                        <input type="text" id="salary1" value="0.00" name="details0salary"
-                               onkeyup="countMoney('6','salary1')" class="INPUT_STYLE2">
-                    </td>
-                    <td colspan="3">
-                        &nbsp;
-                    </td>
-                </tr>
+                @for (int i = 0; i < list.Count; i++)
+                {
 
-                <tr class="TD_STYLE2">
-                    <td align="center">
-                        2
-                        <input type="hidden" name="details1itemId" value="2">
-                    </td>
-                    <td colspan="3">
-                        交通补贴
-                        <input type="hidden" id="details2" name="details1itemName" value="交通补贴">
-                    </td>
-                    <td>
-                        <input type="text" id="salary2" value="0.00" name="details1salary"
-                               onkeyup="countMoney('6','salary2')" class="INPUT_STYLE2">
-                    </td>
-                    <td colspan="3">
-                        &nbsp;
-                    </td>
-                </tr>
-
-                <tr class="TD_STYLE2">
-                    <td align="center">
-                        3
-                        <input type="hidden" name="details2itemId" value="3">
-                    </td>
-                    <td colspan="3">
-                        住房补贴
-                        <input type="hidden" id="details3" name="details2itemName" value="住房补贴">
-                    </td>
-                    <td>
-                        <input type="text" id="salary3" value="0.00" name="details2salary"
-                               onkeyup="countMoney('6','salary3')" class="INPUT_STYLE2">
-                    </td>
-                    <td colspan="3">
-                        &nbsp;
-                    </td>
-                </tr>
-
-                <tr class="TD_STYLE2">
-                    <td align="center">
-                        4
-                        <input type="hidden" name="details3itemId" value="4">
-                    </td>
-                    <td colspan="3">
-                        基本工资
-                        <input type="hidden" id="details4" name="details3itemName" value="基本工资">
-                    </td>
-                    <td>
-                        <input type="text" id="salary4" value="0.00" name="details3salary"
-                               onkeyup="countMoney('6','salary4')" class="INPUT_STYLE2">
-                    </td>
-                    <td colspan="3">
-                        &nbsp;
-                    </td>
-                </tr>
-
-                <tr class="TD_STYLE2">
-                    <td align="center">
-                        5
-                        <input type="hidden" name="details4itemId" value="5">
-                    </td>
-                    <td colspan="3">
-                        年终奖
-                        <input type="hidden" id="details5" name="details4itemName" value="年终奖">
-                    </td>
-                    <td>
-                        <input type="text" id="salary5" value="0.00" name="details4salary"
-                               onkeyup="countMoney('6','salary5')" class="INPUT_STYLE2">
-                    </td>
-                    <td colspan="3">
-                        &nbsp;
-                    </td>
-                </tr>
-
-                <tr class="TD_STYLE2">
-                    <td align="center">
-                        6
-                        <input type="hidden" name="details5itemId" value="6">
-                    </td>
-                    <td colspan="3">
-                        误餐补助
-                        <input type="hidden" id="details6" name="details5itemName" value="误餐补助">
-                    </td>
-                    <td>
-                        <input type="text" id="salary6" value="0.00" name="details5salary"
-                               onkeyup="countMoney('6','salary6')" class="INPUT_STYLE2">
-                    </td>
-                    <td colspan="3">
-                        &nbsp;
-                    </td>
-                </tr>
-
+                    <tr class="TD_STYLE2">
+                        <td align="center">
+                            @list[i].sid_id<input type="hidden" id="salaryid @(i+1)" name="salaryid" value="@list[i].sid_id">
+                        </td>
+                        <td colspan="3">
+                            @list[i].sid_sname<input type="hidden" id="details @(i+1)" name="details" value="@list[i].sid_sname">
+                        </td>
+                        <td>
+                            <input type="text" id="salary @(i+1)" name="salarymoney" value="0.00"
+                                   onkeyup="countMoney('@list.Count','salary @(i+1)')" class="INPUT_STYLE2">
+                        </td>
+                        <td colspan="3">
+                            &nbsp;
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
         <p>
             &nbsp;
         </p>
     </form>
-    
+
     <script type="text/javascript">
-		function check(){
 
-				var designer=document.getElementById("designer");
-				var standardName=document.getElementById("standardName");
-				if(designer.value.length<=0){
-				alert("制定人不可为空!!!");
-						return ;
-				}
-				if(standardName.value.length<=0){
-				alert("薪酬标准名称不可为空!!!");
-					return ;
-				}
-			document.forms[0].submit();
-		}
-		function countMoney(obj,o) {
+        function check() {
 
-		if (isNaN(document.getElementById(o).value) || document.getElementById(o).value < 0) {
-		alert("金额填写错误!");
-		document.getElementById(o).value="0.00";
-		return;
-	}
-		var sum=0;
-	 	for(var i=1;i<=obj;i++){
-	 		var salary=document.getElementById("salary"+i).value;
-	 		if(salary==""){
-	 		salary="0.00";
-	 		}
-	 		sum=Number(sum)+Number(salary);
+            //	var designer=document.getElementById("designer");
+            //	var standardName=document.getElementById("standardName");
+            //	if(designer.value.length<=0){
+            //	alert("制定人不可为空!!!");
+            //			return ;
+            //	}
+            //	if(standardName.value.length<=0){
+            //	alert("薪酬标准名称不可为空!!!");
+            //		return ;
+            //	}
+            //document.forms[0].submit();
+        }
+        function countMoney(obj, o) {
 
-	 }
-	 document.getElementById("sumSalary").value=sum;
+            if (isNaN(document.getElementById(o).value) || document.getElementById(o).value < 0) {
+                alert("金额填写错误!");
+                document.getElementById(o).value = "0.00";
+                return;
+            }
+            var sum = 0;
+            for (var i = 1; i <= obj; i++) {
+                var salary = document.getElementById("salary " + i).value;
+                if (salary == "") {
+                    salary = "0.00";
+                }
+                sum = Number(sum) + Number(salary);
 
-}
-		function time(){
- 					var tdate=document.getElementById("Tdate");
- 					var d=new Date();
- 					var y=d.getFullYear();
- 					var moth=d.getMonth()+1;
- 					var date=d.getDate();
- 					var h=d.getHours();
- 					var m=d.getMinutes();
- 					var s=d.getSeconds();
-					var hh=20-1-h;
-					var mm=60-1-m;
-					var ss=60-s;
-					if(hh>0){
-							mm=mm+60*hh;
-					}
- 					if(moth<10){
- 							moth="0"+moth;
- 					}
- 					if(date<10){
- 							date="0"+date;
- 					}
- 					if(h<10){
- 							h="0"+h;
- 					}
- 					if(m<10){
- 							m="0"+m;
- 					}
- 					if(s<10){
- 							s="0"+s;
- 					}
- 					if(mm<10){
- 							mm="0"+mm;
- 					}
- 					if(ss<10){
- 							ss="0"+ss;
- 					}
+            }
+            document.getElementById("sumSalary").value = sum;
 
- 					tdate.value=y+"-"+moth+"-"+date+" "+h+":"+m+":"+s;
+        }
+        function time() {
+            var tdate = document.getElementById("Tdate");
+            var d = new Date();
+            var y = d.getFullYear();
+            var moth = d.getMonth() + 1;
+            var date = d.getDate();
+            var h = d.getHours();
+            var m = d.getMinutes();
+            var s = d.getSeconds();
+            var hh = 20 - 1 - h;
+            var mm = 60 - 1 - m;
+            var ss = 60 - s;
+            if (hh > 0) {
+                mm = mm + 60 * hh;
+            }
+            if (moth < 10) {
+                moth = "0" + moth;
+            }
+            if (date < 10) {
+                date = "0" + date;
+            }
+            if (h < 10) {
+                h = "0" + h;
+            }
+            if (m < 10) {
+                m = "0" + m;
+            }
+            if (s < 10) {
+                s = "0" + s;
+            }
+            if (mm < 10) {
+                mm = "0" + mm;
+            }
+            if (ss < 10) {
+                ss = "0" + ss;
+            }
 
- 				}
- 				window.onload=time;
- 				var out=window.setInterval(time, 1000);
+            tdate.value = y + "-" + moth + "-" + date + " " + h + ":" + m + ":" + s;
+
+        }
+        $(function () {
+            window.onload = time;
+            var out = window.setInterval(time, 1000);
+        });
+
+        
+        function tijiao() {
+            //alert($("[name=remark]").val());
+            var designer = document.getElementById("designer");
+            var standardName = document.getElementById("standardName");
+            if (designer.value.length <= 0) {
+                alert("制定人不可为空!!!");
+                return;
+            }
+            if (standardName.value.length <= 0) {
+                alert("薪酬标准名称不可为空!!!");
+                return;
+            }
+
+            var salaryid = "";
+            var details = "";
+            var salarymoney = "";
+            $("[name=salaryid]").each(function () {
+                //alert($(this).val());
+                salaryid += $(this).val() + ",";
+            });
+            salaryid = salaryid.substr(0, salaryid.lastIndexOf(','));
+            $("[name=details]").each(function () {
+                //alert($(this).val());
+                details += $(this).val() + ",";
+            });
+            details = details.substr(0, details.lastIndexOf(','));
+            $("[name=salarymoney]").each(function () {
+                //alert($(this).val());
+                salarymoney += $(this).val() + ",";
+            });
+            salarymoney = salarymoney.substr(0, salarymoney.lastIndexOf(','));
+            //alert(salaryid);
+            //alert(details);
+            //alert(salarymoney);
+            //var aaa = salaryid.split(",");
+            //alert(aaa.length);
+
+            $.post("/salaryCriterion/salarystandard_register_success", { "standard_id": $("[name=standard_id]").val(), "standard_name": $("[name=standard_name]").val(), "designer": $("[name=designer]").val(), "register": $("[name=register]").val(), "regist_time": $("[name=regist_time]").val(), "salary_sum": $("[name=salary_sum]").val(), "remark": $("[name=remark]").val(), "salaryid": salaryid, "details": details, "salarymoney": salarymoney }, function (data) {
+                if (data == "false") {
+                    alert("添加失败！");
+                } else if (data == "true") {
+                    //alert("添加成功！");
+                    location.href = '/salaryCriterion/salarystandard_register_success_cg';
+                }
+            });
+        }
     </script>
 </body>
 </html>

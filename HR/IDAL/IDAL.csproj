@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Father.cs" />
     <Compile Include="ISalaryDal.cs" />
+    <Compile Include="ISalary_strandardDal.cs" />
     <Compile Include="Isalary_standard_detailsDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

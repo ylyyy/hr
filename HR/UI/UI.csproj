@@ -52,6 +52,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -167,6 +168,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\clientController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\salaryCriterionController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -752,13 +754,28 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Unity.config" />
+    <Content Include="Unity.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Index\Index.cshtml" />
     <Content Include="Views\Index\top.cshtml" />
     <Content Include="Views\Index\left.cshtml" />
     <Content Include="Views\Index\main.cshtml" />
     <Content Include="Views\salaryCriterion\salarystandard_register.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_register_success_cg.cshtml" />
+    <Content Include="Views\client\salary_item.cshtml" />
+    <Content Include="Views\client\salary_item_register.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_check_list.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_check.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_check_success.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_query_locate.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_query_list.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_query.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_change_locate.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_change_list.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_change.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_change_success_cg.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
