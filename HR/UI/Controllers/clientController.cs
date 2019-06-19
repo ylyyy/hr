@@ -1,6 +1,7 @@
 ﻿using Entity;
 using IBLL;
 using IocContainer;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,11 @@ namespace UI.Controllers
 {
     public class clientController : Controller
     {
+
         ISalaryBll isbll = IocContain.CreateAll<ISalaryBll>("yibll", "sarybll");
+        Iconfig_file_first_kindBLL iffk = IocContain.CreateAll<Iconfig_file_first_kindBLL>("yibll", "config_file_first_kindBLL");
+        Iconfig_file_second_kindBLL ifsk = IocContain.CreateAll<Iconfig_file_second_kindBLL>("yibll", "config_file_second_kindBLL");
+        Iconfig_file_third_kindBLL iftk = IocContain.CreateAll<Iconfig_file_third_kindBLL>("yibll", "config_file_third_kindBLL");
         // GET: client
         [HttpGet]
         public ActionResult salary_item()
@@ -36,42 +41,29 @@ namespace UI.Controllers
                 return Content("<script>alert('添加失败！');location.href='/client/salary_item';</script>");
             }
         }
-        public ActionResult salary_item_register() {
+        public ActionResult salary_item_register()
+        {
             return View();
         }
         //薪酬项目名称删除
-        public ActionResult Del(int id) {
-            salary sary = new salary() {
-                sid_id=id
+        public ActionResult Del(int id)
+        {
+            salary sary = new salary()
+            {
+                sid_id = id
             };
             if (isbll.Delete(sary) > 0)
             {
                 return Content("<script>alert('删除成功！');location.href='/client/salary_item';</script>");
             }
-            else {
+            else
+            {
                 return Content("<script>alert('删除失败！');location.href='/client/salary_item';</script>");
             }
         }
-    }
-}
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using IocContainer;
-using IBLL;
-using Entity;
-using Newtonsoft.Json;
-using System.Web.UI.WebControls;
 
-namespace UI.Controllers
-{
-    public class clientController : Controller
-    {
-        Iconfig_file_first_kindBLL iffk = IocContain.CreateAll<Iconfig_file_first_kindBLL>("yibll", "config_file_first_kindBLL");
-        Iconfig_file_second_kindBLL ifsk = IocContain.CreateAll<Iconfig_file_second_kindBLL>("yibll", "config_file_second_kindBLL");
-        Iconfig_file_third_kindBLL iftk = IocContain.CreateAll<Iconfig_file_third_kindBLL>("yibll", "config_file_third_kindBLL");
+
+
         //-I级机构设置
         #region
         public ActionResult first_kind()
@@ -117,7 +109,7 @@ namespace UI.Controllers
         // GET: client/Edit/5
         public ActionResult first_kind_change(int id)
         {
-            config_file_first_kind cffk = iffk.SelectWhere(e => e.ffk_id==id).FirstOrDefault();
+            config_file_first_kind cffk = iffk.SelectWhere(e => e.ffk_id == id).FirstOrDefault();
             return View(cffk);
         }
 
@@ -204,7 +196,7 @@ namespace UI.Controllers
             return View();
         }
 
-        
+
 
         [HttpPost]
         public ActionResult second_kind_register(config_file_second_kind c)
@@ -216,7 +208,7 @@ namespace UI.Controllers
             }
             else
             {
-                config_file_first_kind cffk = iffk.SelectWhere(e=>e.first_kind_id==c.first_kind_id).FirstOrDefault();
+                config_file_first_kind cffk = iffk.SelectWhere(e => e.first_kind_id == c.first_kind_id).FirstOrDefault();
                 c.first_kind_name = cffk.first_kind_name;
                 if (ifsk.Add(c) > 0)
                 {
@@ -236,13 +228,13 @@ namespace UI.Controllers
         [HttpGet]
         public ActionResult second_kind_change(int id)
         {
-            config_file_second_kind cfsk = ifsk.SelectWhere(e=>e.fsk_id==id).FirstOrDefault();
+            config_file_second_kind cfsk = ifsk.SelectWhere(e => e.fsk_id == id).FirstOrDefault();
             return View(cfsk);
         }
         [HttpPost]
         public ActionResult second_kind_change(config_file_second_kind c)
         {
-            config_file_first_kind cffk = iffk.SelectWhere(e =>e.first_kind_name == c.first_kind_name).FirstOrDefault();
+            config_file_first_kind cffk = iffk.SelectWhere(e => e.first_kind_name == c.first_kind_name).FirstOrDefault();
             c.first_kind_id = cffk.first_kind_id;
             if (ifsk.Update(c) > 0)
             {
@@ -292,7 +284,7 @@ namespace UI.Controllers
         {
             List<SelectListItem> list1 = new List<SelectListItem>();
             List<config_file_second_kind> l = ifsk.SelectAll();
-            foreach(config_file_second_kind c in l)
+            foreach (config_file_second_kind c in l)
             {
                 SelectListItem s = new SelectListItem
                 {
@@ -306,7 +298,7 @@ namespace UI.Controllers
                 Text = "请选择II级机构名称",
                 Value = "0"
             };
-            list1.Insert(0,s1);
+            list1.Insert(0, s1);
             ViewData["ss"] = list1;
             NewMethod();
             return View();
@@ -314,12 +306,12 @@ namespace UI.Controllers
         [HttpPost]
         public ActionResult third_kind_register(config_file_third_kind cftk)
         {
-            config_file_first_kind cffk = iffk.SelectWhere(e=>e.first_kind_id==cftk.first_kind_id).FirstOrDefault();
-            config_file_second_kind cfsk = ifsk.SelectWhere(e=>e.second_kind_id==cftk.second_kind_id).FirstOrDefault();
+            config_file_first_kind cffk = iffk.SelectWhere(e => e.first_kind_id == cftk.first_kind_id).FirstOrDefault();
+            config_file_second_kind cfsk = ifsk.SelectWhere(e => e.second_kind_id == cftk.second_kind_id).FirstOrDefault();
             cftk.first_kind_name = cffk.first_kind_name;
             cftk.second_kind_name = cfsk.second_kind_name;
             if (iftk.Add(cftk) > 0)
-           {
+            {
                 return Content("<script>location.href='/client/third_kind_register_success';</script>");
             }
             else
