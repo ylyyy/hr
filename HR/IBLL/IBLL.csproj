@@ -50,6 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Iconfig_file_first_kindBLL.cs" />
+    <Compile Include="Iconfig_file_second_kindBLL.cs" />
+    <Compile Include="Iconfig_file_third_kindBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

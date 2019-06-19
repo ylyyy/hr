@@ -51,6 +51,8 @@
   <ItemGroup>
     <Compile Include="BaseDao.cs" />
     <Compile Include="config_file_first_kindDao.cs" />
+    <Compile Include="config_file_second_kindDao.cs" />
+    <Compile Include="config_file_third_kindDao.cs" />
     <Compile Include="DBHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

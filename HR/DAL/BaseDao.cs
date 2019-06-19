@@ -11,13 +11,13 @@ namespace DAL
 {
     public class BaseDao
     {
-        protected HREntities1 es = CreateDBContent();
-        public static HREntities1 CreateDBContent()
+        protected HREntities es = CreateDBContent();
+        public static HREntities CreateDBContent()
         {
-            HREntities1 at = CallContext.GetData("s") as HREntities1;
+            HREntities at = CallContext.GetData("s") as HREntities;
             if (at == null)
             {
-                at = new HREntities1();
+                at = new HREntities();
                 CallContext.SetData("s", at);
             }
             return at;

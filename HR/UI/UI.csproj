@@ -758,7 +758,22 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\position\position_register.cshtml" />
     <Content Include="Views\client\first_kind.cshtml" />
-    <Content Include="Views\client\first_kindCreate.cshtml" />
+    <Content Include="Views\client\first_kind_register.cshtml" />
+    <Content Include="Views\client\first_kind_register_success.cshtml" />
+    <Content Include="Views\client\first_kind_change.cshtml" />
+    <Content Include="Views\client\first_kind_change_success.cshtml" />
+    <Content Include="Views\client\first_delete_success.cshtml" />
+    <Content Include="Views\client\second_kind.cshtml" />
+    <Content Include="Views\client\second_kind_register.cshtml" />
+    <Content Include="Views\client\second_kind_change_success.cshtml" />
+    <Content Include="Views\client\second_kind_register_success.cshtml" />
+    <Content Include="Views\client\second_kind_change.cshtml" />
+    <Content Include="Views\client\second_delete_success.cshtml" />
+    <Content Include="Views\client\third_kind.cshtml" />
+    <Content Include="Views\client\third_kind_register.cshtml" />
+    <Content Include="Views\client\third_kind_register_success.cshtml" />
+    <Content Include="Views\client\third_kind_change_success.cshtml" />
+    <Content Include="Views\client\third_kind_change.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

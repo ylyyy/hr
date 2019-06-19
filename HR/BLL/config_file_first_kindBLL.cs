@@ -36,7 +36,7 @@ namespace BLL
 
         public List<config_file_first_kind> SelectWhere(Expression<Func<config_file_first_kind, bool>> where)
         {
-            return ikf.SelectWhere<config_file_first_kind>(where);
+            return ikf.SelectWhere(where);
         }
 
         public int Update(config_file_first_kind t)
