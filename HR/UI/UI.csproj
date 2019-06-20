@@ -169,7 +169,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\positionController.cs" />
-    <Compile Include="Controllers\clientController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\salaryCriterionController.cs" />
     <Compile Include="Controllers\UserController.cs" />
