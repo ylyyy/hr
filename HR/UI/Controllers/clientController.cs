@@ -14,9 +14,6 @@ namespace UI.Controllers
     {
 
         ISalaryBll isbll = IocContain.CreateAll<ISalaryBll>("yibll", "sarybll");
-        Iconfig_file_first_kindBLL iffk = IocContain.CreateAll<Iconfig_file_first_kindBLL>("yibll", "config_file_first_kindBLL");
-        Iconfig_file_second_kindBLL ifsk = IocContain.CreateAll<Iconfig_file_second_kindBLL>("yibll", "config_file_second_kindBLL");
-        Iconfig_file_third_kindBLL iftk = IocContain.CreateAll<Iconfig_file_third_kindBLL>("yibll", "config_file_third_kindBLL");
         // GET: client
         [HttpGet]
         public ActionResult salary_item()
