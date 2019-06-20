@@ -172,6 +172,7 @@
     <Compile Include="Controllers\positionController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\salaryCriterionController.cs" />
+    <Compile Include="Controllers\salaryGrantController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\ErrorAttribute.cs" />
     <Compile Include="Filters\LoginAttribute.cs" />
@@ -795,6 +796,9 @@
     <Content Include="Views\client\third_kind_register_success.cshtml" />
     <Content Include="Views\client\third_kind_change_success.cshtml" />
     <Content Include="Views\client\third_kind_change.cshtml" />
+    <Content Include="Views\salaryGrant\register_locate.cshtml" />
+    <Content Include="Views\salaryGrant\register_list.cshtml" />
+    <Content Include="Views\salaryGrant\register_commit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -54,6 +54,7 @@
     <Compile Include="config_file_second_kindDao.cs" />
     <Compile Include="config_file_third_kindDao.cs" />
     <Compile Include="DBHelper.cs" />
+    <Compile Include="human_fileDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SalaryDal.cs" />
     <Compile Include="Salary_strandardDal.cs" />

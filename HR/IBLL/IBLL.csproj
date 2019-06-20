@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ihuman_fileBll.cs" />
     <Compile Include="ISalaryBll.cs" />
     <Compile Include="ISalary_strandardBll.cs" />
     <Compile Include="Isalary_standard_detailsBll.cs" />
