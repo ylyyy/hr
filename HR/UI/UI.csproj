@@ -168,7 +168,6 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\clientController.cs" />
     <Compile Include="Controllers\positionController.cs" />
     <Compile Include="Controllers\clientController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
@@ -796,6 +795,14 @@
     <Content Include="Views\client\third_kind_register_success.cshtml" />
     <Content Include="Views\client\third_kind_change_success.cshtml" />
     <Content Include="Views\client\third_kind_change.cshtml" />
+    <Content Include="Views\client\third_delete_success.cshtml" />
+    <Content Include="Views\client\profession_design.cshtml" />
+    <Content Include="Views\client\major_kind.cshtml" />
+    <Content Include="Views\client\major_kind_add.cshtml" />
+    <Content Include="Views\client\major_add.cshtml" />
+    <Content Include="Views\client\major.cshtml" />
+    <Content Include="Views\client\public_char.cshtml" />
+    <Content Include="Views\client\public_char_add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

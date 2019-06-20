@@ -52,6 +52,9 @@
     <Compile Include="config_file_first_kindBLL.cs" />
     <Compile Include="config_file_second_kindBLL.cs" />
     <Compile Include="config_file_third_kindBLL.cs" />
+    <Compile Include="config_majorBLL.cs" />
+    <Compile Include="config_major_kindBLL.cs" />
+    <Compile Include="config_public_charBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SalaryBll.cs" />
     <Compile Include="Salary_strandardBll.cs" />

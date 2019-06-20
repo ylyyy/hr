@@ -21,8 +21,8 @@
                 //ftk_id, first_kind_id, first_kind_name, second_kind_id, second_kind_name, third_kind_id, third_kind_name, third_kind_sale_id, third_kind_is_retail
                 for (var i = 0; i < datas.length; i++) {
                     var $tr = $("<tr></tr>");
-                    var $td = $("<td>" + datas[i].first_kind_name + "</td><td>" + datas[i].second_kind_name + "</td><td>" + datas[i].second_kind_id + "</td><td>" + datas[i].third_kind_name + "</td><td>" + datas[i].third_kind_is_retail + "</td><td>" + datas[i].third_kind_name + "</td>");
-                    var $td1 = $("<td><a href='/client/second_kind_change/" + datas[i].ftk_id + "'>变更</a></td><td><a href='/client/second_delete/" + datas[i].ftk_id + "'>删除</a></td>");
+                    var $td = $("<td>" + datas[i].first_kind_name + "</td><td>" + datas[i].second_kind_name + "</td><td>" + datas[i].second_kind_id + "</td><td>" + datas[i].third_kind_name + "</td><td>" + datas[i].third_kind_sale_id + "</td><td>" + datas[i].third_kind_is_retail + "</td>");
+                    var $td1 = $("<td><a href='/client/third_kind_change/" + datas[i].ftk_id + "'>变更</a></td><td><a href='/client/third_delete/" + datas[i].ftk_id + "'>删除</a></td>");
                     $tr.append($td, $td1);
                     $table.append($tr);
                 };

@@ -53,6 +53,9 @@
     <Compile Include="Iconfig_file_second_kindDao.cs" />
     <Compile Include="Iconfig_file_third_kindDao.cs" />
     <Compile Include="Father.cs" />
+    <Compile Include="Iconfig_majorDao.cs" />
+    <Compile Include="Iconfig_major_kindDao.cs" />
+    <Compile Include="Iconfig_public_charDao.cs" />
     <Compile Include="ISalaryDal.cs" />
     <Compile Include="ISalary_strandardDal.cs" />
     <Compile Include="Isalary_standard_detailsDal.cs" />
