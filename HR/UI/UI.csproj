@@ -799,6 +799,14 @@
     <Content Include="Views\salaryGrant\register_locate.cshtml" />
     <Content Include="Views\salaryGrant\register_list.cshtml" />
     <Content Include="Views\salaryGrant\register_commit.cshtml" />
+    <Content Include="Views\salaryGrant\register_success.cshtml" />
+    <Content Include="Views\salaryGrant\register_commit_details.cshtml" />
+    <Content Include="Views\salaryGrant\check_list.cshtml" />
+    <Content Include="Views\salaryGrant\check.cshtml" />
+    <Content Include="Views\salaryGrant\check_success.cshtml" />
+    <Content Include="Views\salaryGrant\query_locate.cshtml" />
+    <Content Include="Views\salaryGrant\query_list.cshtml" />
+    <Content Include="Views\salaryGrant\query.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

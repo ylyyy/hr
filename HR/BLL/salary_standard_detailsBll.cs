@@ -30,6 +30,11 @@ namespace BLL
             return isd.Delete(t);
         }
 
+        public int DeleteWhere(string id)
+        {
+            return isd.DeleteWhere(id);
+        }
+
         public List<salary_standard_details> FenYe(Expression<Func<salary_standard_details, bool>> where, out int rows, int currentPage, int pageSize)
         {
             return isd.FenYe<salary_standard_details,int>(e=>e.sdt_id, where,out rows,currentPage,pageSize);

@@ -108,7 +108,7 @@ namespace UI.Controllers
         private string getList(Expression<Func<salary_standard,bool>> where,int currentPage)
         {
             int rows = 0;
-            List<salary_standard> list = issbll.FenYe(where, out rows, 1, 10);
+            List<salary_standard> list = issbll.FenYe(where, out rows,currentPage, 10);
             Dictionary<string, object> dic = new Dictionary<string, object>();
             int pages = rows % 10 == 0 ? rows / 10 : rows / 10 + 1;
             dic.Add("rows", rows);
@@ -252,7 +252,7 @@ namespace UI.Controllers
                 string regist_time = Request.Form["regist_time"];
                 string salary_sum = Request.Form["salary_sum"];
                 string remark = Request.Form["remark"];
-                Array sdtid = Request.Form["sdtid"].Split(',');
+                //Array sdtid = Request.Form["sdtid"].Split(',');
                 Array salaryid = Request.Form["salaryid"].Split(',');
                 Array details = Request.Form["details"].Split(',');
                 Array salarymoney = Request.Form["salarymoney"].Split(',');
@@ -269,25 +269,44 @@ namespace UI.Controllers
                 bool bol = true;
                 if (issbll.Update(sd) > 0)
                 {
-                    for (int i = 0; i < salaryid.Length; i++)
+                    bool del = true;
+                    List<salary_standard_details> delde = isd.SelectWhere(e=>e.standard_id==standard_id);
+                    for (int i = 0; i < delde.Count; i++)
                     {
-                        int sh = Convert.ToInt32(salaryid.GetValue(i));
-                        int sdtidtwo = Convert.ToInt32(sdtid.GetValue(i));
-                        salary_standard_details ssd = isd.SelectWhere(e=>e.sdt_id==sdtidtwo)[0];
-                        ssd.standard_id = standard_id;
-                        ssd.standard_name = standard_name;
-                        ssd.item_id = (short)(sh);
-                        ssd.item_name = details.GetValue(i).ToString();
-                        ssd.salary = Convert.ToDecimal(salarymoney.GetValue(i));
-                        if (isd.Update(ssd) > 0)
+                        if (isd.Delete(delde[i]) > 0)
                         {
-                            bol = true;
+                            del = true;
                         }
-                        else
-                        {
-                            bol = false;
+                        else {
+                            del = false;
                             break;
                         }
+                    }
+                    if (del)
+                    {
+                        for (int i = 0; i < salaryid.Length; i++)
+                        {
+                            int sh = Convert.ToInt32(salaryid.GetValue(i));
+                            //int sdtidtwo = Convert.ToInt32(sdtid.GetValue(i));
+                            salary_standard_details ssd = new salary_standard_details();
+                            ssd.standard_id = standard_id;
+                            ssd.standard_name = standard_name;
+                            ssd.item_id = (short)(sh);
+                            ssd.item_name = details.GetValue(i).ToString();
+                            ssd.salary = Convert.ToDecimal(salarymoney.GetValue(i));
+                            if (isd.Add(ssd) > 0)
+                            {
+                                bol = true;
+                            }
+                            else
+                            {
+                                bol = false;
+                                break;
+                            }
+                        }
+                    }
+                    else {
+                        bol = false;
                     }
                 }
                 else

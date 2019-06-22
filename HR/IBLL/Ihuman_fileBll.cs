@@ -16,5 +16,6 @@ namespace IBLL
         int Delete(human_file t);
         int Update(human_file t);
         List<human_file> FenYe(Expression<Func<human_file, bool>> where, out int rows, int currentPage, int pageSize);
+        string bianHao();
     }
 }

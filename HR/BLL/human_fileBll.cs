@@ -19,6 +19,11 @@ namespace BLL
             return human.Add<human_file>(t);
         }
 
+        public string bianHao()
+        {
+            return human.bianHao();
+        }
+
         public int Delete(human_file t)
         {
             return human.Delete<human_file>(t);

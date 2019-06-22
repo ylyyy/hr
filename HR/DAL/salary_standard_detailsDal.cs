@@ -1,4 +1,5 @@
-﻿using IDAL;
+﻿using Entity;
+using IDAL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -24,6 +25,14 @@ namespace DAL
             }
             return zhi;
         }
+        public int DeleteWhere(string id) {
 
+            //SqlParameter sqlp = new SqlParameter() {
+            //    ParameterName="@standard_id",Value=id
+            //};
+            //int aa= es.salary_standard_details.SqlQuery("delete  dbo.salary_standard_details where standard_id='@standard_id'", id);
+
+            return 0;
+        }
     }
 }
