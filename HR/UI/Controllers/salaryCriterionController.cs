@@ -36,6 +36,7 @@ namespace UI.Controllers
         }
         //薪酬标准添加
         public ActionResult salarystandard_register_success() {
+            //获取ui传过来的数据，添加薪酬标准基本信息表成功后再 一行一行添加详情 ，如果出错则ts事务不提交
             using (TransactionScope ts = new TransactionScope())
             {
                 string standard_id = Request.Form["standard_id"];
@@ -119,12 +120,13 @@ namespace UI.Controllers
             dic.Add("list", list);
             return JsonConvert.SerializeObject(dic);
         }
+        
         [HttpPost]
         public ActionResult salarystandard_check_list(int currentPage)
         {
             return Content(getList(e=>e.check_status==0,currentPage));
         }
-        //复核
+        //复核查询
         public ActionResult salarystandard_check(string id) {
             List<salary_standard_details> list= isd.SelectWhere(e=>e.standard_id==id);
             ViewData["alary_details"] = list;
@@ -172,23 +174,7 @@ namespace UI.Controllers
         [HttpPost]
         public ActionResult salarystandard_query_list(string standardId,string startDate,string endDate,int currentpage)
         {
-            if (startDate!=""&& endDate == "")
-            {
-                DateTime dtime = Convert.ToDateTime(startDate);
-                return Content(getList(e => e.standard_id.Contains(standardId) && e.regist_time >= dtime&&e.check_status==1, currentpage));
-            }
-            if (endDate != ""&& startDate == "")
-            {
-                DateTime dtime2 = Convert.ToDateTime(endDate);
-                return Content(getList(e => e.standard_id.Contains(standardId) && e.regist_time <= dtime2 && e.check_status == 1, currentpage));
-            }
-            if (endDate != "" && startDate != "")
-            {
-                DateTime dtime = Convert.ToDateTime(startDate);
-                DateTime dtime2 = Convert.ToDateTime(endDate);
-                return Content(getList(e => e.standard_id.Contains(standardId) && e.regist_time >= dtime && e.regist_time <= dtime2 && e.check_status == 1, currentpage));
-            }
-            return Content(getList(e => e.standard_id.Contains(standardId) && e.check_status == 1, currentpage));
+            return getLike(standardId, startDate, endDate, currentpage);
         }
         //薪酬标准登记查询
         [HttpGet]
@@ -215,6 +201,11 @@ namespace UI.Controllers
         [HttpPost]
         public ActionResult salarystandard_change_list(string standardId, string startDate, string endDate, int currentpage)
         {
+            return getLike(standardId, startDate, endDate, currentpage);
+        }
+        //条件模糊查询
+        private ActionResult getLike(string standardId, string startDate, string endDate, int currentpage)
+        {
             if (startDate != "" && endDate == "")
             {
                 DateTime dtime = Convert.ToDateTime(startDate);
@@ -233,6 +224,7 @@ namespace UI.Controllers
             }
             return Content(getList(e => e.standard_id.Contains(standardId) && e.check_status == 1, currentpage));
         }
+
         //薪酬标准变更
         [HttpGet]
         public ActionResult salarystandard_change(string id) {
@@ -247,6 +239,7 @@ namespace UI.Controllers
         public ActionResult salarystandard_change_success() {
             using (TransactionScope ts = new TransactionScope())
             {
+                // 获取ui传过来的数据，修改薪酬标准基本信息表成功后再一行一行删除详情，任何添加详情 ，如果出错则ts事务不提交
                 string standard_id = Request.Form["standard_id"];
                 string standard_name = Request.Form["standard_name"];
                 string designer = Request.Form["designer"];

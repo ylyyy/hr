@@ -62,7 +62,7 @@ namespace UI.Controllers
             ViewData["hsbianhao"] = human.bianHao();
             ViewData["user"] = "zhangsan";
             ViewData["sary_details"] = isd.SelectAll();
-            
+            //判断几级机构，然后给机构的id和名字
             if (jg=="1")
             {
                 ViewData["jg"] = jg;
@@ -107,7 +107,7 @@ namespace UI.Controllers
             }
             return Content("<script>alert('无页面！');</script>");
         }
-        //薪酬发放登记  登记页面 工资详情
+        //薪酬发放登记  登记页面 工资详情    用工资详情代替了原本薪酬详情的信息
         public ActionResult register_commit_details(string id) {
             ViewData["salary"] = isd.SelectWhere(e=>e.standard_id==id);
             return View();
@@ -124,6 +124,7 @@ namespace UI.Controllers
         {
             using (TransactionScope ts = new TransactionScope())
             {
+                // 获取ui传过来的数据，添加薪酬发放登记表成功后再 一行一行添加详情 ，如果出错则ts事务不提交
                 int hm_amount = Convert.ToInt32(human_amount);
                 DateTime regtime = Convert.ToDateTime(regist_time);
                 decimal sss = Convert.ToDecimal(salary_standard_sum);
@@ -259,6 +260,7 @@ namespace UI.Controllers
         {
             using (TransactionScope ts = new TransactionScope())
             {
+                // 获取ui传过来的数据，修改薪酬发放登记表成功后再 一行一行删除详情，添加详情 ，如果出错则ts事务不提交
                 salary_grant sg = grant.SelectWhere(e=>e.salary_grant_id==salary_grant_id)[0];
                 sg.salary_paid_sum =Convert.ToDecimal(salary_paid_sum);
                 sg.checker = checker;
@@ -352,6 +354,7 @@ namespace UI.Controllers
         //薪酬发放查询 查询显示
         [HttpPost]
         public ActionResult query_list(string salaryGrantId,string startDate,string endDate,int currentpage) {
+            //条件模糊查询
             if (startDate != "" && endDate == "")
             {
                 DateTime dtime = Convert.ToDateTime(startDate);
@@ -384,7 +387,6 @@ namespace UI.Controllers
             ViewData["grantde"] = grantde;
             ViewData["standardid"] = standardid;
             ViewData["sagrant"] = sagrant;
-            ViewData["user"] = "zhangsan";
             if (sagrant.third_kind_name != "")
             {
                 ViewData["jg"] = 3;

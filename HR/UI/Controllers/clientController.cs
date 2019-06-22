@@ -49,7 +49,7 @@ namespace UI.Controllers
         {
             return View();
         }
-        //薪酬项目名称删除
+        //薪酬项目名称删除   如果薪酬项目被引用则不能删除
         public ActionResult Del(int id)
         {
             if (isd.SelectWhere(e => e.item_id == id).Count > 0)
