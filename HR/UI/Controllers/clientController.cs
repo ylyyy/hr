@@ -7,9 +7,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using UI.Filters;
 
 namespace UI.Controllers
 {
+    [Login]
     public class clientController : Controller
     {
 
@@ -17,6 +19,8 @@ namespace UI.Controllers
         Iconfig_file_first_kindBLL iffk = IocContain.CreateAll<Iconfig_file_first_kindBLL>("yibll", "config_file_first_kindBLL");
         Iconfig_file_second_kindBLL ifsk = IocContain.CreateAll<Iconfig_file_second_kindBLL>("yibll", "config_file_second_kindBLL");
         Iconfig_file_third_kindBLL iftk = IocContain.CreateAll<Iconfig_file_third_kindBLL>("yibll", "config_file_third_kindBLL");
+
+        Isalary_standard_detailsBll isd = IocContain.CreateAll<Isalary_standard_detailsBll>("yibll", "ssdbll");
         // GET: client
         [HttpGet]
         public ActionResult salary_item()
@@ -48,17 +52,23 @@ namespace UI.Controllers
         //薪酬项目名称删除
         public ActionResult Del(int id)
         {
-            salary sary = new salary()
+            if (isd.SelectWhere(e => e.item_id == id).Count > 0)
             {
-                sid_id = id
-            };
-            if (isbll.Delete(sary) > 0)
-            {
-                return Content("<script>alert('删除成功！');location.href='/client/salary_item';</script>");
+                return Content("<script>alert('该薪酬项目被使用中！无法删除！！');location.href='/client/salary_item';</script>");
             }
-            else
-            {
-                return Content("<script>alert('删除失败！');location.href='/client/salary_item';</script>");
+            else {
+                salary sary = new salary()
+                {
+                    sid_id = id
+                };
+                if (isbll.Delete(sary) > 0)
+                {
+                    return Content("<script>alert('删除成功！');location.href='/client/salary_item';</script>");
+                }
+                else
+                {
+                    return Content("<script>alert('删除失败！');location.href='/client/salary_item';</script>");
+                }
             }
         }
 

@@ -10,9 +10,11 @@ using System.Web;
 using System.Web.Mvc;
 using System.Transactions;
 using System.Linq.Expressions;
+using UI.Filters;
 
 namespace UI.Controllers
 {
+    [Login]
     public class salaryGrantController : Controller
     {
 
@@ -29,6 +31,7 @@ namespace UI.Controllers
 
         //薪酬发放登记   几级选择
         // GET: salaryGrant
+        
         public ActionResult register_locate()
         {
             return View();

@@ -10,9 +10,11 @@ using System.Transactions;
 using Newtonsoft.Json;
 using Microsoft.Ajax.Utilities;
 using System.Linq.Expressions;
+using UI.Filters;
 
 namespace UI.Controllers
 {
+    [Login]
     public class salaryCriterionController : Controller                                         
     {
         Isalary_standard_detailsBll isd = IocContain.CreateAll<Isalary_standard_detailsBll>("yibll", "ssdbll");
