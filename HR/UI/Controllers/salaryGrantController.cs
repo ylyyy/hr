@@ -389,15 +389,15 @@ namespace UI.Controllers
             ViewData["sagrant"] = sagrant;
             if (sagrant.third_kind_name != "")
             {
-                ViewData["jg"] = 3;
+                ViewData["jg"] = sagrant.third_kind_name;
             }
             else if (sagrant.second_kind_name != "")
             {
-                ViewData["jg"] = 2;
+                ViewData["jg"] = sagrant.second_kind_name;
             }
             else
             {
-                ViewData["jg"] = 1;
+                ViewData["jg"] = sagrant.first_kind_name;
             }
             return View();
         }
