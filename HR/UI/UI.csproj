@@ -807,6 +807,14 @@
     <Content Include="Views\salaryGrant\query_locate.cshtml" />
     <Content Include="Views\salaryGrant\query_list.cshtml" />
     <Content Include="Views\salaryGrant\query.cshtml" />
+    <Content Include="Views\client\third_delete_success.cshtml" />
+    <Content Include="Views\client\profession_design.cshtml" />
+    <Content Include="Views\client\major_kind.cshtml" />
+    <Content Include="Views\client\major_kind_add.cshtml" />
+    <Content Include="Views\client\major_add.cshtml" />
+    <Content Include="Views\client\major.cshtml" />
+    <Content Include="Views\client\public_char.cshtml" />
+    <Content Include="Views\client\public_char_add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -50,6 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ihuman_fileBll.cs" />
+    <Compile Include="Iconfig_majorBLL.cs" />
+    <Compile Include="Iconfig_major_kindBLL.cs" />
+    <Compile Include="Iconfig_public_charBLL.cs" />
     <Compile Include="ISalaryBll.cs" />
     <Compile Include="Isalary_grantBll.cs" />
     <Compile Include="Isalary_grant_detailsBll.cs" />

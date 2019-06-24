@@ -32,91 +32,84 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        
+        //ftk_id, first_kind_id, first_kind_name, second_kind_id, second_kind_name, third_kind_id, third_kind_name, third_kind_sale_id, third_kind_is_retail
         <div class="form-horizontal">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.ftk_id, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ftk_id, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ftk_id, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.first_kind_id, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.first_kind_id, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.first_kind_id, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.first_kind_name, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.first_kind_name, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.first_kind_name, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.second_kind_id, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.second_kind_id, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.second_kind_id, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.second_kind_name, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.second_kind_name, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.second_kind_name, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.third_kind_id, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.third_kind_id, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.third_kind_id, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.third_kind_name, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.third_kind_name, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.third_kind_name, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.third_kind_sale_id, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.third_kind_sale_id, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.third_kind_sale_id, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.third_kind_is_retail, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.third_kind_is_retail, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.third_kind_is_retail, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
-                </div>
-            </div>
+            <table width="100%">
+                <tr>
+                    <td>
+                        <font color="black">
+                            您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--III级机构设置--III级机构变更
+                        </font>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <input type="submit" value="提交" class="BUTTON_STYLE1">
+                        <input type="button" value="返回" class="BUTTON_STYLE1"
+                               onclick="history.back();">
+                    </td>
+                </tr>
+            </table>
+
+            <table width="100%" border="1" cellpadding=0 cellspacing=1
+                   bordercolorlight=#848284 bordercolordark=#eeeeee
+                   class="TABLE_STYLE1">
+
+                <tr>
+                    <td width="19%" class="TD_STYLE1">
+                        I级机构名称
+                        <input type="hidden" readonly="readonly" class="INPUT_STYLE1" name="ftk_id" value="@Model.ftk_id"/>
+                    </td>
+                    <td width="81%" class="TD_STYLE2">
+                        <input type="text" readonly="readonly" class="INPUT_STYLE1" name="first_kind_name" value="@Model.first_kind_name"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="19%" class="TD_STYLE1">
+                        II级机构名称
+                    </td>
+                    <td width="81%" class="TD_STYLE2">
+                        <input type="text" readonly="readonly" class="INPUT_STYLE1" name="second_kind_name" value="@Model.second_kind_name"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="19%" class="TD_STYLE1">
+                        III级机构编号
+                    </td>
+                    <td width="81%" class="TD_STYLE2">
+                        <input type="text" readonly="readonly" class="INPUT_STYLE1" name="third_kind_id" value="@Model.third_kind_id"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        III级机构名称
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="text" readonly="readonly" class="INPUT_STYLE1" name="third_kind_name" value="@Model.second_kind_name"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        销售责任人编号（多个编号之间请用"半角逗号"加"一个空格"隔开，如", "）
+                    </td>
+                    <td class="TD_STYLE2">
+                        <textarea rows="4" cols="120" class="TEXTAREA_STYLE1" name="third_kind_sale_id" >@Model.third_kind_sale_id</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        是否为零售店（是/否）
+                    </td>
+                    <td class="TD_STYLE2">
+                        <select name="third_kind_is_retail">
+                            <option @((Model.third_kind_is_retail=="是")?"selected":"")>是</option>
+                            <option @((Model.third_kind_is_retail== "否") ? "selected" : "")>否</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
         </div>
     }
-    
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
 </body>
 </html>

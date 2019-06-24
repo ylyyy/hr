@@ -57,23 +57,27 @@ namespace UI.Controllers
                 return Content("<script>alert('该薪酬项目被使用中！无法删除！！');location.href='/client/salary_item';</script>");
             }
             else {
-                salary sary = new salary()
-                {
-                    sid_id = id
-                };
-                if (isbll.Delete(sary) > 0)
-                {
-                    return Content("<script>alert('删除成功！');location.href='/client/salary_item';</script>");
-                }
-                else
-                {
-                    return Content("<script>alert('删除失败！');location.href='/client/salary_item';</script>");
-                }
+            salary sary = new salary()
+            {
+                sid_id = id
+            };
+            if (isbll.Delete(sary) > 0)
+            {
+                return Content("<script>alert('删除成功！');location.href='/client/salary_item';</script>");
             }
+            else
+            {
+                return Content("<script>alert('删除失败！');location.href='/client/salary_item';</script>");
+            }
+        }
         }
 
 
 
+        
+        Iconfig_public_charBLL ipcc = IocContain.CreateAll<Iconfig_public_charBLL>("yibll", "config_public_charBLL");
+        Iconfig_major_kindBLL ifmk = IocContain.CreateAll<Iconfig_major_kindBLL>("yibll", "config_major_kindBLL");
+        Iconfig_majorBLL ifm = IocContain.CreateAll<Iconfig_majorBLL>("yibll", "config_majorBLL");
         //-I级机构设置
         #region
         public ActionResult first_kind()
@@ -342,6 +346,10 @@ namespace UI.Controllers
         [HttpPost]
         public ActionResult third_kind_change(config_file_third_kind cftk)
         {
+            config_file_first_kind cffk = iffk.SelectWhere(e => e.first_kind_name == cftk.first_kind_name).FirstOrDefault();
+            config_file_second_kind cfsk = ifsk.SelectWhere(e => e.second_kind_name == cftk.second_kind_name).FirstOrDefault();
+            cftk.first_kind_id = cffk.first_kind_id;
+            cftk.second_kind_id = cfsk.second_kind_id;
             if (iftk.Update(cftk) > 0)
             {
                 return Content("<script>location.href='/client/third_kind_change_success'</script>");
@@ -354,6 +362,180 @@ namespace UI.Controllers
         public ActionResult third_kind_change_success()
         {
             return View();
+        }
+        public ActionResult third_delete(int id)
+        {
+            config_file_third_kind c = new config_file_third_kind
+            {
+                ftk_id = (short)id
+            };
+            if (iftk.Delete(c) > 0)
+            {
+                return Content("<script>location.href='/client/third_delete_success'</script>");
+            }
+            else
+            {
+                return Content("<script>alert('删除失败');</script>");
+            }
+        }
+        public ActionResult third_delete_success()
+        {
+            return View();
+        }
+        #endregion
+        //职称设置
+        #region
+        public ActionResult profession_design()
+        {
+            return View();
+        }
+        public ActionResult profession_designIndex()
+        {
+            return Content(JsonConvert.SerializeObject(ipcc.SelectWhere(e=>e.attribute_kind.Equals("职称"))));
+        }
+        public ActionResult profession_designDelete(int id)
+        {
+            config_public_char cpc = new config_public_char
+            {
+                pbc_id = (short)id
+            };
+            if (ipcc.Delete(cpc) > 0)
+            {
+                return Content("<script>alert('删除成功');location.href='/client/profession_design';</script>");
+            }
+            else
+            {
+                return Content("<script>alert('删除失败');</script>");
+            }
+        }
+        #endregion
+        //职位分类设置
+        #region
+        public ActionResult major_kind()
+        {
+            return View();
+        }
+        public ActionResult major_kindIndex()
+        {
+            return Content(JsonConvert.SerializeObject(ifmk.SelectAll()));
+        }
+        [HttpGet]
+        public ActionResult major_kind_add()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult major_kind_add(config_major_kind cmk)
+        {
+            if (ifmk.Add(cmk) > 0)
+            {
+                return Content("<script>alert('添加成功');location.href='/client/major_kind';</script>");
+            }
+            else
+            {
+                return Content("<script>alert('添加失败');</script>");
+            }
+        }
+        public ActionResult major_kind_delete(int id)
+        {
+            config_major_kind cmk = new config_major_kind
+            {
+                mfk_id = (short)id
+            };
+            if (ifmk.Delete(cmk) >0)
+            {
+                return Content("<script>alert('删除成功');location.href='/client/major_kind';</script>");
+            }
+            else
+            {
+                return Content("<script>alert('删除失败');</script>");
+            }
+        }
+        #endregion
+        //职位设置
+        #region
+        public ActionResult major()
+        {
+            return View();
+        }
+        public ActionResult majorIndex()
+        {
+            return Content(JsonConvert.SerializeObject(ifm.SelectAll()));
+        }
+        [HttpGet]
+        public ActionResult major_add()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult major_add(config_major cmk)
+        {
+            if (ifm.Add(cmk) > 0)
+            {
+                return Content("<script>alert('添加成功');location.href='/client/major';</script>");
+            }
+            else
+            {
+                return Content("<script>alert('添加失败');</script>");
+            }
+        }
+        public ActionResult major_delete(int id)
+        {
+            config_major cmk = new config_major
+            {
+                mak_id = (short)id
+            };
+            if (ifm.Delete(cmk) > 0)
+            {
+                return Content("<script>alert('删除成功');location.href='/client/major';</script>");
+            }
+            else
+            {
+                return Content("<script>alert('删除失败');</script>");
+            }
+        }
+        #endregion
+        //公共属性设置
+        #region
+        public ActionResult public_char()
+        {
+            return View();
+        }
+        public ActionResult public_charIndex()
+        {
+            return Content(JsonConvert.SerializeObject(ipcc.SelectAll()));
+        }
+        [HttpGet]
+        public ActionResult public_char_add()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult public_char_add(config_public_char cmk)
+        {
+            if (ipcc.Add(cmk) > 0)
+            {
+                return Content("<script>alert('添加成功');location.href='/client/public_char';</script>");
+            }
+            else
+            {
+                return Content("<script>alert('添加失败');</script>");
+            }
+        }
+        public ActionResult public_char_delete(int id)
+        {
+            config_public_char cmk = new config_public_char
+            {
+                pbc_id = (short)id
+            };
+            if (ipcc.Delete(cmk) > 0)
+            {
+                return Content("<script>alert('删除成功');location.href='/client/public_char';</script>");
+            }
+            else
+            {
+                return Content("<script>alert('删除失败');</script>");
+            }
         }
         #endregion
     }
