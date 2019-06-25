@@ -816,11 +816,17 @@
     <Content Include="Views\client\major.cshtml" />
     <Content Include="Views\client\public_char.cshtml" />
     <Content Include="Views\client\public_char_add.cshtml" />
+    <Content Include="Views\humanResources\human_register.cshtml" />
+    <Content Include="Views\humanResources\register_choose_picture.cshtml" />
+    <Content Include="Views\humanResources\success.cshtml" />
+    <Content Include="Views\humanResources\check_list.cshtml" />
+    <Content Include="Views\humanResources\human_check.cshtml" />
+    <Content Include="Views\humanResources\register_choose_picture_fuhe.cshtml" />
+    <Content Include="Views\humanResources\query_locate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="obj\Debug\TempPE\" />
-    <Folder Include="Views\humanResources\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

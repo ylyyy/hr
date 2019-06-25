@@ -54,7 +54,7 @@ namespace UI.Controllers
                 ViewData["jigou"] = 3;
                 ViewData["kind"] = ithree.SelectAll();
             }
-            ViewData["human"] = human.SelectAll();
+            ViewData["human"] = human.SelectWhere(e=>e.check_status==1&&e.human_file_status==true);
             return View();
         }
         //薪酬发放登记  登记页面
@@ -66,7 +66,7 @@ namespace UI.Controllers
             if (jg=="1")
             {
                 ViewData["jg"] = jg;
-                ViewData["human"]=human.SelectWhere(e=>e.first_kind_id==id);
+                ViewData["human"]=human.SelectWhere(e=>e.first_kind_id== id&&e.check_status == 1 && e.human_file_status == true);
                 ViewData["first_id"]= ifirst.SelectWhere(e=>e.first_kind_id==id).FirstOrDefault().first_kind_id;
                 ViewData["first_name"] = ifirst.SelectWhere(e => e.first_kind_id == id).FirstOrDefault().first_kind_name;
 
@@ -80,7 +80,7 @@ namespace UI.Controllers
             else if (jg=="2")
             {
                 ViewData["jg"] = jg;
-                ViewData["human"] = human.SelectWhere(e => e.second_kind_id == id);
+                ViewData["human"] = human.SelectWhere(e => e.second_kind_id == id && e.check_status == 1 && e.human_file_status == true);
                 ViewData["first_id"] = itwo.SelectWhere(e => e.second_kind_id == id).FirstOrDefault().first_kind_id;
                 ViewData["first_name"] = itwo.SelectWhere(e => e.second_kind_id == id).FirstOrDefault().first_kind_name;
 
@@ -94,7 +94,7 @@ namespace UI.Controllers
             else if (jg=="3")
             {
                 ViewData["jg"] = jg;
-                ViewData["human"] = human.SelectWhere(e=>e.third_kind_id==id);
+                ViewData["human"] = human.SelectWhere(e=>e.third_kind_id==id && e.check_status == 1 && e.human_file_status == true);
                 ViewData["first_id"] = ithree.SelectWhere(e => e.third_kind_id == id).FirstOrDefault().first_kind_id;
                 ViewData["first_name"] = ithree.SelectWhere(e => e.third_kind_id == id).FirstOrDefault().first_kind_name;
 

@@ -25,5 +25,20 @@ namespace DAL
             }
             return zhi;
         }
+        //用存储过程获取员工编号
+        public string hmbianHao()
+        {
+            SqlParameter[] sqlp = new SqlParameter[1];
+            sqlp[0] = new SqlParameter("@zhi", SqlDbType.VarChar, 14);
+            sqlp[0].Direction = ParameterDirection.Output;
+            DataTable dt = DBHelper.MyFenYe("[hmbhao]", sqlp, "salary_standard_detailsDal");
+            string zhi = "";
+            if (sqlp[0].Value != null)
+            {
+                zhi = sqlp[0].Value.ToString();
+            }
+            return zhi;
+        }
     }
+    
 }

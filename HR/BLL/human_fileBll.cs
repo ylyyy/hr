@@ -34,6 +34,11 @@ namespace BLL
             return human.FenYe<human_file,int>(e=>e.huf_id,where,out rows,currentPage,pageSize);
         }
 
+        public string hmbianHao()
+        {
+            return human.hmbianHao();
+        }
+
         public List<human_file> SelectAll()
         {
             return human.SelectAll<human_file>();

@@ -9,5 +9,6 @@ namespace IDAL
     public interface Ihuman_fileDal:Father
     {
         string bianHao();
+        string hmbianHao();
     }
 }
