@@ -62,6 +62,7 @@
     <Compile Include="salary_grant_detailsBll.cs" />
     <Compile Include="Salary_strandardBll.cs" />
     <Compile Include="salary_standard_detailsBll.cs" />
+    <Compile Include="usersBll.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

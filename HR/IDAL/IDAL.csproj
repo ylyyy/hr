@@ -62,6 +62,7 @@
     <Compile Include="Isalary_grant_detailsDal.cs" />
     <Compile Include="ISalary_strandardDal.cs" />
     <Compile Include="Isalary_standard_detailsDal.cs" />
+    <Compile Include="IusersDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
