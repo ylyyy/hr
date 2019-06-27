@@ -74,10 +74,13 @@ namespace UI.Controllers
             hm.human_id = hmid;
             hm.check_status = 0;
             hm.human_file_status = true;
-            salary_standard stan=issbll.SelectWhere(e=>e.standard_id==hm.salary_standard_id).FirstOrDefault();
-            hm.salary_sum = stan.salary_sum;
-            hm.demand_salaray_sum = stan.salary_sum;
-            hm.paid_salary_sum = stan.salary_sum-(stan.salary_sum * Convert.ToDecimal(0.05));
+            if (hm.salary_standard_id!="")
+            {
+                salary_standard stan = issbll.SelectWhere(e => e.standard_id == hm.salary_standard_id).FirstOrDefault();
+                hm.salary_sum = stan.salary_sum;
+                hm.demand_salaray_sum = stan.salary_sum;
+                hm.paid_salary_sum = stan.salary_sum - (stan.salary_sum * Convert.ToDecimal(0.05));
+            }
             hm.major_change_amount = 0;
             hm.bonus_amount = 0;
             hm.training_amount = 0;
@@ -258,10 +261,23 @@ namespace UI.Controllers
             ViewData["hmid"] = humanId;
             return View();
         }
-        //人力资源档案查询
+        //人力资源档案查询  条件查询
         public ActionResult query_locate() {
             ViewData["first"]=iffk.SelectAll();
+            ViewData["major_kind"] = ifmk.SelectAll();
+            return View();
+        }
+        //人力资源档案查询  显示
+        [HttpPost]
+        public ActionResult query_list(string startDate,string endDate) {
+            if (true)
+            {
 
+            }
+            if (true)
+            {
+
+            }
             return View();
         }
     }

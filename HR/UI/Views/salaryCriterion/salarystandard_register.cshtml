@@ -71,7 +71,13 @@
                     制定人
                 </td>
                 <td class="TD_STYLE2">
-                    <input type="text" id="designer" name="designer" class="INPUT_STYLE2">
+                    <select id="designer" name="designer" class="INPUT_STYLE2">
+                        @foreach (users item in ViewData["users"] as List<users>)
+                        {
+                            <option value="@item.u_true_name">@item.u_true_name</option>
+                        }
+                    </select>
+                    @*<input type="text" id="designer" name="designer" class="INPUT_STYLE2">*@
                 </td>
                 <td class="TD_STYLE1">
                     登记人
@@ -114,37 +120,85 @@
                     &nbsp;
                 </td>
             </tr>
-            <tbody>
-                @{List<salary> list = ViewData["list"] as List<salary>;}
+            
+            @*<tbody>
+                    @for (int i = 0; i < list.Count; i++)
+                    {
 
-                @for (int i = 0; i < list.Count; i++)
-                {
-
-                    <tr class="TD_STYLE2">
-                        <td align="center">
-                            @list[i].sid_id<input type="hidden" id="salaryid @(i+1)" name="salaryid" value="@list[i].sid_id">
-                        </td>
-                        <td colspan="3">
-                            @list[i].sid_sname<input type="hidden" id="details @(i+1)" name="details" value="@list[i].sid_sname">
-                        </td>
-                        <td>
-                            <input type="text" id="salary @(i+1)" name="salarymoney" value="0.00"
-                                   onkeyup="countMoney('@list.Count','salary @(i+1)')" class="INPUT_STYLE2">
-                        </td>
-                        <td colspan="3">
-                            &nbsp;
-                        </td>
-                    </tr>
-                }
-            </tbody>
+                        <tr class="TD_STYLE2">
+                            <td align="center">
+                                @list[i].sid_id<input type="hidden" id="salaryid @(i+1)" name="salaryid" value="@list[i].sid_id">
+                            </td>
+                            <td colspan="3">
+                                @list[i].sid_sname<input type="hidden" id="details @(i+1)" name="details" value="@list[i].sid_sname">
+                            </td>
+                            <td>
+                                <input type="text" id="salary @(i+1)" name="salarymoney" value="0.00"
+                                       onkeyup="countMoney('@list.Count','salary @(i+1)')" class="INPUT_STYLE2">
+                            </td>
+                            <td colspan="3">
+                                &nbsp;
+                            </td>
+                        </tr>
+                    }
+                </tbody>*@
         </table>
+        @{List<salary> list = ViewData["list"] as List<salary>;}
+
+        @{ int num = 0;}
+        <div style="margin:auto;width:500px;height:auto;" id="salaryxz">
+            <input type="checkbox" id="qx" onclick="xz()"/>全选<br />
+            @foreach (salary item in list)
+            {
+                if (num == 6)
+                {
+                    { num = 0; }
+                    <br />
+                }
+                <input type="checkbox" name="cbox" value="@item.sid_id"/>@item.sid_sname
+                { num++; }
+            }
+            <br />
+            <input type="button" value="确定" onclick="chasalary()"/>
+        </div>
+
         <p>
             &nbsp;
         </p>
     </form>
 
     <script type="text/javascript">
-
+        //全选或全不选
+        function xz() {
+            if ($("#qx").prop("checked") == true) {
+                // 上面的复选框已被选中
+                $(":checkbox[name='cbox']").prop("checked", "checked");
+            } else {
+                // 上面的复选框没被选中
+                $(":checkbox[name='cbox']").prop("checked", "");
+            }
+        }
+        //查询所需的salary
+        function chasalary() {
+            var sid = "";
+            $.each($('input:checkbox[name="cbox"]:checked'), function () {
+                sid += $(this).val() + ",";
+            });
+            if (sid == "") {
+                alert("未选中薪酬项目名！");
+                return false;
+            }
+            sid=sid.substr(0, sid.lastIndexOf(','));
+            $.post("/salaryCriterion/salarystandard_register_success_salary", {"salaryid":sid}, function (data) {
+                var salary = eval(data);
+                $("#stable tr:gt(3)").remove();
+                for (var i = 0; i < salary.length; i++) {
+                    var $tr = $('<tbody id="rem"><tr class="TD_STYLE2"><td align="center">' + (i + 1) + '<input type="hidden" id="salaryid ' + (i + 1) + '" name="salaryid" value="' + salary[i]["sid_id"] + '"></td><td colspan="3">' + salary[i]["sid_sname"] + '<input type="hidden" id="details ' + (i + 1) + '" name="details" value="' + salary[i]["sid_sname"] + '"></td><td><input type="text" id="salary ' + (i + 1) + '" name="salarymoney" value="0.00" onkeyup="countMoney(\'' + salary.length + '\',\'salary ' + (i + 1) + '\')" class="INPUT_STYLE2"></td><td colspan="3">&nbsp;</td></tr></tbody>');
+                    $("#stable").append($tr);
+                }
+                $("#sumSalary").val('0.00');
+            });
+        }
         function check() {
 
             //	var designer=document.getElementById("designer");
@@ -160,7 +214,6 @@
             //document.forms[0].submit();
         }
         function countMoney(obj, o) {
-
             if (isNaN(document.getElementById(o).value) || document.getElementById(o).value < 0) {
                 alert("金额填写错误!");
                 document.getElementById(o).value = "0.00";
@@ -223,8 +276,12 @@
             var out = window.setInterval(time, 1000);
         });
 
-        
+
         function tijiao() {
+            if ($("#sumSalary").val() == "0.00") {
+                alert("薪酬总额不能为0!");
+                return false;
+            }
             //alert($("[name=remark]").val());
             var designer = document.getElementById("designer");
             var standardName = document.getElementById("standardName");

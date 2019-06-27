@@ -28,13 +28,14 @@
     <script type="text/javascript"
             src="../../javascript/locate.js">
     </script>
+    <script src="~/javascript/comm/time.js"></script>
 </head>
 <body>
     <form method="post" action="/humanResources/query_list">
         <table width="100%">
             <tr>
                 <td>
-                    <font color="black">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案查询 </font>
+                    <font color="black">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案查询</font>
                 </td>
             </tr>
             <tr>
@@ -55,7 +56,7 @@
                     请选择员工所在I级机构
                 </td>
                 <td width="84%" class="TD_STYLE2">
-                    <select name="humanFile.firstKindId" size="5" id="firstKind" class="SELECT_STYLE2">
+                    <select name="firstKindId" size="5" id="firstKind" class="SELECT_STYLE2" onchange="firstchange()">
                         <option value="" selected="selected">全部</option>
                         @foreach (config_file_first_kind item in first)
                         {
@@ -69,7 +70,7 @@
                     请选择员工所在II级机构
                 </td>
                 <td width="84%" class="TD_STYLE2">
-                    <select name="humanFile.secondKindId" size="5" id="secondKind" class="SELECT_STYLE2">
+                    <select name="secondKindId" size="5" id="secondKind" class="SELECT_STYLE2" onclick="threechange()">
                         <option value="" selected="selected">全部</option>
                     </select>
                 </td>
@@ -79,7 +80,7 @@
                     请选择员工所在III级机构
                 </td>
                 <td width="84%" class="TD_STYLE2">
-                    <select name="humanFile.thirdKindId" class="SELECT_STYLE2" size="5" id="thirdKind">
+                    <select name="thirdKindId" class="SELECT_STYLE2" size="5" id="thirdKind">
                         <option value="" selected="selected">全部</option>
                     </select>
                 </td>
@@ -89,20 +90,12 @@
                     请选择职位分类
                 </td>
                 <td width="84%" class="TD_STYLE2">
-                    <select name="humanFile.humanMajorKindId" size="5" id="majorKind"
-                            class="SELECT_STYLE2">
-                        <option value="" selected="selected">
-                            全部
-                        </option>
-
-                        <option value="01">销售</option>
-
-                        <option value="02">软件开发</option>
-
-                        <option value="03">人力资源</option>
-
-                        <option value="04">生产部</option>
-
+                    <select name="humanMajorKindId" size="5" id="majorKind" class="SELECT_STYLE2" onchange="majork()">
+                        <option value="" selected="selected">全部</option>
+                        @foreach (config_major_kind item in ViewData["major_kind"] as List<config_major_kind>)
+                        {
+                            <option value="@item.major_kind_id">@item.major_kind_name</option>
+                        }
                     </select>
                 </td>
             </tr>
@@ -111,26 +104,8 @@
                     请选择职位名称
                 </td>
                 <td width="84%" class="TD_STYLE2">
-                    <select name="humanFile.humanMajorId" size="5" class="SELECT_STYLE2" id="majorName">
-                        <option value="" selected="selected">
-                            全部
-                        </option>
-
-                        <option value="01">区域经理</option>
-
-                        <option value="02">总经理</option>
-
-                        <option value="01">项目经理</option>
-
-                        <option value="02">程序员</option>
-
-                        <option value="01">人事经理</option>
-
-                        <option value="02">专员</option>
-
-                        <option value="01">主任</option>
-
-                        <option value="02">技术工人</option>
+                    <select name="humanMajorId" size="5" class="SELECT_STYLE2" id="majorName">
+                        <option value="" selected="selected">全部</option>
 
                     </select>
                 </td>
@@ -140,15 +115,52 @@
                     请输入建档时间
                 </td>
                 <td width="84%" class="TD_STYLE2">
-                    <input type="text" name="utilBean.startDate" readonly
-                           style="width: 14%" class="INPUT_STYLE2" id="date_start">
+                    <input type="text" name="startDate" onclick="aa('startDate')" readonly style="width: 14%" class="INPUT_STYLE2" id="date_start">
                     至
-                    <input type="text" name="utilBean.endDate" readonly="readonly"
-                           style="width: 14%" class="INPUT_STYLE2" id="date_end">
-                    <input type="hidden" name="utilBean.datePropertyName" value="registTime" />
+                    <input type="text" name="endDate" onclick="aa('endDate')" readonly="readonly" style="width: 14%" class="INPUT_STYLE2" id="date_end">
                 </td>
             </tr>
         </table>
     </form>
+    <script>
+        //职位分类让职位显示
+        function majork() {
+            $.post("/humanResources/human_register", { "jigou": "majork", "id": $("#majorKind").val() }, function (data) {
+                $("#majorName option:gt(0)").remove();
+                for (var i in data) {
+                    var $option = $('<option value="' + data[i]["mak_id"] + '">' + data[i]["major_name"] + '</option>');
+                    $("#majorName").append($option);
+                }
+                $("#majorName").val("");
+            }, 'json');
+        }
+        //二级选择让三级显示
+        function threechange() {
+            $.post("/humanResources/human_register", { "jigou": "2", "id": $("#secondKind").val() }, function (data) {
+                $("#thirdKind option:gt(0)").remove();
+                for (var i in data) {
+                    var $option = $('<option value="' + data[i]["third_kind_id"] + '">' + data[i]["third_kind_name"] + '</option>');
+                    $("#thirdKind").append($option);
+                }
+                $("#thirdKind").val("");
+            }, 'json');
+        }
+        //一级选择让二级选择
+        function firstchange() {
+            $.post("/humanResources/human_register", { "jigou": "1", "id": $("#firstKind").val() }, function (data) {
+                $("#secondKind option:gt(0)").remove();
+                for (var i in data) {
+                    var $option = $('<option value="' + data[i]["second_kind_id"] + '">' + data[i]["second_kind_name"] + '</option>');
+                    $("#secondKind").append($option);
+                }
+                $("#secondKind").val("");
+            }, 'json');
+        }
+        $(function () {
+
+
+        });
+
+    </script>
 </body>
 </html>

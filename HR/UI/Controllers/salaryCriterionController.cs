@@ -20,6 +20,7 @@ namespace UI.Controllers
         Isalary_standard_detailsBll isd = IocContain.CreateAll<Isalary_standard_detailsBll>("yibll", "ssdbll");
         ISalaryBll isbll = IocContain.CreateAll<ISalaryBll>("yibll", "sarybll");
         ISalary_strandardBll issbll = IocContain.CreateAll<ISalary_strandardBll>("yibll", "ssarybll");
+        IusersBll iuser = IocContain.CreateAll<IusersBll>("yibll", "userbll");
         // GET: salaryCriterion
         //薪酬标准登记
         public ActionResult salarystandard_register()
@@ -28,11 +29,24 @@ namespace UI.Controllers
             ViewData["salary_bhao"]=isd.bianHao();
             List<salary> list= isbll.SelectAll();
             ViewData["list"] = list;
+            ViewData["users"] = iuser.SelectAll();
             return View();
         }
         //添加成功跳转页面
         public ActionResult salarystandard_register_success_cg() {
             return View();
+        }
+        //查询要添加的salary
+        public ActionResult salarystandard_register_success_salary(string salaryid) {
+            Array ary = salaryid.Split(',');
+            List<salary> salaryst = new List<salary>();
+            for (int i = 0; i < ary.Length; i++)
+            {
+                int sid = Convert.ToInt32(ary.GetValue(i));
+                salaryst.Add(isbll.SelectWhere(e => e.sid_id == sid).FirstOrDefault());
+
+            }
+            return Content(JsonConvert.SerializeObject(salaryst));
         }
         //薪酬标准添加
         public ActionResult salarystandard_register_success() {
@@ -233,6 +247,8 @@ namespace UI.Controllers
             List<salary_standard> sary_stan = issbll.SelectWhere(e => e.standard_id == id);
             ViewData["standard"] = sary_stan;
             ViewData["user"] = "zhangsan";
+            ViewData["list"] = isbll.SelectAll();
+            ViewData["users"] = iuser.SelectAll();
             return View();
         }
         //变更中

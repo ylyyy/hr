@@ -823,6 +823,7 @@
     <Content Include="Views\humanResources\human_check.cshtml" />
     <Content Include="Views\humanResources\register_choose_picture_fuhe.cshtml" />
     <Content Include="Views\humanResources\query_locate.cshtml" />
+    <Content Include="Views\humanResources\query_list.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

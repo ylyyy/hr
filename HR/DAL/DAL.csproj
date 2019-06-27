@@ -64,6 +64,7 @@
     <Compile Include="salary_grant_detailsDal.cs" />
     <Compile Include="Salary_strandardDal.cs" />
     <Compile Include="salary_standard_detailsDal.cs" />
+    <Compile Include="usersDal.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entity\Entity.csproj">
