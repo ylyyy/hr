@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -66,14 +67,35 @@ namespace UI.Controllers
         [HttpPost]
         public ActionResult register_choose_picture(human_file hm, string startDate)
         {
+            if (hm.first_kind_id==null)
+            {
+                hm.first_kind_id = "";
+            }
+            if (hm.second_kind_id==null)
+            {
+                hm.second_kind_id = "";
+            }
+            if (hm.third_kind_id==null)
+            {
+                hm.third_kind_id = "";
+            }
+            if (hm.human_major_kind_id==null)
+            {
+                hm.human_major_kind_id = "";
+            }
+            if (hm.human_major_id==null)
+            {
+                hm.human_major_id = "";
+            }
             if (startDate != "")
             {
-                hm.regist_time = Convert.ToDateTime(startDate);
+                hm.human_birthday = Convert.ToDateTime(startDate);
             }
             string hmid = human.hmbianHao();
             hm.human_id = hmid;
             hm.check_status = 0;
             hm.human_file_status = true;
+            hm.regist_time = DateTime.Now;
             if (hm.salary_standard_id!="")
             {
                 salary_standard stan = issbll.SelectWhere(e => e.standard_id == hm.salary_standard_id).FirstOrDefault();
@@ -268,16 +290,54 @@ namespace UI.Controllers
             return View();
         }
         //人力资源档案查询  显示
+        [HttpGet]
+        public ActionResult query_list(string firstKindId,string secondKindId,string thirdKindId,string humanMajorKindId,string humanMajorId,string startDate,string endDate) {
+            ViewData["firstKindId"] = firstKindId;
+            ViewData["secondKindId"] = secondKindId;
+            ViewData["thirdKindId"] = thirdKindId;
+            ViewData["humanMajorKindId"] = humanMajorKindId;
+            ViewData["humanMajorId"] = humanMajorId;
+            ViewData["startDate"] = startDate;
+            ViewData["endDate"] = endDate;
+            return View();
+        }
+        //查询分页
+        private string getList(Expression<Func<human_file, bool>> where, int currentPage)
+        {
+            int rows = 0;
+            List<human_file> list = human.FenYe(where, out rows, currentPage, 10);
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            int pages = rows % 10 == 0 ? rows / 10 : rows / 10 + 1;
+            dic.Add("rows", rows);
+            dic.Add("pages", pages);
+            dic.Add("currentpage", currentPage);
+            dic.Add("list", list);
+            return JsonConvert.SerializeObject(dic);
+        }
+        //人力资源档案查询 显示
         [HttpPost]
-        public ActionResult query_list(string startDate,string endDate) {
-            if (true)
+        public ActionResult query_list(string firstKindId, string secondKindId, string thirdKindId, string humanMajorKindId, string humanMajorId, string startDate, string endDate,int currentpage) {
+            if (startDate!=""&&endDate=="")
             {
-
+                DateTime start = Convert.ToDateTime(startDate);
+                return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId) && e.regist_time>=start && e.check_status == 1, currentpage));
             }
-            if (true)
+            else if (startDate==""&&endDate!="")
             {
-
+                DateTime end = Convert.ToDateTime(endDate);
+                return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId) && e.regist_time <=end && e.check_status == 1, currentpage));
             }
+            else if (startDate!=""&&endDate!="")
+            {
+                DateTime start = Convert.ToDateTime(startDate);
+                DateTime end = Convert.ToDateTime(endDate);
+                return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId)&&e.regist_time>=start && e.regist_time <= end && e.check_status == 1, currentpage));
+            }
+            return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId)&&e.check_status==1, currentpage));
+        }
+        //人力资源档案查询  详情
+        public ActionResult query_list_information(string hmid) {
+            ViewData["human"] = human.SelectWhere(e=>e.human_id==hmid).FirstOrDefault();
             return View();
         }
     }
