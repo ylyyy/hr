@@ -825,6 +825,10 @@
     <Content Include="Views\humanResources\query_locate.cshtml" />
     <Content Include="Views\humanResources\query_list.cshtml" />
     <Content Include="Views\humanResources\query_list_information.cshtml" />
+    <Content Include="Views\humanResources\change_locate.cshtml" />
+    <Content Include="Views\humanResources\change_list.cshtml" />
+    <Content Include="Views\humanResources\change_list_information.cshtml" />
+    <Content Include="Views\humanResources\register_choose_picture_bgen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

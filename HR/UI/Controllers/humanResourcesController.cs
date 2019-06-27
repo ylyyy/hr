@@ -128,6 +128,7 @@ namespace UI.Controllers
         [HttpPost]
         public ActionResult success(string humanId,string yemian)
         {
+            human_file hm = human.SelectWhere(e => e.human_id == humanId)[0];
             if (yemian=="dji")
             {
                 yemian = "register_choose_picture";
@@ -135,6 +136,10 @@ namespace UI.Controllers
             else if (yemian=="fuhe")
             {
                 yemian = "register_choose_picture_fuhe";
+            }
+            else if (yemian=="bgen")
+            {
+                yemian = "register_choose_picture_bgen";
             }
             HttpPostedFileBase filename = Request.Files["picFile"];
             HttpPostedFileBase pathname = Request.Files["accFile"];
@@ -144,6 +149,7 @@ namespace UI.Controllers
             {
                 if (!pic(filename, FullName))
                 {
+                    ViewData["hmid"] = humanId;
                     return Content("<script>alert('文件类型错误！');location.href='/humanResources/"+yemian+"?humanId=" + humanId+"';</script>");
                 }
             }
@@ -151,6 +157,7 @@ namespace UI.Controllers
             {
                 if (!acc(pathname, PathName))
                 {
+                    ViewData["hmid"] = humanId;
                     return Content("<script>alert('文件类型错误！');location.href='/humanResources/"+yemian+"?humanId=" + humanId + "';</script>");
                 }
             }
@@ -162,9 +169,14 @@ namespace UI.Controllers
                     return Content("<script>alert('文件类型错误！');location.href='/humanResources/"+yemian+"?humanId=" + humanId + "';</script>");
                 }
             }
-            human_file hm=human.SelectWhere(e=>e.human_id==humanId)[0];
-            hm.human_picture = FullName;
-            hm.attachment_name = PathName;
+            if (FullName!="")
+            {
+                hm.human_picture = FullName;
+            }
+            if (PathName!="")
+            {
+                hm.attachment_name = PathName;
+            }
             if (human.Update(hm) > 0)
             {
                 return View();
@@ -274,7 +286,7 @@ namespace UI.Controllers
             }
             else
             {
-                return Content("<script>alert('添加失败！');location.href='/humanResources/check_list';</script>");
+                return Content("<script>alert('复核失败！');location.href='/humanResources/check_list';</script>");
             }
         }
         //人力资源档案登记复核 复核文件上传
@@ -339,6 +351,118 @@ namespace UI.Controllers
         public ActionResult query_list_information(string hmid) {
             ViewData["human"] = human.SelectWhere(e=>e.human_id==hmid).FirstOrDefault();
             return View();
+        }
+        //人力资源档案变更
+        public ActionResult change_locate() {
+            ViewData["first"] = iffk.SelectAll();
+            ViewData["major_kind"] = ifmk.SelectAll();
+            return View();
+        }
+
+        //人力资源档案变更 显示
+        [HttpGet]
+        public ActionResult change_list(string firstKindId, string secondKindId, string thirdKindId, string humanMajorKindId, string humanMajorId, string startDate, string endDate) {
+            ViewData["firstKindId"] = firstKindId;
+            ViewData["secondKindId"] = secondKindId;
+            ViewData["thirdKindId"] = thirdKindId;
+            ViewData["humanMajorKindId"] = humanMajorKindId;
+            ViewData["humanMajorId"] = humanMajorId;
+            ViewData["startDate"] = startDate;
+            ViewData["endDate"] = endDate;
+            return View();
+        }
+        //人力资源档案变更 显示
+        [HttpPost]
+        public ActionResult change_list(string firstKindId, string secondKindId, string thirdKindId, string humanMajorKindId, string humanMajorId, string startDate, string endDate, int currentpage)
+        {
+            if (startDate != "" && endDate == "")
+            {
+                DateTime start = Convert.ToDateTime(startDate);
+                return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId) && e.regist_time >= start && e.check_status == 1, currentpage));
+            }
+            else if (startDate == "" && endDate != "")
+            {
+                DateTime end = Convert.ToDateTime(endDate);
+                return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId) && e.regist_time <= end && e.check_status == 1, currentpage));
+            }
+            else if (startDate != "" && endDate != "")
+            {
+                DateTime start = Convert.ToDateTime(startDate);
+                DateTime end = Convert.ToDateTime(endDate);
+                return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId) && e.regist_time >= start && e.regist_time <= end && e.check_status == 1, currentpage));
+            }
+            return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId) && e.check_status == 1, currentpage));
+        }
+        //人力资源档案变更 详情
+        public ActionResult change_list_information(string hmid) {
+            ViewData["hm"] = human.SelectWhere(e => e.human_id == hmid).FirstOrDefault();
+            ViewData["designation"] = ipcc.SelectWhere(e => e.attribute_kind == "职称");
+            ViewData["mingzu"] = ipcc.SelectWhere(e => e.attribute_kind == "民族");
+            ViewData["guoji"] = ipcc.SelectWhere(e => e.attribute_kind == "国籍");
+            ViewData["zongj"] = ipcc.SelectWhere(e => e.attribute_kind == "宗教信仰");
+            ViewData["zzmmao"] = ipcc.SelectWhere(e => e.attribute_kind == "政治面貌");
+            ViewData["xueli"] = ipcc.SelectWhere(e => e.attribute_kind == "学历");
+            ViewData["jyuage"] = ipcc.SelectWhere(e => e.attribute_kind == "教育年限");
+            ViewData["zhuanye"] = ipcc.SelectWhere(e => e.attribute_kind == "专业");
+            ViewData["techang"] = ipcc.SelectWhere(e => e.attribute_kind == "特长");
+            ViewData["aihao"] = ipcc.SelectWhere(e => e.attribute_kind == "爱好");
+            ViewData["salarystrandard"] = issbll.SelectWhere(e => e.check_status == 1);
+            return View();
+        }
+        //人力资源档案变更 变更文件上传
+        [HttpGet]
+        public ActionResult register_choose_picture_bgen(string humanId) {
+            ViewData["hmid"] = humanId;
+            return View();
+        }
+        //人力资源档案变更 变更中
+        [HttpPost]
+        public ActionResult register_choose_picture_bgen(human_file hm, string startDate)
+        {
+            hm.salary_sum = Convert.ToDecimal(Request.Form["isalary_sum"]);
+            hm.demand_salaray_sum = Convert.ToDecimal(Request.Form["idemand_salaray_sum"]);
+            hm.paid_salary_sum = Convert.ToDecimal(Request.Form["ipaid_salary_sum"]);
+            int majorca = Convert.ToInt32(Request.Form["imajor_change_amount"]);
+            hm.major_change_amount = (short)majorca;
+            int bonusa = Convert.ToInt32(Request.Form["ibonus_amount"]);
+            hm.bonus_amount = (short)bonusa;
+            int traina = Convert.ToInt32(Request.Form["itraining_amount"]);
+            hm.training_amount = (short)traina;
+            int fileca = Convert.ToInt32(Request.Form["ifile_chang_amount"]);
+            hm.file_chang_amount = (short)fileca;
+            if (Request.Form["icheck_time"] != "")
+            {
+                hm.check_time = Convert.ToDateTime(Request.Form["icheck_time"]);
+            }
+            if (Request.Form["ilastly_change_time"] != "")
+            {
+                hm.lastly_change_time = Convert.ToDateTime(Request.Form["ilastly_change_time"]);
+            }
+            if (Request.Form["idelete_time"] != "")
+            {
+                hm.delete_time = Convert.ToDateTime(Request.Form["idelete_time"]);
+            }
+            if (Request.Form["irecovery_time"] != "")
+            {
+                hm.recovery_time = Convert.ToDateTime(Request.Form["irecovery_time"]);
+            }
+            hm.register = Request.Form["iregister"];
+            if (startDate != "")
+            {
+                hm.regist_time = Convert.ToDateTime(startDate);
+            }
+            hm.human_file_status = true;
+            hm.check_status = 0;
+            hm.lastly_change_time = hm.change_time;
+            if (human.Update(hm) > 0)
+            {
+                ViewData["hmid"] = hm.human_id;
+                return View();
+            }
+            else
+            {
+                return Content("<script>alert('变更失败！');location.href='/humanResources/check_list';</script>");
+            }
         }
     }
 }

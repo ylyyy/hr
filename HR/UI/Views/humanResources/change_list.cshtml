@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>query_list</title>
+    <title>change_list</title>
     <script src="~/javascript/jquery-1.7.2.js"></script>
     <link rel="stylesheet"
           href="../../css/table.css" type="text/css">
@@ -136,20 +136,20 @@
                     var er = data.list[i]["second_kind_name"];
                     var san = data.list[i]["third_kind_name"];
                     var major_kind_name = data.list[i]["human_major_kind_name"];
-                    var major_name = data.list[i]["hunma_major_name"];
+                    var major_name=data.list[i]["hunma_major_name"];
                     if (er == null) {
                         er = "";
                     }
                     if (san == null) {
                         san = "";
                     }
-                    if (major_kind_name == null) {
+                    if (major_kind_name==null) {
                         major_kind_name = "";
                     }
-                    if (major_name == null) {
+                    if (major_name==null) {
                         major_name = "";
                     }
-                    var $tr = $('<tr class="TR_STYLE2"><td width="16%" class="TD_STYLE2"><a href="/humanResources/query_list_information?hmid=' + data.list[i]["human_id"] + '">' + data.list[i]["human_id"] + '</a></td><td width="13%" class="TD_STYLE2">' + data.list[i]["human_name"] + '</td><td width="8%" class="TD_STYLE2">' + data.list[i]["human_sex"] + '</td><td width="14%" class="TD_STYLE2">' + data.list[i]["first_kind_name"] + '</td><td width="14%" class="TD_STYLE2">' + er + '</td><td width="14%" class="TD_STYLE2">' + san + '</td><td width="14%" class="TD_STYLE2">' + major_kind_name + '</td><td width="7%" class="TD_STYLE2">' + major_name + '</td></tr>');
+                    var $tr = $('<tr class="TR_STYLE2"><td width="16%" class="TD_STYLE2"><a href="/humanResources/change_list_information?hmid=' + data.list[i]["human_id"] + '">' + data.list[i]["human_id"] + '</a></td><td width="13%" class="TD_STYLE2">' + data.list[i]["human_name"] + '</td><td width="8%" class="TD_STYLE2">' + data.list[i]["human_sex"] + '</td><td width="14%" class="TD_STYLE2">' + data.list[i]["first_kind_name"] + '</td><td width="14%" class="TD_STYLE2">' + er + '</td><td width="14%" class="TD_STYLE2">' + san + '</td><td width="14%" class="TD_STYLE2">' + major_kind_name + '</td><td width="7%" class="TD_STYLE2">' + major_name + '</td></tr>');
                     $("#salary_tr").append($tr);
                 }
             }, 'json');
