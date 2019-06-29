@@ -12,12 +12,10 @@ namespace Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class users
+    public partial class RoleQuan
     {
-        public int u_id { get; set; }
-        public string u_name { get; set; }
-        public string u_true_name { get; set; }
-        public string u_password { get; set; }
-        public int u_roleid { get; set; }
+        public int sid { get; set; }
+        public int rid { get; set; }
+        public int qid { get; set; }
     }
 }

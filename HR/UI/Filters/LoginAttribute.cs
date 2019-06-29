@@ -12,7 +12,7 @@ namespace UI.Filters
         {
             if (filterContext.HttpContext.Session["user"] == null)
             {
-                filterContext.HttpContext.Response.Write("<script>alert('请登录！');location.href='/User/Index';</script>");
+                filterContext.HttpContext.Response.Write("<script>alert('请登录！');location.href='/User/Login';</script>");
             }
         }
     }

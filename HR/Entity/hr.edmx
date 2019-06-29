@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="HRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="HRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="bonus">
           <Key>
             <PropertyRef Name="bon_id" />
@@ -478,6 +478,33 @@
           <Property Name="regist_time" Type="datetime" />
           <Property Name="check_time" Type="datetime" />
         </EntityType>
+        <EntityType Name="Quan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="text" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fid" Type="int" Nullable="false" />
+          <Property Name="quanurl" Type="nvarchar" MaxLength="50" />
+          <Property Name="state" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="roleid" />
+          </Key>
+          <Property Name="roleid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rolename" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="roleexplain" Type="nvarchar" MaxLength="50" />
+          <Property Name="usable" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RoleQuan">
+          <Key>
+            <PropertyRef Name="sid" />
+          </Key>
+          <Property Name="sid" Type="int" Nullable="false" />
+          <Property Name="rid" Type="int" Nullable="false" />
+          <Property Name="qid" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="salary_grant">
           <Key>
             <PropertyRef Name="sgr_id" />
@@ -571,10 +598,11 @@
           <Key>
             <PropertyRef Name="u_id" />
           </Key>
-          <Property Name="u_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="u_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="u_name" Type="varchar" MaxLength="60" Nullable="false" />
           <Property Name="u_true_name" Type="varchar" MaxLength="60" Nullable="false" />
           <Property Name="u_password" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="u_roleid" Type="int" Nullable="false" />
         </EntityType>
         <EntityContainer Name="HRModelStoreContainer">
           <EntitySet Name="bonus" EntityType="Self.bonus" Schema="dbo" store:Type="Tables" />
@@ -598,6 +626,9 @@
           <EntitySet Name="human_file" EntityType="Self.human_file" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="human_file_dig" EntityType="Self.human_file_dig" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="major_change" EntityType="Self.major_change" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Quan" EntityType="Self.Quan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleQuan" EntityType="Self.RoleQuan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="salary_grant" EntityType="Self.salary_grant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="salary_grant_details" EntityType="Self.salary_grant_details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="salary_standard" EntityType="Self.salary_standard" Schema="dbo" store:Type="Tables" />
@@ -605,7 +636,8 @@
           <EntitySet Name="training" EntityType="Self.training" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HRModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1082,6 +1114,33 @@
           <Property Name="regist_time" Type="DateTime" Precision="3" />
           <Property Name="check_time" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="Quan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="text" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fid" Type="Int32" Nullable="false" />
+          <Property Name="quanurl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="roleid" />
+          </Key>
+          <Property Name="roleid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rolename" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="roleexplain" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="usable" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RoleQuan">
+          <Key>
+            <PropertyRef Name="sid" />
+          </Key>
+          <Property Name="sid" Type="Int32" Nullable="false" />
+          <Property Name="rid" Type="Int32" Nullable="false" />
+          <Property Name="qid" Type="Int32" Nullable="false" />
+        </EntityType>
         <EntityType Name="salary_grant">
           <Key>
             <PropertyRef Name="sgr_id" />
@@ -1175,12 +1234,13 @@
           <Key>
             <PropertyRef Name="u_id" />
           </Key>
-          <Property Name="u_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="u_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="u_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="u_true_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="u_password" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="u_roleid" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="HREntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="HREntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="bonus" EntityType="Self.bonus" />
           <EntitySet Name="config_file_first_kind" EntityType="Self.config_file_first_kind" />
           <EntitySet Name="config_file_second_kind" EntityType="Self.config_file_second_kind" />
@@ -1202,6 +1262,9 @@
           <EntitySet Name="human_file" EntityType="Self.human_file" />
           <EntitySet Name="human_file_dig" EntityType="Self.human_file_dig" />
           <EntitySet Name="major_change" EntityType="Self.major_change" />
+          <EntitySet Name="Quan" EntityType="Self.Quan" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="RoleQuan" EntityType="Self.RoleQuan" />
           <EntitySet Name="salary_grant" EntityType="Self.salary_grant" />
           <EntitySet Name="salary_grant_details" EntityType="Self.salary_grant_details" />
           <EntitySet Name="salary_standard" EntityType="Self.salary_standard" />
@@ -1214,7 +1277,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="HRModelStoreContainer" CdmEntityContainer="HREntities1">
+        <EntityContainerMapping StorageEntityContainer="HRModelStoreContainer" CdmEntityContainer="HREntities3">
           <EntitySetMapping Name="bonus">
             <EntityTypeMapping TypeName="HRModel.bonus">
               <MappingFragment StoreEntitySet="bonus">
@@ -1709,6 +1772,36 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Quan">
+            <EntityTypeMapping TypeName="HRModel.Quan">
+              <MappingFragment StoreEntitySet="Quan">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="fid" ColumnName="fid" />
+                <ScalarProperty Name="quanurl" ColumnName="quanurl" />
+                <ScalarProperty Name="state" ColumnName="state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="HRModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="roleid" ColumnName="roleid" />
+                <ScalarProperty Name="rolename" ColumnName="rolename" />
+                <ScalarProperty Name="roleexplain" ColumnName="roleexplain" />
+                <ScalarProperty Name="usable" ColumnName="usable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleQuan">
+            <EntityTypeMapping TypeName="HRModel.RoleQuan">
+              <MappingFragment StoreEntitySet="RoleQuan">
+                <ScalarProperty Name="sid" ColumnName="sid" />
+                <ScalarProperty Name="rid" ColumnName="rid" />
+                <ScalarProperty Name="qid" ColumnName="qid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="salary_grant">
             <EntityTypeMapping TypeName="HRModel.salary_grant">
               <MappingFragment StoreEntitySet="salary_grant">
@@ -1810,6 +1903,7 @@
                 <ScalarProperty Name="u_name" ColumnName="u_name" />
                 <ScalarProperty Name="u_true_name" ColumnName="u_true_name" />
                 <ScalarProperty Name="u_password" ColumnName="u_password" />
+                <ScalarProperty Name="u_roleid" ColumnName="u_roleid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

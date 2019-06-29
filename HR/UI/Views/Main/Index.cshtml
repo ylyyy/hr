@@ -1,0 +1,60 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/jquery-easyui-1.3.5/jquery.min.js"></script>
+    <script src="~/jquery-easyui-1.3.5/jquery.easyui.min.js"></script>
+    <link href="~/jquery-easyui-1.3.5/themes/bootstrap/easyui.css" rel="stylesheet" />
+    <link href="~/jquery-easyui-1.3.5/themes/icon.css" rel="stylesheet" />
+    <script src="~/jquery-easyui-1.3.5/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#tt').tree({
+                url: "/Main/Index2",
+                onClick: function (node) {
+                    var text = node.text;
+                    var url = node.quanurl;
+                    if (url != null) {
+                        //页面级
+                        //如果页面有，就选中，否则就添加
+                        if ($("#tabs").tabs('exists', text)) {
+                            $("#tabs").tabs('select', text)
+                        } else {
+                            $('#tabs').tabs('add', {
+                                title: text,
+                                content: '<iframe src=' + url + ' width="1320px" height="460px" />',
+                                closable: true,
+                                tools: [{
+                                    iconCls: 'icon-mini-refresh',
+                                    handler: function () {
+                                        alert('refresh');
+                                    }
+                                }]
+                            });
+                        }
+
+                    }
+                }
+            });
+        })
+    </script>
+</head>
+<body class="easyui-layout">
+    <div data-options="region:'north',title:'',split:true" style="height:100px;">
+        <iframe src="~/top.html" width="99%" height="85"></iframe>
+    </div>
+    <div data-options="region:'west',title:'West',split:true" style="width:200px;">
+        <ul id="tt"></ul>
+    </div>
+    <div data-options="region:'center',title:'center title'" style="padding:5px;background:#eee;">
+        <div id="tabs" class="easyui-tabs" style="width:1180px;height:540px;">
+        </div>
+    </div>
+</body>
+</html>
