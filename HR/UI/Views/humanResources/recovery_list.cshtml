@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>change_list</title>
+    <title>recovery_list</title>
     <script src="~/javascript/jquery-1.7.2.js"></script>
     <link rel="stylesheet" href="../../css/table.css" type="text/css">
 </head>
@@ -23,7 +23,7 @@
     <table width="100%">
         <tr>
             <td>
-                <font color="black">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案查询 </font>
+                <font color="black">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案恢复 </font>
             </td>
         </tr>
         <tr>
@@ -125,7 +125,7 @@
             fenye(Number($("#pages").text()));
         }
         function fenye(currentpage) {
-            $.post("/humanResources/change_list", { "firstKindId": $("#firstKindId").val(), "secondKindId": $("#secondKindId").val(), "thirdKindId": $("#thirdKindId").val(), "humanMajorKindId": $("#humanMajorKindId").val(), "humanMajorId": $("#humanMajorId").val(), "startDate": $("#startDate").val(), "endDate": $("#endDate").val(), "currentPage": currentpage }, function (data) {
+            $.post("/humanResources/recovery_list", { "firstKindId": $("#firstKindId").val(), "secondKindId": $("#secondKindId").val(), "thirdKindId": $("#thirdKindId").val(), "humanMajorKindId": $("#humanMajorKindId").val(), "humanMajorId": $("#humanMajorId").val(), "startDate": $("#startDate").val(), "endDate": $("#endDate").val(), "currentPage": currentpage }, function (data) {
                 $("#salary_tr tr:gt(0)").remove();
                 $("#rows").text(data.rows);
                 $("#rowss").text(data.rows);
@@ -148,7 +148,7 @@
                     if (major_name==null) {
                         major_name = "";
                     }
-                    var $tr = $('<tr class="TR_STYLE2"><td width="16%" class="TD_STYLE2"><a href="/humanResources/change_list_information?hmid=' + data.list[i]["human_id"] + '">' + data.list[i]["human_id"] + '</a></td><td width="13%" class="TD_STYLE2">' + data.list[i]["human_name"] + '</td><td width="8%" class="TD_STYLE2">' + data.list[i]["human_sex"] + '</td><td width="14%" class="TD_STYLE2">' + data.list[i]["first_kind_name"] + '</td><td width="14%" class="TD_STYLE2">' + er + '</td><td width="14%" class="TD_STYLE2">' + san + '</td><td width="14%" class="TD_STYLE2">' + major_kind_name + '</td><td width="7%" class="TD_STYLE2">' + major_name + '</td></tr>');
+                    var $tr = $('<tr class="TR_STYLE2"><td width="16%" class="TD_STYLE2"><a href="/humanResources/recovery_list_information?hmid=' + data.list[i]["human_id"] + '">' + data.list[i]["human_id"] + '</a></td><td width="13%" class="TD_STYLE2">' + data.list[i]["human_name"] + '</td><td width="8%" class="TD_STYLE2">' + data.list[i]["human_sex"] + '</td><td width="14%" class="TD_STYLE2">' + data.list[i]["first_kind_name"] + '</td><td width="14%" class="TD_STYLE2">' + er + '</td><td width="14%" class="TD_STYLE2">' + san + '</td><td width="14%" class="TD_STYLE2">' + major_kind_name + '</td><td width="7%" class="TD_STYLE2">' + major_name + '</td></tr>');
                     $("#salary_tr").append($tr);
                 }
             }, 'json');

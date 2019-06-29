@@ -8,18 +8,11 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>change_list</title>
+    <title>delete_forever_list</title>
     <script src="~/javascript/jquery-1.7.2.js"></script>
     <link rel="stylesheet" href="../../css/table.css" type="text/css">
 </head>
 <body>
-    <input type="hidden" id="firstKindId" value="@ViewData["firstKindId"]" />
-    <input type="hidden" id="secondKindId" value="@ViewData["secondKindId"]" />
-    <input type="hidden" id="thirdKindId" value="@ViewData["thirdKindId"]" />
-    <input type="hidden" id="humanMajorKindId" value="@ViewData["humanMajorKindId"]" />
-    <input type="hidden" id="humanMajorId" value="@ViewData["humanMajorId"]" />
-    <input type="hidden" id="startDate" value="@ViewData["startDate"]" />
-    <input type="hidden" id="endDate" value="@ViewData["endDate"]" />
     <table width="100%">
         <tr>
             <td>
@@ -36,29 +29,32 @@
            bordercolorlight=#848284 bordercolordark=#eeeeee
            class="TABLE_STYLE1" id="salary_tr">
         <tr class="TR_STYLE1">
-            <td width="16%" class="TD_STYLE1">
+            <td width="14%" height="13" class="TD_STYLE1">
                 档案编号
             </td>
-            <td width="13%" class="TD_STYLE1">
+            <td width="11%" class="TD_STYLE1">
                 姓名
             </td>
-            <td width="8%" class="TD_STYLE1">
+            <td width="6%" class="TD_STYLE1">
                 性别
             </td>
-            <td width="14%" class="TD_STYLE1">
+            <td width="13%" class="TD_STYLE1">
                 I级机构
             </td>
-            <td width="14%" class="TD_STYLE1">
+            <td width="12%" class="TD_STYLE1">
                 II级机构
             </td>
-            <td width="14%" class="TD_STYLE1">
+            <td width="13%" class="TD_STYLE1">
                 III级机构
             </td>
-            <td width="14%" class="TD_STYLE1">
+            <td width="11%" class="TD_STYLE1">
                 职位分类
             </td>
-            <td width="7%" class="TD_STYLE1">
+            <td width="13%" class="TD_STYLE1">
                 职位名称
+            </td>
+            <td width="7%" class="TD_STYLE1">
+                永久删除
             </td>
         </tr>
 
@@ -125,7 +121,7 @@
             fenye(Number($("#pages").text()));
         }
         function fenye(currentpage) {
-            $.post("/humanResources/change_list", { "firstKindId": $("#firstKindId").val(), "secondKindId": $("#secondKindId").val(), "thirdKindId": $("#thirdKindId").val(), "humanMajorKindId": $("#humanMajorKindId").val(), "humanMajorId": $("#humanMajorId").val(), "startDate": $("#startDate").val(), "endDate": $("#endDate").val(), "currentPage": currentpage }, function (data) {
+            $.post("/humanResources/delete_forever_list", { "currentPage": currentpage }, function (data) {
                 $("#salary_tr tr:gt(0)").remove();
                 $("#rows").text(data.rows);
                 $("#rowss").text(data.rows);
@@ -148,10 +144,15 @@
                     if (major_name==null) {
                         major_name = "";
                     }
-                    var $tr = $('<tr class="TR_STYLE2"><td width="16%" class="TD_STYLE2"><a href="/humanResources/change_list_information?hmid=' + data.list[i]["human_id"] + '">' + data.list[i]["human_id"] + '</a></td><td width="13%" class="TD_STYLE2">' + data.list[i]["human_name"] + '</td><td width="8%" class="TD_STYLE2">' + data.list[i]["human_sex"] + '</td><td width="14%" class="TD_STYLE2">' + data.list[i]["first_kind_name"] + '</td><td width="14%" class="TD_STYLE2">' + er + '</td><td width="14%" class="TD_STYLE2">' + san + '</td><td width="14%" class="TD_STYLE2">' + major_kind_name + '</td><td width="7%" class="TD_STYLE2">' + major_name + '</td></tr>');
+                    var $tr = $('<tr class="TR_STYLE2"><td width="14%" height="13" class="TD_STYLE2">' + data.list[i]["human_id"] + '</td><td width="11%" class="TD_STYLE2">' + data.list[i]["human_name"] + '</td><td width="6%" class="TD_STYLE2">' + data.list[i]["human_sex"] + '</td><td width="13%" class="TD_STYLE2">' + data.list[i]["first_kind_name"] + '</td><td width="12%" class="TD_STYLE2">' + er + '</td><td width="13%" class="TD_STYLE2">' + san + '</td><td width="11%" class="TD_STYLE2">' + major_kind_name + '</td><td width="13%" class="TD_STYLE2">' + major_name + '</td><td width="7%" class="TD_STYLE2"><img src="../../images/bt_del.gif" title="删除" style="cursor:pointer;" onclick="doDelete(' + data.list[i]["huf_id"] + ')"/></td></tr>');
                     $("#salary_tr").append($tr);
                 }
             }, 'json');
+        }
+        function doDelete(id) {
+            if (confirm("确定删除此档案吗？")) {
+                location.href = "/humanResources/success_yjsc?hufId=" + id;
+            }
         }
     </script>
 </body>

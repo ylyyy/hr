@@ -195,8 +195,8 @@ namespace UI.Controllers
             if (type == ".doc" || type == ".txt" || type == ".jpg" || type == ".pdf")
             {
                 bol = true;
-                string path = Server.MapPath("~/images/" + PathName);//图片保存到文件夹下
-                filename.SaveAs(path);//保存图片至该路径路径
+                string path = Server.MapPath("~/images/" + PathName);//附件保存到文件夹下
+                filename.SaveAs(path);//保存附件至该路径路径
             }
             return bol;
         }
@@ -275,7 +275,7 @@ namespace UI.Controllers
             hm.register = Request.Form["iregister"];
             if (startDate != "")
             {
-                hm.regist_time = Convert.ToDateTime(startDate);
+                hm.human_birthday = Convert.ToDateTime(startDate);
             }
             hm.human_file_status = true;
             hm.check_status = 1;
@@ -332,20 +332,20 @@ namespace UI.Controllers
             if (startDate!=""&&endDate=="")
             {
                 DateTime start = Convert.ToDateTime(startDate);
-                return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId) && e.regist_time>=start && e.check_status == 1, currentpage));
+                return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId) && e.regist_time>=start && e.check_status == 1 && e.human_file_status == true, currentpage));
             }
             else if (startDate==""&&endDate!="")
             {
                 DateTime end = Convert.ToDateTime(endDate);
-                return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId) && e.regist_time <=end && e.check_status == 1, currentpage));
+                return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId) && e.regist_time <=end && e.check_status == 1 && e.human_file_status == true, currentpage));
             }
             else if (startDate!=""&&endDate!="")
             {
                 DateTime start = Convert.ToDateTime(startDate);
                 DateTime end = Convert.ToDateTime(endDate);
-                return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId)&&e.regist_time>=start && e.regist_time <= end && e.check_status == 1, currentpage));
+                return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId)&&e.regist_time>=start && e.regist_time <= end && e.check_status == 1 && e.human_file_status == true, currentpage));
             }
-            return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId)&&e.check_status==1, currentpage));
+            return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId)&&e.check_status==1 && e.human_file_status == true, currentpage));
         }
         //人力资源档案查询  详情
         public ActionResult query_list_information(string hmid) {
@@ -378,20 +378,20 @@ namespace UI.Controllers
             if (startDate != "" && endDate == "")
             {
                 DateTime start = Convert.ToDateTime(startDate);
-                return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId) && e.regist_time >= start && e.check_status == 1, currentpage));
+                return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId) && e.regist_time >= start && e.check_status == 1 && e.human_file_status == true, currentpage));
             }
             else if (startDate == "" && endDate != "")
             {
                 DateTime end = Convert.ToDateTime(endDate);
-                return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId) && e.regist_time <= end && e.check_status == 1, currentpage));
+                return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId) && e.regist_time <= end && e.check_status == 1 && e.human_file_status == true, currentpage));
             }
             else if (startDate != "" && endDate != "")
             {
                 DateTime start = Convert.ToDateTime(startDate);
                 DateTime end = Convert.ToDateTime(endDate);
-                return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId) && e.regist_time >= start && e.regist_time <= end && e.check_status == 1, currentpage));
+                return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId) && e.regist_time >= start && e.regist_time <= end && e.check_status == 1 && e.human_file_status == true, currentpage));
             }
-            return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId) && e.check_status == 1, currentpage));
+            return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId) && e.check_status == 1 && e.human_file_status == true, currentpage));
         }
         //人力资源档案变更 详情
         public ActionResult change_list_information(string hmid) {
@@ -449,7 +449,7 @@ namespace UI.Controllers
             hm.register = Request.Form["iregister"];
             if (startDate != "")
             {
-                hm.regist_time = Convert.ToDateTime(startDate);
+                hm.human_birthday = Convert.ToDateTime(startDate);
             }
             hm.human_file_status = true;
             hm.check_status = 0;
@@ -462,6 +462,155 @@ namespace UI.Controllers
             else
             {
                 return Content("<script>alert('变更失败！');location.href='/humanResources/check_list';</script>");
+            }
+        }
+        //人力资源档案删除
+        [HttpGet]
+        public ActionResult delete_locate()
+        {
+            ViewData["first"] = iffk.SelectAll();
+            ViewData["major_kind"] = ifmk.SelectAll();
+            return View();
+        }
+        //人力资源档案删除 条件显示
+        [HttpGet]
+        public ActionResult delete_list(string firstKindId, string secondKindId, string thirdKindId, string humanMajorKindId, string humanMajorId, string startDate, string endDate) {
+            ViewData["firstKindId"] = firstKindId;
+            ViewData["secondKindId"] = secondKindId;
+            ViewData["thirdKindId"] = thirdKindId;
+            ViewData["humanMajorKindId"] = humanMajorKindId;
+            ViewData["humanMajorId"] = humanMajorId;
+            ViewData["startDate"] = startDate;
+            ViewData["endDate"] = endDate;
+            return View();
+        }
+        //人力资源档案删除 显示数据
+        [HttpPost]
+        public ActionResult delete_list(string firstKindId, string secondKindId, string thirdKindId, string humanMajorKindId, string humanMajorId, string startDate, string endDate, int currentpage) {
+            if (startDate != "" && endDate == "")
+            {
+                DateTime start = Convert.ToDateTime(startDate);
+                return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId) && e.regist_time >= start && e.check_status == 1 && e.human_file_status == true, currentpage));
+            }
+            else if (startDate == "" && endDate != "")
+            {
+                DateTime end = Convert.ToDateTime(endDate);
+                return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId) && e.regist_time <= end && e.check_status == 1 && e.human_file_status == true, currentpage));
+            }
+            else if (startDate != "" && endDate != "")
+            {
+                DateTime start = Convert.ToDateTime(startDate);
+                DateTime end = Convert.ToDateTime(endDate);
+                return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId) && e.regist_time >= start && e.regist_time <= end && e.check_status == 1 && e.human_file_status == true, currentpage));
+            }
+            return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId) && e.check_status == 1&&e.human_file_status==true, currentpage));
+        }
+        //人力资源档案删除 详情
+        public ActionResult delete_list_information(string hmid) {
+            ViewData["human"] = human.SelectWhere(e => e.human_id == hmid).FirstOrDefault();
+            return View();
+        }
+        //人力资源档案删除 删除
+        [HttpPost]
+        public ActionResult success_sc(human_file hm,string startDate) {
+            if (startDate != "")
+            {
+                hm.human_birthday = Convert.ToDateTime(startDate);
+            }
+            hm.delete_time = DateTime.Now;
+            hm.human_file_status = false;
+            if (human.Update(hm) > 0)
+            {
+                return Content("<script>location.href='/humanResources/success';</script>");
+            }
+            else {
+                return Content("<script>alert('删除失败！');location.href='/humanResources/delete_locate';</script>");
+            }
+        }
+        //人力资源档案恢复
+        public ActionResult recovery_locate() {
+            ViewData["first"] = iffk.SelectAll();
+            ViewData["major_kind"] = ifmk.SelectAll();
+            return View();
+        }
+        //人力资源档案恢复 条件显示
+        [HttpGet]
+        public ActionResult recovery_list(string firstKindId, string secondKindId, string thirdKindId, string humanMajorKindId, string humanMajorId, string startDate, string endDate) {
+            ViewData["firstKindId"] = firstKindId;
+            ViewData["secondKindId"] = secondKindId;
+            ViewData["thirdKindId"] = thirdKindId;
+            ViewData["humanMajorKindId"] = humanMajorKindId;
+            ViewData["humanMajorId"] = humanMajorId;
+            ViewData["startDate"] = startDate;
+            ViewData["endDate"] = endDate;
+            return View();
+        }
+        //人力资源档案恢复 显示数据
+        [HttpPost]
+        public ActionResult recovery_list(string firstKindId, string secondKindId, string thirdKindId, string humanMajorKindId, string humanMajorId, string startDate, string endDate, int currentpage)
+        {
+            if (startDate != "" && endDate == "")
+            {
+                DateTime start = Convert.ToDateTime(startDate);
+                return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId) && e.regist_time >= start && e.check_status == 1 && e.human_file_status == false, currentpage));
+            }
+            else if (startDate == "" && endDate != "")
+            {
+                DateTime end = Convert.ToDateTime(endDate);
+                return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId) && e.regist_time <= end && e.check_status == 1 && e.human_file_status == false, currentpage));
+            }
+            else if (startDate != "" && endDate != "")
+            {
+                DateTime start = Convert.ToDateTime(startDate);
+                DateTime end = Convert.ToDateTime(endDate);
+                return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId) && e.regist_time >= start && e.regist_time <= end && e.check_status == 1 && e.human_file_status == false, currentpage));
+            }
+            return Content(getList(e => e.first_kind_id.Contains(firstKindId) && e.second_kind_id.Contains(secondKindId) && e.third_kind_id.Contains(thirdKindId) && e.human_major_kind_id.Contains(humanMajorKindId) && e.human_major_id.Contains(humanMajorId) && e.check_status == 1 && e.human_file_status == false, currentpage));
+        }
+        //人力资源档案恢复 详情
+        public ActionResult recovery_list_information(string hmid) {
+            ViewData["human"] = human.SelectWhere(e => e.human_id == hmid).FirstOrDefault();
+            return View();
+        }
+        //人力资源档案恢复 恢复
+        [HttpPost]
+        public ActionResult success_hf(human_file hm, string startDate)
+        {
+            if (startDate != "")
+            {
+                hm.human_birthday = Convert.ToDateTime(startDate);
+            }
+            hm.human_file_status = true;
+            if (human.Update(hm) > 0)
+            {
+                return Content("<script>location.href='/humanResources/success';</script>");
+            }
+            else
+            {
+                return Content("<script>alert('恢复失败！');location.href='/humanResources/delete_locate';</script>");
+            }
+        }
+        //人力资源档案永久删除 页面显示
+        [HttpGet]
+        public ActionResult delete_forever_list() {
+            return View();
+        }
+        //人力资源档案永久删除 显示数据
+        [HttpPost]
+        public ActionResult delete_forever_list(int currentpage) {
+            return Content(getList(e=>e.check_status == 1,currentpage));
+        }
+        //人力资源档案永久删除 永久删除
+        public ActionResult success_yjsc(int hufId) {
+            human_file hm = new human_file() {
+                huf_id=(short)hufId
+            };
+            if (human.Delete(hm) > 0)
+            {
+                return Content("<script>location.href='/humanResources/success';</script>");
+            }
+            else {
+                return Content("<script>alert('删除失败！');location.href='/humanResources/delete_forever_list';</script>");
             }
         }
     }

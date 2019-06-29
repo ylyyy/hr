@@ -829,6 +829,13 @@
     <Content Include="Views\humanResources\change_list.cshtml" />
     <Content Include="Views\humanResources\change_list_information.cshtml" />
     <Content Include="Views\humanResources\register_choose_picture_bgen.cshtml" />
+    <Content Include="Views\humanResources\delete_locate.cshtml" />
+    <Content Include="Views\humanResources\delete_list.cshtml" />
+    <Content Include="Views\humanResources\delete_list_information.cshtml" />
+    <Content Include="Views\humanResources\recovery_locate.cshtml" />
+    <Content Include="Views\humanResources\recovery_list.cshtml" />
+    <Content Include="Views\humanResources\recovery_list_information.cshtml" />
+    <Content Include="Views\humanResources\delete_forever_list.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

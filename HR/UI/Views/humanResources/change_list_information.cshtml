@@ -48,7 +48,7 @@
             </tr>
             <tr>
                 <td align="right">
-                    <input type="submit" value="确认变更" class="BUTTON_STYLE1" />
+                    <input type="submit" value="确认变更" onclick="tijiao()" class="BUTTON_STYLE1" />
                     <input type="reset" value="清除" class="BUTTON_STYLE1">
                     <input type="button" value="返回" class="BUTTON_STYLE1"
                            onclick="history.back()">
@@ -435,6 +435,10 @@
             </form>
 
             <script>
+                //提交获取薪酬获取id和name
+                function tijiao() {
+                    $("#standname").val($("#standid").find("option:selected").text());
+                }
         //薪酬选中获取id和name
         function standchange() {
             
