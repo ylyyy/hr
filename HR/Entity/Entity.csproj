@@ -130,6 +130,15 @@
       <DependentUpon>hr.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quan.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Role.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RoleQuan.cs">
+      <DependentUpon>hr.tt</DependentUpon>
+    </Compile>
     <Compile Include="salary.cs">
       <DependentUpon>hr.tt</DependentUpon>
     </Compile>

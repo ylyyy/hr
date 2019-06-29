@@ -64,6 +64,9 @@
     <Compile Include="Isalary_standard_detailsDal.cs" />
     <Compile Include="IusersDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleIDAO.cs" />
+    <Compile Include="transferIDAO.cs" />
+    <Compile Include="UserIDAO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

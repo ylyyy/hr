@@ -133,5 +133,31 @@ namespace DAL
                 return null;
             }
         }
+        public static int InsertUpdateDelte(string sql, params SqlParameter[] ps)
+        {
+            SqlConnection cn = new SqlConnection(str);
+
+            SqlCommand cmd = new SqlCommand(sql, cn);
+            if (ps != null)
+            {
+                cmd.Parameters.AddRange(ps);
+            }
+            int result = 0;
+            try
+            {
+                cn.Open();
+                result = cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                cn.Close();
+            }
+            return result;
+        }
     }
 }

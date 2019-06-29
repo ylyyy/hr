@@ -57,6 +57,9 @@
     <Compile Include="config_major_kindBLL.cs" />
     <Compile Include="config_public_charBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleBll.cs" />
+    <Compile Include="transferBll.cs" />
+    <Compile Include="UserBll.cs" />
     <Compile Include="SalaryBll.cs" />
     <Compile Include="salary_grantBll.cs" />
     <Compile Include="salary_grant_detailsBll.cs" />

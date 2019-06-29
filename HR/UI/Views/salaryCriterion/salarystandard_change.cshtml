@@ -20,7 +20,7 @@
         <table width="100%">
             <tr>
                 <td>
-                    <font color="#0000CC">您正在做的业务是:人力资源管理--薪酬标准管理--薪酬标准登记复核</font>
+                    <font color="#0000CC">您正在做的业务是:人力资源管理--薪酬标准管理--薪酬标准登记变更</font>
                 </td>
             </tr>
             <tr>
@@ -82,7 +82,8 @@
                     变更人
                 </td>
                 <td class="TD_STYLE2">
-                    <input type="text" id="fhren" name="register" value="@ViewData["user"]" readonly="readonly" class="INPUT_STYLE2">
+                    @{ users user = Session["user"] as users;}
+                    <input type="text" id="fhren" name="register" value="@user.u_true_name" readonly="readonly" class="INPUT_STYLE2">
                 </td>
                 <td class="TD_STYLE1">
                     变更时间

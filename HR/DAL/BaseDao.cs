@@ -6,18 +6,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq.Expressions;
 using System.Runtime.Remoting.Messaging;
+using System.Data;
 
 namespace DAL
 {
     public class BaseDao
     {
-        protected HREntities es = CreateDBContent();
-        public static HREntities CreateDBContent()
+        protected HREntities1 es = CreateDBContent();
+        public static HREntities1 CreateDBContent()
         {
-            HREntities at = CallContext.GetData("s") as HREntities;
+            HREntities1 at = CallContext.GetData("s") as HREntities1;
             if (at == null)
             {
-                at = new HREntities();
+                at = new HREntities1();
                 CallContext.SetData("s", at);
             }
             return at;
@@ -27,6 +28,12 @@ namespace DAL
         }
         public List<T> SelectWhere<T>(Expression<Func<T,bool>> where)where T :class {
             return es.Set<T>().Where(where).Select(e => e).ToList();
+        }
+        public DataTable QuanUserSel() {
+            string sql = string.Format(@"SELECT dbo.users.*,dbo.Role.* FROM dbo.users INNER JOIN
+                      dbo.Role ON dbo.users.u_roleid = dbo.Role.roleid");
+            DataTable dt = DBHelper.MyDataAdapter(sql,"");
+            return dt;
         }
         public int Add<T>(T t)where T :class {
             es.Entry<T>(t).State = System.Data.Entity.EntityState.Added;

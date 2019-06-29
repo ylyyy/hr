@@ -75,7 +75,8 @@
                         复核人
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" id="fhren" name="checker" value="@ViewData["user"]" readonly="readonly" class="INPUT_STYLE2">
+                        @{ users user = Session["user"] as users;}
+                        <input type="text" id="fhren" name="checker" value="@user.u_true_name" readonly="readonly" class="INPUT_STYLE2">
                     </td>
                     <td class="TD_STYLE1">
                         复核时间

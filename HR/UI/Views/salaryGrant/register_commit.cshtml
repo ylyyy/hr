@@ -76,7 +76,8 @@
 
                 </td>
                 <td style="text-align: right;">
-                    登记人:<input type="text" name="salaryGrant.register" id="register" value="@ViewData["user"]" size="8" readonly="readonly">
+                    @{ users user = Session["user"] as users;}
+                    登记人:<input type="text" name="salaryGrant.register" id="register" value="@user.u_true_name" size="8" readonly="readonly">
                     登记时间：<span id="Tdate"></span>
                     <input type="hidden" name="salaryGrant.registTime" id="Tdate2">
                 </td>

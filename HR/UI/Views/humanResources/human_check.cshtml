@@ -353,7 +353,8 @@
                     复核人
                 </td>
                 <td class="TD_STYLE2">
-                    <input type="text" name="checker" value="谢鹏"
+                    @{ users user = Session["user"] as users;}
+                    <input type="text" name="checker" value="@user.u_true_name"
                            readonly="readonly" class="INPUT_STYLE2">
                 </td>
             </tr>

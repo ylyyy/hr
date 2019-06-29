@@ -63,6 +63,9 @@
     <Compile Include="Iconfig_file_third_kindBLL.cs" />
     <Compile Include="IusersBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleIBLL.cs" />
+    <Compile Include="transferIBLL.cs" />
+    <Compile Include="UserIBLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
