@@ -17,7 +17,6 @@ namespace UI.Controllers
     [Login]
     public class salaryGrantController : Controller
     {
-
         Iconfig_file_first_kindBLL ifirst = IocContain.CreateAll<Iconfig_file_first_kindBLL>("yibll", "config_file_first_kindBLL");
         Iconfig_file_second_kindBLL itwo = IocContain.CreateAll<Iconfig_file_second_kindBLL>("yibll", "config_file_second_kindBLL");
         Iconfig_file_third_kindBLL ithree = IocContain.CreateAll<Iconfig_file_third_kindBLL>("yibll", "config_file_third_kindBLL");
@@ -30,8 +29,6 @@ namespace UI.Controllers
         Isalary_grant_detailsBll grantdetail = IocContain.CreateAll<Isalary_grant_detailsBll>("yibll", "sgrantdetailbll");
 
         //薪酬发放登记   几级选择
-        // GET: salaryGrant
-        
         public ActionResult register_locate()
         {
             return View();
