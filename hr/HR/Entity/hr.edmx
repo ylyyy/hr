@@ -1,0 +1,1863 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="bonus">
+          <Key>
+            <PropertyRef Name="bon_id" />
+          </Key>
+          <Property Name="bon_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="major_kind_id" Type="char" MaxLength="2" />
+          <Property Name="major_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="major_id" Type="char" MaxLength="2" />
+          <Property Name="major_name" Type="varchar" MaxLength="60" />
+          <Property Name="human_id" Type="varchar" MaxLength="30" />
+          <Property Name="human_name" Type="varchar" MaxLength="60" />
+          <Property Name="bonus_item" Type="varchar" MaxLength="60" />
+          <Property Name="bonus_worth" Type="money" />
+          <Property Name="bonus_degree" Type="varchar" MaxLength="60" />
+          <Property Name="remark" Type="text" />
+          <Property Name="register" Type="varchar" MaxLength="60" />
+          <Property Name="checker" Type="varchar" MaxLength="60" />
+          <Property Name="regist_time" Type="datetime" />
+          <Property Name="check_time" Type="datetime" />
+          <Property Name="check_status" Type="smallint" />
+        </EntityType>
+        <EntityType Name="config_file_first_kind">
+          <Key>
+            <PropertyRef Name="ffk_id" />
+          </Key>
+          <Property Name="ffk_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_kind_id" Type="char" MaxLength="2" />
+          <Property Name="first_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="first_kind_salary_id" Type="text" />
+          <Property Name="first_kind_sale_id" Type="text" />
+        </EntityType>
+        <EntityType Name="config_file_second_kind">
+          <Key>
+            <PropertyRef Name="fsk_id" />
+          </Key>
+          <Property Name="fsk_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_kind_id" Type="char" MaxLength="2" />
+          <Property Name="first_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="second_kind_id" Type="char" MaxLength="2" />
+          <Property Name="second_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="second_salary_id" Type="text" />
+          <Property Name="second_sale_id" Type="text" />
+        </EntityType>
+        <EntityType Name="config_file_third_kind">
+          <Key>
+            <PropertyRef Name="ftk_id" />
+          </Key>
+          <Property Name="ftk_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_kind_id" Type="char" MaxLength="2" />
+          <Property Name="first_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="second_kind_id" Type="char" MaxLength="2" />
+          <Property Name="second_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="third_kind_id" Type="char" MaxLength="2" />
+          <Property Name="third_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="third_kind_sale_id" Type="text" />
+          <Property Name="third_kind_is_retail" Type="char" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="config_major">
+          <Key>
+            <PropertyRef Name="mak_id" />
+          </Key>
+          <Property Name="mak_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="major_kind_id" Type="char" MaxLength="2" />
+          <Property Name="major_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="major_id" Type="char" MaxLength="2" />
+          <Property Name="major_name" Type="varchar" MaxLength="60" />
+          <Property Name="test_amount" Type="smallint" />
+        </EntityType>
+        <EntityType Name="config_major_kind">
+          <Key>
+            <PropertyRef Name="mfk_id" />
+          </Key>
+          <Property Name="mfk_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="major_kind_id" Type="char" MaxLength="2" />
+          <Property Name="major_kind_name" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="config_primary_key">
+          <Key>
+            <PropertyRef Name="prk_id" />
+          </Key>
+          <Property Name="prk_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="primary_key_table" Type="varchar" MaxLength="60" />
+          <Property Name="primary_key" Type="varchar" MaxLength="60" />
+          <Property Name="key_name" Type="varchar" MaxLength="60" />
+          <Property Name="primary_key_status" Type="bit" />
+        </EntityType>
+        <EntityType Name="config_public_char">
+          <Key>
+            <PropertyRef Name="pbc_id" />
+          </Key>
+          <Property Name="pbc_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="attribute_kind" Type="varchar" MaxLength="60" />
+          <Property Name="attribute_name" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="config_question_first_kind">
+          <Key>
+            <PropertyRef Name="qfk_id" />
+          </Key>
+          <Property Name="qfk_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_kind_id" Type="char" MaxLength="2" />
+          <Property Name="first_kind_name" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="config_question_second_kind">
+          <Key>
+            <PropertyRef Name="qsk_id" />
+          </Key>
+          <Property Name="qsk_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_kind_id" Type="char" MaxLength="2" />
+          <Property Name="first_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="second_kind_id" Type="char" MaxLength="2" />
+          <Property Name="second_kind_name" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="engage_answer">
+          <Key>
+            <PropertyRef Name="ans_id" />
+          </Key>
+          <Property Name="ans_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="answer_number" Type="varchar" MaxLength="30" />
+          <Property Name="exam_number" Type="varchar" MaxLength="30" />
+          <Property Name="resume_id" Type="smallint" />
+          <Property Name="interview_id" Type="smallint" />
+          <Property Name="human_name" Type="varchar" MaxLength="60" />
+          <Property Name="human_idcard" Type="varchar" MaxLength="30" />
+          <Property Name="major_kind_id" Type="char" MaxLength="2" />
+          <Property Name="major_kind_name" Type="char" MaxLength="10" />
+          <Property Name="major_id" Type="char" MaxLength="10" />
+          <Property Name="major_name" Type="char" MaxLength="10" />
+          <Property Name="test_time" Type="datetime" />
+          <Property Name="use_time" Type="varchar" MaxLength="20" />
+          <Property Name="total_point" Type="numeric" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="engage_answer_details">
+          <Key>
+            <PropertyRef Name="and_id" />
+          </Key>
+          <Property Name="and_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="answer_number" Type="varchar" MaxLength="30" />
+          <Property Name="subject_id" Type="smallint" />
+          <Property Name="answer" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="engage_exam">
+          <Key>
+            <PropertyRef Name="exa_id" />
+          </Key>
+          <Property Name="exa_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="exam_number" Type="varchar" MaxLength="30" />
+          <Property Name="major_kind_id" Type="char" MaxLength="2" />
+          <Property Name="major_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="major_id" Type="char" MaxLength="2" />
+          <Property Name="major_name" Type="varchar" MaxLength="60" />
+          <Property Name="register" Type="varchar" MaxLength="60" />
+          <Property Name="regist_time" Type="datetime" />
+          <Property Name="limite_time" Type="smallint" />
+        </EntityType>
+        <EntityType Name="engage_exam_details">
+          <Key>
+            <PropertyRef Name="exd_id" />
+          </Key>
+          <Property Name="exd_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="exam_number" Type="varchar" MaxLength="30" />
+          <Property Name="first_kind_id" Type="char" MaxLength="2" />
+          <Property Name="first_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="second_kind_id" Type="char" MaxLength="2" />
+          <Property Name="second_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="question_amount" Type="smallint" />
+        </EntityType>
+        <EntityType Name="engage_interview">
+          <Key>
+            <PropertyRef Name="ein_id" />
+          </Key>
+          <Property Name="ein_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="human_name" Type="varchar" MaxLength="60" />
+          <Property Name="interview_amount" Type="smallint" />
+          <Property Name="human_major_kind_id" Type="char" MaxLength="2" />
+          <Property Name="human_major_kind_name" Type="varchar" MaxLength="30" />
+          <Property Name="human_major_id" Type="char" MaxLength="2" />
+          <Property Name="human_major_name" Type="varchar" MaxLength="30" />
+          <Property Name="image_degree" Type="varchar" MaxLength="20" />
+          <Property Name="native_language_degree" Type="varchar" MaxLength="20" />
+          <Property Name="foreign_language_degree" Type="varchar" MaxLength="20" />
+          <Property Name="response_speed_degree" Type="varchar" MaxLength="20" />
+          <Property Name="EQ_degree" Type="varchar" MaxLength="20" />
+          <Property Name="IQ_degree" Type="varchar" MaxLength="20" />
+          <Property Name="multi_quality_degree" Type="varchar" MaxLength="20" />
+          <Property Name="register" Type="varchar" MaxLength="60" />
+          <Property Name="checker" Type="varchar" MaxLength="60" />
+          <Property Name="registe_time" Type="datetime" />
+          <Property Name="check_time" Type="datetime" />
+          <Property Name="resume_id" Type="smallint" />
+          <Property Name="result" Type="varchar" MaxLength="20" />
+          <Property Name="interview_comment" Type="text" />
+          <Property Name="check_comment" Type="text" />
+          <Property Name="interview_status" Type="smallint" />
+          <Property Name="check_status" Type="smallint" />
+        </EntityType>
+        <EntityType Name="engage_major_release">
+          <Key>
+            <PropertyRef Name="mre_id" />
+          </Key>
+          <Property Name="mre_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_kind_id" Type="char" MaxLength="2" />
+          <Property Name="first_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="second_kind_id" Type="char" MaxLength="2" />
+          <Property Name="second_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="third_kind_id" Type="char" MaxLength="2" />
+          <Property Name="third_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="major_kind_id" Type="char" MaxLength="2" />
+          <Property Name="major_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="major_id" Type="char" MaxLength="2" />
+          <Property Name="major_name" Type="varchar" MaxLength="60" />
+          <Property Name="human_amount" Type="smallint" />
+          <Property Name="engage_type" Type="varchar" MaxLength="60" />
+          <Property Name="deadline" Type="datetime" />
+          <Property Name="register" Type="varchar" MaxLength="60" />
+          <Property Name="changer" Type="varchar" MaxLength="60" />
+          <Property Name="regist_time" Type="datetime" />
+          <Property Name="change_time" Type="datetime" />
+          <Property Name="major_describe" Type="text" />
+          <Property Name="engage_required" Type="text" />
+        </EntityType>
+        <EntityType Name="engage_resume">
+          <Key>
+            <PropertyRef Name="res_id" />
+          </Key>
+          <Property Name="res_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="human_name" Type="varchar" MaxLength="60" />
+          <Property Name="engage_type" Type="varchar" MaxLength="30" />
+          <Property Name="human_address" Type="varchar" MaxLength="200" />
+          <Property Name="human_postcode" Type="varchar" MaxLength="10" />
+          <Property Name="human_major_kind_id" Type="char" MaxLength="2" />
+          <Property Name="human_major_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="human_major_id" Type="char" MaxLength="2" />
+          <Property Name="human_major_name" Type="varchar" MaxLength="60" />
+          <Property Name="human_telephone" Type="varchar" MaxLength="60" />
+          <Property Name="human_homephone" Type="varchar" MaxLength="60" />
+          <Property Name="human_mobilephone" Type="varchar" MaxLength="60" />
+          <Property Name="human_email" Type="varchar" MaxLength="60" />
+          <Property Name="human_hobby" Type="varchar" MaxLength="200" />
+          <Property Name="human_specility" Type="varchar" MaxLength="200" />
+          <Property Name="human_sex" Type="char" MaxLength="2" />
+          <Property Name="human_religion" Type="varchar" MaxLength="60" />
+          <Property Name="human_party" Type="varchar" MaxLength="60" />
+          <Property Name="human_nationality" Type="varchar" MaxLength="60" />
+          <Property Name="human_race" Type="varchar" MaxLength="60" />
+          <Property Name="human_birthday" Type="datetime" />
+          <Property Name="human_age" Type="smallint" />
+          <Property Name="human_educated_degree" Type="varchar" MaxLength="60" />
+          <Property Name="human_educated_years" Type="smallint" />
+          <Property Name="human_educated_major" Type="varchar" MaxLength="60" />
+          <Property Name="human_college" Type="varchar" MaxLength="60" />
+          <Property Name="human_idcard" Type="varchar" MaxLength="60" />
+          <Property Name="human_birthplace" Type="varchar" MaxLength="200" />
+          <Property Name="demand_salary_standard" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="human_history_records" Type="text" />
+          <Property Name="remark" Type="text" />
+          <Property Name="recomandation" Type="text" />
+          <Property Name="human_picture" Type="varchar" MaxLength="60" />
+          <Property Name="attachment_name" Type="varchar" MaxLength="60" />
+          <Property Name="check_status" Type="smallint" />
+          <Property Name="register" Type="varchar" MaxLength="60" />
+          <Property Name="regist_time" Type="datetime" />
+          <Property Name="checker" Type="varchar" MaxLength="60" />
+          <Property Name="check_time" Type="datetime" />
+          <Property Name="interview_status" Type="smallint" />
+          <Property Name="total_points" Type="float" />
+          <Property Name="test_amount" Type="smallint" />
+          <Property Name="test_checker" Type="varchar" MaxLength="60" />
+          <Property Name="test_check_time" Type="datetime" />
+          <Property Name="pass_register" Type="varchar" MaxLength="60" />
+          <Property Name="pass_regist_time" Type="datetime" />
+          <Property Name="pass_checker" Type="varchar" MaxLength="60" />
+          <Property Name="pass_check_time" Type="datetime" />
+          <Property Name="pass_check_status" Type="smallint" />
+          <Property Name="pass_checkComment" Type="varchar" MaxLength="60" />
+          <Property Name="pass_passComment" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="engage_subjects">
+          <Key>
+            <PropertyRef Name="sub_id" />
+          </Key>
+          <Property Name="sub_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_kind_id" Type="char" MaxLength="2" />
+          <Property Name="first_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="second_kind_id" Type="char" MaxLength="2" />
+          <Property Name="second_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="register" Type="varchar" MaxLength="60" />
+          <Property Name="regist_time" Type="datetime" />
+          <Property Name="derivation" Type="varchar" MaxLength="60" />
+          <Property Name="content" Type="text" />
+          <Property Name="key_a" Type="text" />
+          <Property Name="key_b" Type="text" />
+          <Property Name="key_c" Type="text" />
+          <Property Name="key_d" Type="text" />
+          <Property Name="key_e" Type="text" />
+          <Property Name="correct_key" Type="varchar" MaxLength="10" />
+          <Property Name="changer" Type="varchar" MaxLength="60" />
+          <Property Name="change_time" Type="datetime" />
+        </EntityType>
+        <EntityType Name="human_file">
+          <Key>
+            <PropertyRef Name="huf_id" />
+          </Key>
+          <Property Name="huf_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="human_id" Type="varchar" MaxLength="30" />
+          <Property Name="first_kind_id" Type="char" MaxLength="2" />
+          <Property Name="first_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="second_kind_id" Type="char" MaxLength="2" />
+          <Property Name="second_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="third_kind_id" Type="char" MaxLength="2" />
+          <Property Name="third_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="human_name" Type="varchar" MaxLength="60" />
+          <Property Name="human_address" Type="varchar" MaxLength="200" />
+          <Property Name="human_postcode" Type="varchar" MaxLength="10" />
+          <Property Name="human_pro_designation" Type="varchar" MaxLength="60" />
+          <Property Name="human_major_kind_id" Type="char" MaxLength="2" />
+          <Property Name="human_major_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="human_major_id" Type="char" MaxLength="2" />
+          <Property Name="hunma_major_name" Type="varchar" MaxLength="60" />
+          <Property Name="human_telephone" Type="varchar" MaxLength="20" />
+          <Property Name="human_mobilephone" Type="char" MaxLength="11" />
+          <Property Name="human_bank" Type="varchar" MaxLength="50" />
+          <Property Name="human_account" Type="varchar" MaxLength="30" />
+          <Property Name="human_qq" Type="varchar" MaxLength="15" />
+          <Property Name="human_email" Type="varchar" MaxLength="50" />
+          <Property Name="human_hobby" Type="varchar" MaxLength="60" />
+          <Property Name="human_speciality" Type="varchar" MaxLength="60" />
+          <Property Name="human_sex" Type="char" MaxLength="2" />
+          <Property Name="human_religion" Type="varchar" MaxLength="50" />
+          <Property Name="human_party" Type="varchar" MaxLength="50" />
+          <Property Name="human_nationality" Type="varchar" MaxLength="50" />
+          <Property Name="human_race" Type="varchar" MaxLength="50" />
+          <Property Name="human_birthday" Type="datetime" />
+          <Property Name="human_birthplace" Type="varchar" MaxLength="50" />
+          <Property Name="human_age" Type="smallint" />
+          <Property Name="human_educated_degree" Type="varchar" MaxLength="60" />
+          <Property Name="human_educated_years" Type="smallint" />
+          <Property Name="human_educated_major" Type="varchar" MaxLength="60" />
+          <Property Name="human_society_security_id" Type="varchar" MaxLength="30" />
+          <Property Name="human_id_card" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="remark" Type="text" />
+          <Property Name="salary_standard_id" Type="varchar" MaxLength="30" />
+          <Property Name="salary_standard_name" Type="varchar" MaxLength="60" />
+          <Property Name="salary_sum" Type="money" />
+          <Property Name="demand_salaray_sum" Type="money" />
+          <Property Name="paid_salary_sum" Type="money" />
+          <Property Name="major_change_amount" Type="smallint" />
+          <Property Name="bonus_amount" Type="smallint" />
+          <Property Name="training_amount" Type="smallint" />
+          <Property Name="file_chang_amount" Type="smallint" />
+          <Property Name="human_histroy_records" Type="text" />
+          <Property Name="human_family_membership" Type="text" />
+          <Property Name="human_picture" Type="varchar" MaxLength="255" />
+          <Property Name="attachment_name" Type="varchar" MaxLength="255" />
+          <Property Name="check_status" Type="smallint" />
+          <Property Name="register" Type="varchar" MaxLength="60" />
+          <Property Name="checker" Type="varchar" MaxLength="60" />
+          <Property Name="changer" Type="varchar" MaxLength="60" />
+          <Property Name="regist_time" Type="datetime" />
+          <Property Name="check_time" Type="datetime" />
+          <Property Name="change_time" Type="datetime" />
+          <Property Name="lastly_change_time" Type="datetime" />
+          <Property Name="delete_time" Type="datetime" />
+          <Property Name="recovery_time" Type="datetime" />
+          <Property Name="human_file_status" Type="bit" />
+        </EntityType>
+        <EntityType Name="human_file_dig">
+          <Key>
+            <PropertyRef Name="hfd_id" />
+          </Key>
+          <Property Name="hfd_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="human_id" Type="varchar" MaxLength="30" />
+          <Property Name="first_kind_id" Type="char" MaxLength="2" />
+          <Property Name="first_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="second_kind_id" Type="char" MaxLength="2" />
+          <Property Name="second_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="third_kind_id" Type="char" MaxLength="2" />
+          <Property Name="third_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="human_name" Type="varchar" MaxLength="60" />
+          <Property Name="human_address" Type="varchar" MaxLength="200" />
+          <Property Name="human_postcode" Type="varchar" MaxLength="10" />
+          <Property Name="human_pro_designation" Type="varchar" MaxLength="60" />
+          <Property Name="human_major_kind_id" Type="char" MaxLength="2" />
+          <Property Name="human_major_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="human_major_id" Type="char" MaxLength="2" />
+          <Property Name="hunma_major_name" Type="varchar" MaxLength="60" />
+          <Property Name="human_telephone" Type="varchar" MaxLength="20" />
+          <Property Name="human_mobilephone" Type="char" MaxLength="11" />
+          <Property Name="human_bank" Type="varchar" MaxLength="50" />
+          <Property Name="human_account" Type="varchar" MaxLength="30" />
+          <Property Name="human_qq" Type="varchar" MaxLength="15" />
+          <Property Name="human_email" Type="varchar" MaxLength="50" />
+          <Property Name="human_hobby" Type="varchar" MaxLength="60" />
+          <Property Name="human_speciality" Type="varchar" MaxLength="60" />
+          <Property Name="human_sex" Type="char" MaxLength="2" />
+          <Property Name="human_religion" Type="varchar" MaxLength="50" />
+          <Property Name="human_party" Type="varchar" MaxLength="50" />
+          <Property Name="human_nationality" Type="varchar" MaxLength="50" />
+          <Property Name="human_race" Type="varchar" MaxLength="50" />
+          <Property Name="human_birthday" Type="datetime" />
+          <Property Name="human_birthplace" Type="varchar" MaxLength="50" />
+          <Property Name="human_age" Type="smallint" />
+          <Property Name="human_educated_degree" Type="varchar" MaxLength="60" />
+          <Property Name="human_educated_years" Type="smallint" />
+          <Property Name="human_educated_major" Type="varchar" MaxLength="60" />
+          <Property Name="human_society_security_id" Type="varchar" MaxLength="30" />
+          <Property Name="human_id_card" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="remark" Type="text" />
+          <Property Name="salary_standard_id" Type="varchar" MaxLength="30" />
+          <Property Name="salary_standard_name" Type="varchar" MaxLength="60" />
+          <Property Name="salary_sum" Type="money" />
+          <Property Name="demand_salaray_sum" Type="money" />
+          <Property Name="paid_salary_sum" Type="money" />
+          <Property Name="major_change_amount" Type="smallint" />
+          <Property Name="bonus_amount" Type="smallint" />
+          <Property Name="training_amount" Type="smallint" />
+          <Property Name="file_chang_amount" Type="smallint" />
+          <Property Name="human_histroy_records" Type="text" />
+          <Property Name="human_family_membership" Type="text" />
+          <Property Name="human_picture" Type="varchar" MaxLength="255" />
+          <Property Name="attachment_name" Type="varchar" MaxLength="255" />
+          <Property Name="check_status" Type="smallint" />
+          <Property Name="register" Type="varchar" MaxLength="60" />
+          <Property Name="checker" Type="varchar" MaxLength="60" />
+          <Property Name="changer" Type="varchar" MaxLength="60" />
+          <Property Name="regist_time" Type="datetime" />
+          <Property Name="check_time" Type="datetime" />
+          <Property Name="change_time" Type="datetime" />
+          <Property Name="lastly_change_time" Type="datetime" />
+          <Property Name="delete_time" Type="datetime" />
+          <Property Name="recovery_time" Type="datetime" />
+          <Property Name="human_file_status" Type="bit" />
+        </EntityType>
+        <EntityType Name="major_change">
+          <Key>
+            <PropertyRef Name="mch_id" />
+          </Key>
+          <Property Name="mch_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_kind_id" Type="char" MaxLength="2" />
+          <Property Name="first_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="second_kind_id" Type="char" MaxLength="2" />
+          <Property Name="second_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="third_kind_id" Type="char" MaxLength="2" />
+          <Property Name="third_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="major_kind_id" Type="char" MaxLength="2" />
+          <Property Name="major_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="major_id" Type="char" MaxLength="2" />
+          <Property Name="major_name" Type="varchar" MaxLength="60" />
+          <Property Name="new_first_kind_id" Type="char" MaxLength="2" />
+          <Property Name="new_first_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="new_second_kind_id" Type="char" MaxLength="2" />
+          <Property Name="new_second_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="new_third_kind_id" Type="char" MaxLength="2" />
+          <Property Name="new_third_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="new_major_kind_id" Type="char" MaxLength="2" />
+          <Property Name="new_major_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="new_major_id" Type="char" MaxLength="2" />
+          <Property Name="new_major_name" Type="varchar" MaxLength="60" />
+          <Property Name="human_id" Type="varchar" MaxLength="30" />
+          <Property Name="human_name" Type="varchar" MaxLength="60" />
+          <Property Name="salary_standard_id" Type="varchar" MaxLength="30" />
+          <Property Name="salary_standard_name" Type="varchar" MaxLength="60" />
+          <Property Name="salary_sum" Type="money" />
+          <Property Name="new_salary_standard_id" Type="varchar" MaxLength="30" />
+          <Property Name="new_salary_standard_name" Type="varchar" MaxLength="60" />
+          <Property Name="new_salary_sum" Type="money" />
+          <Property Name="change_reason" Type="text" />
+          <Property Name="check_reason" Type="text" />
+          <Property Name="check_status" Type="smallint" />
+          <Property Name="register" Type="varchar" MaxLength="60" />
+          <Property Name="checker" Type="varchar" MaxLength="60" />
+          <Property Name="regist_time" Type="datetime" />
+          <Property Name="check_time" Type="datetime" />
+        </EntityType>
+        <EntityType Name="salary">
+          <Key>
+            <PropertyRef Name="sid_id" />
+          </Key>
+          <Property Name="sid_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sid_sname" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="salary_grant">
+          <Key>
+            <PropertyRef Name="sgr_id" />
+          </Key>
+          <Property Name="sgr_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="salary_grant_id" Type="varchar" MaxLength="30" />
+          <Property Name="salary_standard_id" Type="varchar" MaxLength="30" />
+          <Property Name="first_kind_id" Type="char" MaxLength="2" />
+          <Property Name="first_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="second_kind_id" Type="char" MaxLength="2" />
+          <Property Name="second_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="third_kind_id" Type="char" MaxLength="2" />
+          <Property Name="third_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="human_amount" Type="smallint" />
+          <Property Name="salary_standard_sum" Type="money" />
+          <Property Name="salary_paid_sum" Type="money" />
+          <Property Name="register" Type="varchar" MaxLength="60" />
+          <Property Name="regist_time" Type="datetime" />
+          <Property Name="checker" Type="varchar" MaxLength="60" />
+          <Property Name="check_time" Type="datetime" />
+          <Property Name="check_status" Type="smallint" />
+        </EntityType>
+        <EntityType Name="salary_grant_details">
+          <Key>
+            <PropertyRef Name="grd_id" />
+          </Key>
+          <Property Name="grd_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="salary_grant_id" Type="varchar" MaxLength="30" />
+          <Property Name="human_id" Type="varchar" MaxLength="30" />
+          <Property Name="human_name" Type="varchar" MaxLength="60" />
+          <Property Name="bouns_sum" Type="money" />
+          <Property Name="sale_sum" Type="money" />
+          <Property Name="deduct_sum" Type="money" />
+          <Property Name="salary_standard_sum" Type="money" />
+          <Property Name="salary_paid_sum" Type="money" />
+        </EntityType>
+        <EntityType Name="salary_standard">
+          <Key>
+            <PropertyRef Name="ssd_id" />
+          </Key>
+          <Property Name="ssd_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="standard_id" Type="varchar" MaxLength="30" />
+          <Property Name="standard_name" Type="varchar" MaxLength="60" />
+          <Property Name="designer" Type="varchar" MaxLength="60" />
+          <Property Name="register" Type="varchar" MaxLength="60" />
+          <Property Name="checker" Type="varchar" MaxLength="60" />
+          <Property Name="changer" Type="varchar" MaxLength="60" />
+          <Property Name="regist_time" Type="datetime" />
+          <Property Name="check_time" Type="datetime" />
+          <Property Name="change_time" Type="datetime" />
+          <Property Name="salary_sum" Type="money" />
+          <Property Name="check_status" Type="smallint" />
+          <Property Name="change_status" Type="smallint" />
+          <Property Name="check_comment" Type="text" />
+          <Property Name="remark" Type="text" />
+        </EntityType>
+        <EntityType Name="salary_standard_details">
+          <Key>
+            <PropertyRef Name="sdt_id" />
+          </Key>
+          <Property Name="sdt_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="standard_id" Type="varchar" MaxLength="30" />
+          <Property Name="standard_name" Type="varchar" MaxLength="60" />
+          <Property Name="item_id" Type="smallint" />
+          <Property Name="item_name" Type="varchar" MaxLength="60" />
+          <Property Name="salary" Type="money" />
+        </EntityType>
+        <EntityType Name="training">
+          <Key>
+            <PropertyRef Name="tra_id" />
+          </Key>
+          <Property Name="tra_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="major_kind_id" Type="char" MaxLength="2" />
+          <Property Name="major_kind_name" Type="varchar" MaxLength="60" />
+          <Property Name="major_id" Type="char" MaxLength="2" />
+          <Property Name="major_name" Type="varchar" MaxLength="60" />
+          <Property Name="human_id" Type="varchar" MaxLength="30" />
+          <Property Name="human_name" Type="varchar" MaxLength="60" />
+          <Property Name="training_item" Type="varchar" MaxLength="60" />
+          <Property Name="training_time" Type="datetime" />
+          <Property Name="training_hour" Type="int" />
+          <Property Name="training_degree" Type="varchar" MaxLength="60" />
+          <Property Name="register" Type="varchar" MaxLength="60" />
+          <Property Name="checker" Type="varchar" MaxLength="60" />
+          <Property Name="regist_time" Type="datetime" />
+          <Property Name="check_time" Type="datetime" />
+          <Property Name="checkstatus" Type="smallint" />
+          <Property Name="remark" Type="text" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="u_id" />
+          </Key>
+          <Property Name="u_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="u_name" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="u_true_name" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="u_password" Type="varchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="HRModelStoreContainer">
+          <EntitySet Name="bonus" EntityType="Self.bonus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="config_file_first_kind" EntityType="Self.config_file_first_kind" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="config_file_second_kind" EntityType="Self.config_file_second_kind" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="config_file_third_kind" EntityType="Self.config_file_third_kind" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="config_major" EntityType="Self.config_major" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="config_major_kind" EntityType="Self.config_major_kind" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="config_primary_key" EntityType="Self.config_primary_key" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="config_public_char" EntityType="Self.config_public_char" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="config_question_first_kind" EntityType="Self.config_question_first_kind" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="config_question_second_kind" EntityType="Self.config_question_second_kind" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="engage_answer" EntityType="Self.engage_answer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="engage_answer_details" EntityType="Self.engage_answer_details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="engage_exam" EntityType="Self.engage_exam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="engage_exam_details" EntityType="Self.engage_exam_details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="engage_interview" EntityType="Self.engage_interview" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="engage_major_release" EntityType="Self.engage_major_release" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="engage_resume" EntityType="Self.engage_resume" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="engage_subjects" EntityType="Self.engage_subjects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="human_file" EntityType="Self.human_file" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="human_file_dig" EntityType="Self.human_file_dig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="major_change" EntityType="Self.major_change" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="salary" EntityType="Self.salary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="salary_grant" EntityType="Self.salary_grant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="salary_grant_details" EntityType="Self.salary_grant_details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="salary_standard" EntityType="Self.salary_standard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="salary_standard_details" EntityType="Self.salary_standard_details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="training" EntityType="Self.training" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HRModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="bonus">
+          <Key>
+            <PropertyRef Name="bon_id" />
+          </Key>
+          <Property Name="bon_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="major_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="major_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="major_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="major_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="human_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="bonus_item" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="bonus_worth" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="bonus_degree" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="register" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="checker" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="regist_time" Type="DateTime" Precision="3" />
+          <Property Name="check_time" Type="DateTime" Precision="3" />
+          <Property Name="check_status" Type="Int16" />
+        </EntityType>
+        <EntityType Name="config_file_first_kind">
+          <Key>
+            <PropertyRef Name="ffk_id" />
+          </Key>
+          <Property Name="ffk_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="first_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="first_kind_salary_id" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="first_kind_sale_id" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="config_file_second_kind">
+          <Key>
+            <PropertyRef Name="fsk_id" />
+          </Key>
+          <Property Name="fsk_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="first_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="second_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="second_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="second_salary_id" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="second_sale_id" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="config_file_third_kind">
+          <Key>
+            <PropertyRef Name="ftk_id" />
+          </Key>
+          <Property Name="ftk_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="first_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="second_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="second_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="third_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="third_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="third_kind_sale_id" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="third_kind_is_retail" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="config_major">
+          <Key>
+            <PropertyRef Name="mak_id" />
+          </Key>
+          <Property Name="mak_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="major_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="major_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="major_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="major_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="test_amount" Type="Int16" />
+        </EntityType>
+        <EntityType Name="config_major_kind">
+          <Key>
+            <PropertyRef Name="mfk_id" />
+          </Key>
+          <Property Name="mfk_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="major_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="major_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="config_primary_key">
+          <Key>
+            <PropertyRef Name="prk_id" />
+          </Key>
+          <Property Name="prk_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="primary_key_table" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="primary_key" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="key_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="primary_key_status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="config_public_char">
+          <Key>
+            <PropertyRef Name="pbc_id" />
+          </Key>
+          <Property Name="pbc_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="attribute_kind" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="attribute_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="config_question_first_kind">
+          <Key>
+            <PropertyRef Name="qfk_id" />
+          </Key>
+          <Property Name="qfk_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="first_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="config_question_second_kind">
+          <Key>
+            <PropertyRef Name="qsk_id" />
+          </Key>
+          <Property Name="qsk_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="first_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="second_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="second_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="engage_answer">
+          <Key>
+            <PropertyRef Name="ans_id" />
+          </Key>
+          <Property Name="ans_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="answer_number" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="exam_number" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="resume_id" Type="Int16" />
+          <Property Name="interview_id" Type="Int16" />
+          <Property Name="human_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_idcard" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="major_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="major_kind_name" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="major_id" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="major_name" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="test_time" Type="DateTime" Precision="3" />
+          <Property Name="use_time" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="total_point" Type="Decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="engage_answer_details">
+          <Key>
+            <PropertyRef Name="and_id" />
+          </Key>
+          <Property Name="and_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="answer_number" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="subject_id" Type="Int16" />
+          <Property Name="answer" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="engage_exam">
+          <Key>
+            <PropertyRef Name="exa_id" />
+          </Key>
+          <Property Name="exa_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="exam_number" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="major_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="major_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="major_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="major_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="register" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="regist_time" Type="DateTime" Precision="3" />
+          <Property Name="limite_time" Type="Int16" />
+        </EntityType>
+        <EntityType Name="engage_exam_details">
+          <Key>
+            <PropertyRef Name="exd_id" />
+          </Key>
+          <Property Name="exd_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="exam_number" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="first_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="first_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="second_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="second_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="question_amount" Type="Int16" />
+        </EntityType>
+        <EntityType Name="engage_interview">
+          <Key>
+            <PropertyRef Name="ein_id" />
+          </Key>
+          <Property Name="ein_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="human_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="interview_amount" Type="Int16" />
+          <Property Name="human_major_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="human_major_kind_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="human_major_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="human_major_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="image_degree" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="native_language_degree" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="foreign_language_degree" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="response_speed_degree" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EQ_degree" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IQ_degree" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="multi_quality_degree" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="register" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="checker" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="registe_time" Type="DateTime" Precision="3" />
+          <Property Name="check_time" Type="DateTime" Precision="3" />
+          <Property Name="resume_id" Type="Int16" />
+          <Property Name="result" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="interview_comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="check_comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="interview_status" Type="Int16" />
+          <Property Name="check_status" Type="Int16" />
+        </EntityType>
+        <EntityType Name="engage_major_release">
+          <Key>
+            <PropertyRef Name="mre_id" />
+          </Key>
+          <Property Name="mre_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="first_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="second_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="second_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="third_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="third_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="major_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="major_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="major_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="major_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_amount" Type="Int16" />
+          <Property Name="engage_type" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="deadline" Type="DateTime" Precision="3" />
+          <Property Name="register" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="changer" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="regist_time" Type="DateTime" Precision="3" />
+          <Property Name="change_time" Type="DateTime" Precision="3" />
+          <Property Name="major_describe" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="engage_required" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="engage_resume">
+          <Key>
+            <PropertyRef Name="res_id" />
+          </Key>
+          <Property Name="res_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="human_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="engage_type" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="human_address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="human_postcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="human_major_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="human_major_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_major_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="human_major_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_telephone" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_homephone" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_mobilephone" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_email" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_hobby" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="human_specility" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="human_sex" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="human_religion" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_party" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_nationality" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_race" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_birthday" Type="DateTime" Precision="3" />
+          <Property Name="human_age" Type="Int16" />
+          <Property Name="human_educated_degree" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_educated_years" Type="Int16" />
+          <Property Name="human_educated_major" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_college" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_idcard" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_birthplace" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="demand_salary_standard" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="human_history_records" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="recomandation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="human_picture" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="attachment_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="check_status" Type="Int16" />
+          <Property Name="register" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="regist_time" Type="DateTime" Precision="3" />
+          <Property Name="checker" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="check_time" Type="DateTime" Precision="3" />
+          <Property Name="interview_status" Type="Int16" />
+          <Property Name="total_points" Type="Double" />
+          <Property Name="test_amount" Type="Int16" />
+          <Property Name="test_checker" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="test_check_time" Type="DateTime" Precision="3" />
+          <Property Name="pass_register" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="pass_regist_time" Type="DateTime" Precision="3" />
+          <Property Name="pass_checker" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="pass_check_time" Type="DateTime" Precision="3" />
+          <Property Name="pass_check_status" Type="Int16" />
+          <Property Name="pass_checkComment" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="pass_passComment" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="engage_subjects">
+          <Key>
+            <PropertyRef Name="sub_id" />
+          </Key>
+          <Property Name="sub_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="first_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="second_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="second_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="register" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="regist_time" Type="DateTime" Precision="3" />
+          <Property Name="derivation" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="key_a" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="key_b" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="key_c" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="key_d" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="key_e" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="correct_key" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="changer" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="change_time" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="human_file">
+          <Key>
+            <PropertyRef Name="huf_id" />
+          </Key>
+          <Property Name="huf_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="human_id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="first_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="first_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="second_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="second_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="third_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="third_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="human_postcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="human_pro_designation" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_major_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="human_major_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_major_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="hunma_major_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_telephone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="human_mobilephone" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="human_bank" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="human_account" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="human_qq" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="human_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="human_hobby" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_speciality" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_sex" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="human_religion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="human_party" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="human_nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="human_race" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="human_birthday" Type="DateTime" Precision="3" />
+          <Property Name="human_birthplace" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="human_age" Type="Int16" />
+          <Property Name="human_educated_degree" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_educated_years" Type="Int16" />
+          <Property Name="human_educated_major" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_society_security_id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="human_id_card" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="salary_standard_id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="salary_standard_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="salary_sum" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="demand_salaray_sum" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="paid_salary_sum" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="major_change_amount" Type="Int16" />
+          <Property Name="bonus_amount" Type="Int16" />
+          <Property Name="training_amount" Type="Int16" />
+          <Property Name="file_chang_amount" Type="Int16" />
+          <Property Name="human_histroy_records" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="human_family_membership" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="human_picture" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="attachment_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="check_status" Type="Int16" />
+          <Property Name="register" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="checker" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="changer" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="regist_time" Type="DateTime" Precision="3" />
+          <Property Name="check_time" Type="DateTime" Precision="3" />
+          <Property Name="change_time" Type="DateTime" Precision="3" />
+          <Property Name="lastly_change_time" Type="DateTime" Precision="3" />
+          <Property Name="delete_time" Type="DateTime" Precision="3" />
+          <Property Name="recovery_time" Type="DateTime" Precision="3" />
+          <Property Name="human_file_status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="human_file_dig">
+          <Key>
+            <PropertyRef Name="hfd_id" />
+          </Key>
+          <Property Name="hfd_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="human_id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="first_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="first_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="second_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="second_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="third_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="third_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="human_postcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="human_pro_designation" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_major_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="human_major_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_major_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="hunma_major_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_telephone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="human_mobilephone" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="human_bank" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="human_account" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="human_qq" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="human_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="human_hobby" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_speciality" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_sex" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="human_religion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="human_party" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="human_nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="human_race" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="human_birthday" Type="DateTime" Precision="3" />
+          <Property Name="human_birthplace" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="human_age" Type="Int16" />
+          <Property Name="human_educated_degree" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_educated_years" Type="Int16" />
+          <Property Name="human_educated_major" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_society_security_id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="human_id_card" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="salary_standard_id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="salary_standard_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="salary_sum" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="demand_salaray_sum" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="paid_salary_sum" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="major_change_amount" Type="Int16" />
+          <Property Name="bonus_amount" Type="Int16" />
+          <Property Name="training_amount" Type="Int16" />
+          <Property Name="file_chang_amount" Type="Int16" />
+          <Property Name="human_histroy_records" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="human_family_membership" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="human_picture" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="attachment_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="check_status" Type="Int16" />
+          <Property Name="register" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="checker" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="changer" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="regist_time" Type="DateTime" Precision="3" />
+          <Property Name="check_time" Type="DateTime" Precision="3" />
+          <Property Name="change_time" Type="DateTime" Precision="3" />
+          <Property Name="lastly_change_time" Type="DateTime" Precision="3" />
+          <Property Name="delete_time" Type="DateTime" Precision="3" />
+          <Property Name="recovery_time" Type="DateTime" Precision="3" />
+          <Property Name="human_file_status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="major_change">
+          <Key>
+            <PropertyRef Name="mch_id" />
+          </Key>
+          <Property Name="mch_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="first_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="second_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="second_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="third_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="third_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="major_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="major_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="major_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="major_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="new_first_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="new_first_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="new_second_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="new_second_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="new_third_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="new_third_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="new_major_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="new_major_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="new_major_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="new_major_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="human_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="salary_standard_id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="salary_standard_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="salary_sum" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="new_salary_standard_id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="new_salary_standard_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="new_salary_sum" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="change_reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="check_reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="check_status" Type="Int16" />
+          <Property Name="register" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="checker" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="regist_time" Type="DateTime" Precision="3" />
+          <Property Name="check_time" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="salary_grant">
+          <Key>
+            <PropertyRef Name="sgr_id" />
+          </Key>
+          <Property Name="sgr_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="salary_grant_id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="salary_standard_id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="first_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="first_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="second_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="second_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="third_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="third_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_amount" Type="Int16" />
+          <Property Name="salary_standard_sum" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="salary_paid_sum" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="register" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="regist_time" Type="DateTime" Precision="3" />
+          <Property Name="checker" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="check_time" Type="DateTime" Precision="3" />
+          <Property Name="check_status" Type="Int16" />
+        </EntityType>
+        <EntityType Name="salary_grant_details">
+          <Key>
+            <PropertyRef Name="grd_id" />
+          </Key>
+          <Property Name="grd_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="salary_grant_id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="human_id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="human_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="bouns_sum" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="sale_sum" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="deduct_sum" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="salary_standard_sum" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="salary_paid_sum" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="salary_standard">
+          <Key>
+            <PropertyRef Name="ssd_id" />
+          </Key>
+          <Property Name="ssd_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="standard_id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="standard_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="designer" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="register" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="checker" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="changer" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="regist_time" Type="DateTime" Precision="3" />
+          <Property Name="check_time" Type="DateTime" Precision="3" />
+          <Property Name="change_time" Type="DateTime" Precision="3" />
+          <Property Name="salary_sum" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="check_status" Type="Int16" />
+          <Property Name="change_status" Type="Int16" />
+          <Property Name="check_comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="salary_standard_details">
+          <Key>
+            <PropertyRef Name="sdt_id" />
+          </Key>
+          <Property Name="sdt_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="standard_id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="standard_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="item_id" Type="Int16" />
+          <Property Name="item_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="salary" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="training">
+          <Key>
+            <PropertyRef Name="tra_id" />
+          </Key>
+          <Property Name="tra_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="major_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="major_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="major_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="major_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="human_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="training_item" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="training_time" Type="DateTime" Precision="3" />
+          <Property Name="training_hour" Type="Int32" />
+          <Property Name="training_degree" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="register" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="checker" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="regist_time" Type="DateTime" Precision="3" />
+          <Property Name="check_time" Type="DateTime" Precision="3" />
+          <Property Name="checkstatus" Type="Int16" />
+          <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="u_id" />
+          </Key>
+          <Property Name="u_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="u_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="u_true_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="u_password" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="HREntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="bonus" EntityType="Self.bonus" />
+          <EntitySet Name="config_file_first_kind" EntityType="Self.config_file_first_kind" />
+          <EntitySet Name="config_file_second_kind" EntityType="Self.config_file_second_kind" />
+          <EntitySet Name="config_file_third_kind" EntityType="Self.config_file_third_kind" />
+          <EntitySet Name="config_major" EntityType="Self.config_major" />
+          <EntitySet Name="config_major_kind" EntityType="Self.config_major_kind" />
+          <EntitySet Name="config_primary_key" EntityType="Self.config_primary_key" />
+          <EntitySet Name="config_public_char" EntityType="Self.config_public_char" />
+          <EntitySet Name="config_question_first_kind" EntityType="Self.config_question_first_kind" />
+          <EntitySet Name="config_question_second_kind" EntityType="Self.config_question_second_kind" />
+          <EntitySet Name="engage_answer" EntityType="Self.engage_answer" />
+          <EntitySet Name="engage_answer_details" EntityType="Self.engage_answer_details" />
+          <EntitySet Name="engage_exam" EntityType="Self.engage_exam" />
+          <EntitySet Name="engage_exam_details" EntityType="Self.engage_exam_details" />
+          <EntitySet Name="engage_interview" EntityType="Self.engage_interview" />
+          <EntitySet Name="engage_major_release" EntityType="Self.engage_major_release" />
+          <EntitySet Name="engage_resume" EntityType="Self.engage_resume" />
+          <EntitySet Name="engage_subjects" EntityType="Self.engage_subjects" />
+          <EntitySet Name="human_file" EntityType="Self.human_file" />
+          <EntitySet Name="human_file_dig" EntityType="Self.human_file_dig" />
+          <EntitySet Name="major_change" EntityType="Self.major_change" />
+          <EntitySet Name="salary_grant" EntityType="Self.salary_grant" />
+          <EntitySet Name="salary_grant_details" EntityType="Self.salary_grant_details" />
+          <EntitySet Name="salary_standard" EntityType="Self.salary_standard" />
+          <EntitySet Name="salary_standard_details" EntityType="Self.salary_standard_details" />
+          <EntitySet Name="training" EntityType="Self.training" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <EntitySet Name="salary" EntityType="HRModel.salary" />
+        </EntityContainer>
+        <EntityType Name="salary">
+          <Key>
+            <PropertyRef Name="sid_id" />
+          </Key>
+          <Property Name="sid_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sid_sname" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HRModelStoreContainer" CdmEntityContainer="HREntities1">
+          <EntitySetMapping Name="bonus">
+            <EntityTypeMapping TypeName="HRModel.bonus">
+              <MappingFragment StoreEntitySet="bonus">
+                <ScalarProperty Name="bon_id" ColumnName="bon_id" />
+                <ScalarProperty Name="major_kind_id" ColumnName="major_kind_id" />
+                <ScalarProperty Name="major_kind_name" ColumnName="major_kind_name" />
+                <ScalarProperty Name="major_id" ColumnName="major_id" />
+                <ScalarProperty Name="major_name" ColumnName="major_name" />
+                <ScalarProperty Name="human_id" ColumnName="human_id" />
+                <ScalarProperty Name="human_name" ColumnName="human_name" />
+                <ScalarProperty Name="bonus_item" ColumnName="bonus_item" />
+                <ScalarProperty Name="bonus_worth" ColumnName="bonus_worth" />
+                <ScalarProperty Name="bonus_degree" ColumnName="bonus_degree" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="register" ColumnName="register" />
+                <ScalarProperty Name="checker" ColumnName="checker" />
+                <ScalarProperty Name="regist_time" ColumnName="regist_time" />
+                <ScalarProperty Name="check_time" ColumnName="check_time" />
+                <ScalarProperty Name="check_status" ColumnName="check_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="config_file_first_kind">
+            <EntityTypeMapping TypeName="HRModel.config_file_first_kind">
+              <MappingFragment StoreEntitySet="config_file_first_kind">
+                <ScalarProperty Name="ffk_id" ColumnName="ffk_id" />
+                <ScalarProperty Name="first_kind_id" ColumnName="first_kind_id" />
+                <ScalarProperty Name="first_kind_name" ColumnName="first_kind_name" />
+                <ScalarProperty Name="first_kind_salary_id" ColumnName="first_kind_salary_id" />
+                <ScalarProperty Name="first_kind_sale_id" ColumnName="first_kind_sale_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="config_file_second_kind">
+            <EntityTypeMapping TypeName="HRModel.config_file_second_kind">
+              <MappingFragment StoreEntitySet="config_file_second_kind">
+                <ScalarProperty Name="fsk_id" ColumnName="fsk_id" />
+                <ScalarProperty Name="first_kind_id" ColumnName="first_kind_id" />
+                <ScalarProperty Name="first_kind_name" ColumnName="first_kind_name" />
+                <ScalarProperty Name="second_kind_id" ColumnName="second_kind_id" />
+                <ScalarProperty Name="second_kind_name" ColumnName="second_kind_name" />
+                <ScalarProperty Name="second_salary_id" ColumnName="second_salary_id" />
+                <ScalarProperty Name="second_sale_id" ColumnName="second_sale_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="config_file_third_kind">
+            <EntityTypeMapping TypeName="HRModel.config_file_third_kind">
+              <MappingFragment StoreEntitySet="config_file_third_kind">
+                <ScalarProperty Name="ftk_id" ColumnName="ftk_id" />
+                <ScalarProperty Name="first_kind_id" ColumnName="first_kind_id" />
+                <ScalarProperty Name="first_kind_name" ColumnName="first_kind_name" />
+                <ScalarProperty Name="second_kind_id" ColumnName="second_kind_id" />
+                <ScalarProperty Name="second_kind_name" ColumnName="second_kind_name" />
+                <ScalarProperty Name="third_kind_id" ColumnName="third_kind_id" />
+                <ScalarProperty Name="third_kind_name" ColumnName="third_kind_name" />
+                <ScalarProperty Name="third_kind_sale_id" ColumnName="third_kind_sale_id" />
+                <ScalarProperty Name="third_kind_is_retail" ColumnName="third_kind_is_retail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="config_major">
+            <EntityTypeMapping TypeName="HRModel.config_major">
+              <MappingFragment StoreEntitySet="config_major">
+                <ScalarProperty Name="mak_id" ColumnName="mak_id" />
+                <ScalarProperty Name="major_kind_id" ColumnName="major_kind_id" />
+                <ScalarProperty Name="major_kind_name" ColumnName="major_kind_name" />
+                <ScalarProperty Name="major_id" ColumnName="major_id" />
+                <ScalarProperty Name="major_name" ColumnName="major_name" />
+                <ScalarProperty Name="test_amount" ColumnName="test_amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="config_major_kind">
+            <EntityTypeMapping TypeName="HRModel.config_major_kind">
+              <MappingFragment StoreEntitySet="config_major_kind">
+                <ScalarProperty Name="mfk_id" ColumnName="mfk_id" />
+                <ScalarProperty Name="major_kind_id" ColumnName="major_kind_id" />
+                <ScalarProperty Name="major_kind_name" ColumnName="major_kind_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="config_primary_key">
+            <EntityTypeMapping TypeName="HRModel.config_primary_key">
+              <MappingFragment StoreEntitySet="config_primary_key">
+                <ScalarProperty Name="prk_id" ColumnName="prk_id" />
+                <ScalarProperty Name="primary_key_table" ColumnName="primary_key_table" />
+                <ScalarProperty Name="primary_key" ColumnName="primary_key" />
+                <ScalarProperty Name="key_name" ColumnName="key_name" />
+                <ScalarProperty Name="primary_key_status" ColumnName="primary_key_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="config_public_char">
+            <EntityTypeMapping TypeName="HRModel.config_public_char">
+              <MappingFragment StoreEntitySet="config_public_char">
+                <ScalarProperty Name="pbc_id" ColumnName="pbc_id" />
+                <ScalarProperty Name="attribute_kind" ColumnName="attribute_kind" />
+                <ScalarProperty Name="attribute_name" ColumnName="attribute_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="config_question_first_kind">
+            <EntityTypeMapping TypeName="HRModel.config_question_first_kind">
+              <MappingFragment StoreEntitySet="config_question_first_kind">
+                <ScalarProperty Name="qfk_id" ColumnName="qfk_id" />
+                <ScalarProperty Name="first_kind_id" ColumnName="first_kind_id" />
+                <ScalarProperty Name="first_kind_name" ColumnName="first_kind_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="config_question_second_kind">
+            <EntityTypeMapping TypeName="HRModel.config_question_second_kind">
+              <MappingFragment StoreEntitySet="config_question_second_kind">
+                <ScalarProperty Name="qsk_id" ColumnName="qsk_id" />
+                <ScalarProperty Name="first_kind_id" ColumnName="first_kind_id" />
+                <ScalarProperty Name="first_kind_name" ColumnName="first_kind_name" />
+                <ScalarProperty Name="second_kind_id" ColumnName="second_kind_id" />
+                <ScalarProperty Name="second_kind_name" ColumnName="second_kind_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="engage_answer">
+            <EntityTypeMapping TypeName="HRModel.engage_answer">
+              <MappingFragment StoreEntitySet="engage_answer">
+                <ScalarProperty Name="ans_id" ColumnName="ans_id" />
+                <ScalarProperty Name="answer_number" ColumnName="answer_number" />
+                <ScalarProperty Name="exam_number" ColumnName="exam_number" />
+                <ScalarProperty Name="resume_id" ColumnName="resume_id" />
+                <ScalarProperty Name="interview_id" ColumnName="interview_id" />
+                <ScalarProperty Name="human_name" ColumnName="human_name" />
+                <ScalarProperty Name="human_idcard" ColumnName="human_idcard" />
+                <ScalarProperty Name="major_kind_id" ColumnName="major_kind_id" />
+                <ScalarProperty Name="major_kind_name" ColumnName="major_kind_name" />
+                <ScalarProperty Name="major_id" ColumnName="major_id" />
+                <ScalarProperty Name="major_name" ColumnName="major_name" />
+                <ScalarProperty Name="test_time" ColumnName="test_time" />
+                <ScalarProperty Name="use_time" ColumnName="use_time" />
+                <ScalarProperty Name="total_point" ColumnName="total_point" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="engage_answer_details">
+            <EntityTypeMapping TypeName="HRModel.engage_answer_details">
+              <MappingFragment StoreEntitySet="engage_answer_details">
+                <ScalarProperty Name="and_id" ColumnName="and_id" />
+                <ScalarProperty Name="answer_number" ColumnName="answer_number" />
+                <ScalarProperty Name="subject_id" ColumnName="subject_id" />
+                <ScalarProperty Name="answer" ColumnName="answer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="engage_exam">
+            <EntityTypeMapping TypeName="HRModel.engage_exam">
+              <MappingFragment StoreEntitySet="engage_exam">
+                <ScalarProperty Name="exa_id" ColumnName="exa_id" />
+                <ScalarProperty Name="exam_number" ColumnName="exam_number" />
+                <ScalarProperty Name="major_kind_id" ColumnName="major_kind_id" />
+                <ScalarProperty Name="major_kind_name" ColumnName="major_kind_name" />
+                <ScalarProperty Name="major_id" ColumnName="major_id" />
+                <ScalarProperty Name="major_name" ColumnName="major_name" />
+                <ScalarProperty Name="register" ColumnName="register" />
+                <ScalarProperty Name="regist_time" ColumnName="regist_time" />
+                <ScalarProperty Name="limite_time" ColumnName="limite_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="engage_exam_details">
+            <EntityTypeMapping TypeName="HRModel.engage_exam_details">
+              <MappingFragment StoreEntitySet="engage_exam_details">
+                <ScalarProperty Name="exd_id" ColumnName="exd_id" />
+                <ScalarProperty Name="exam_number" ColumnName="exam_number" />
+                <ScalarProperty Name="first_kind_id" ColumnName="first_kind_id" />
+                <ScalarProperty Name="first_kind_name" ColumnName="first_kind_name" />
+                <ScalarProperty Name="second_kind_id" ColumnName="second_kind_id" />
+                <ScalarProperty Name="second_kind_name" ColumnName="second_kind_name" />
+                <ScalarProperty Name="question_amount" ColumnName="question_amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="engage_interview">
+            <EntityTypeMapping TypeName="HRModel.engage_interview">
+              <MappingFragment StoreEntitySet="engage_interview">
+                <ScalarProperty Name="ein_id" ColumnName="ein_id" />
+                <ScalarProperty Name="human_name" ColumnName="human_name" />
+                <ScalarProperty Name="interview_amount" ColumnName="interview_amount" />
+                <ScalarProperty Name="human_major_kind_id" ColumnName="human_major_kind_id" />
+                <ScalarProperty Name="human_major_kind_name" ColumnName="human_major_kind_name" />
+                <ScalarProperty Name="human_major_id" ColumnName="human_major_id" />
+                <ScalarProperty Name="human_major_name" ColumnName="human_major_name" />
+                <ScalarProperty Name="image_degree" ColumnName="image_degree" />
+                <ScalarProperty Name="native_language_degree" ColumnName="native_language_degree" />
+                <ScalarProperty Name="foreign_language_degree" ColumnName="foreign_language_degree" />
+                <ScalarProperty Name="response_speed_degree" ColumnName="response_speed_degree" />
+                <ScalarProperty Name="EQ_degree" ColumnName="EQ_degree" />
+                <ScalarProperty Name="IQ_degree" ColumnName="IQ_degree" />
+                <ScalarProperty Name="multi_quality_degree" ColumnName="multi_quality_degree" />
+                <ScalarProperty Name="register" ColumnName="register" />
+                <ScalarProperty Name="checker" ColumnName="checker" />
+                <ScalarProperty Name="registe_time" ColumnName="registe_time" />
+                <ScalarProperty Name="check_time" ColumnName="check_time" />
+                <ScalarProperty Name="resume_id" ColumnName="resume_id" />
+                <ScalarProperty Name="result" ColumnName="result" />
+                <ScalarProperty Name="interview_comment" ColumnName="interview_comment" />
+                <ScalarProperty Name="check_comment" ColumnName="check_comment" />
+                <ScalarProperty Name="interview_status" ColumnName="interview_status" />
+                <ScalarProperty Name="check_status" ColumnName="check_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="engage_major_release">
+            <EntityTypeMapping TypeName="HRModel.engage_major_release">
+              <MappingFragment StoreEntitySet="engage_major_release">
+                <ScalarProperty Name="mre_id" ColumnName="mre_id" />
+                <ScalarProperty Name="first_kind_id" ColumnName="first_kind_id" />
+                <ScalarProperty Name="first_kind_name" ColumnName="first_kind_name" />
+                <ScalarProperty Name="second_kind_id" ColumnName="second_kind_id" />
+                <ScalarProperty Name="second_kind_name" ColumnName="second_kind_name" />
+                <ScalarProperty Name="third_kind_id" ColumnName="third_kind_id" />
+                <ScalarProperty Name="third_kind_name" ColumnName="third_kind_name" />
+                <ScalarProperty Name="major_kind_id" ColumnName="major_kind_id" />
+                <ScalarProperty Name="major_kind_name" ColumnName="major_kind_name" />
+                <ScalarProperty Name="major_id" ColumnName="major_id" />
+                <ScalarProperty Name="major_name" ColumnName="major_name" />
+                <ScalarProperty Name="human_amount" ColumnName="human_amount" />
+                <ScalarProperty Name="engage_type" ColumnName="engage_type" />
+                <ScalarProperty Name="deadline" ColumnName="deadline" />
+                <ScalarProperty Name="register" ColumnName="register" />
+                <ScalarProperty Name="changer" ColumnName="changer" />
+                <ScalarProperty Name="regist_time" ColumnName="regist_time" />
+                <ScalarProperty Name="change_time" ColumnName="change_time" />
+                <ScalarProperty Name="major_describe" ColumnName="major_describe" />
+                <ScalarProperty Name="engage_required" ColumnName="engage_required" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="engage_resume">
+            <EntityTypeMapping TypeName="HRModel.engage_resume">
+              <MappingFragment StoreEntitySet="engage_resume">
+                <ScalarProperty Name="res_id" ColumnName="res_id" />
+                <ScalarProperty Name="human_name" ColumnName="human_name" />
+                <ScalarProperty Name="engage_type" ColumnName="engage_type" />
+                <ScalarProperty Name="human_address" ColumnName="human_address" />
+                <ScalarProperty Name="human_postcode" ColumnName="human_postcode" />
+                <ScalarProperty Name="human_major_kind_id" ColumnName="human_major_kind_id" />
+                <ScalarProperty Name="human_major_kind_name" ColumnName="human_major_kind_name" />
+                <ScalarProperty Name="human_major_id" ColumnName="human_major_id" />
+                <ScalarProperty Name="human_major_name" ColumnName="human_major_name" />
+                <ScalarProperty Name="human_telephone" ColumnName="human_telephone" />
+                <ScalarProperty Name="human_homephone" ColumnName="human_homephone" />
+                <ScalarProperty Name="human_mobilephone" ColumnName="human_mobilephone" />
+                <ScalarProperty Name="human_email" ColumnName="human_email" />
+                <ScalarProperty Name="human_hobby" ColumnName="human_hobby" />
+                <ScalarProperty Name="human_specility" ColumnName="human_specility" />
+                <ScalarProperty Name="human_sex" ColumnName="human_sex" />
+                <ScalarProperty Name="human_religion" ColumnName="human_religion" />
+                <ScalarProperty Name="human_party" ColumnName="human_party" />
+                <ScalarProperty Name="human_nationality" ColumnName="human_nationality" />
+                <ScalarProperty Name="human_race" ColumnName="human_race" />
+                <ScalarProperty Name="human_birthday" ColumnName="human_birthday" />
+                <ScalarProperty Name="human_age" ColumnName="human_age" />
+                <ScalarProperty Name="human_educated_degree" ColumnName="human_educated_degree" />
+                <ScalarProperty Name="human_educated_years" ColumnName="human_educated_years" />
+                <ScalarProperty Name="human_educated_major" ColumnName="human_educated_major" />
+                <ScalarProperty Name="human_college" ColumnName="human_college" />
+                <ScalarProperty Name="human_idcard" ColumnName="human_idcard" />
+                <ScalarProperty Name="human_birthplace" ColumnName="human_birthplace" />
+                <ScalarProperty Name="demand_salary_standard" ColumnName="demand_salary_standard" />
+                <ScalarProperty Name="human_history_records" ColumnName="human_history_records" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="recomandation" ColumnName="recomandation" />
+                <ScalarProperty Name="human_picture" ColumnName="human_picture" />
+                <ScalarProperty Name="attachment_name" ColumnName="attachment_name" />
+                <ScalarProperty Name="check_status" ColumnName="check_status" />
+                <ScalarProperty Name="register" ColumnName="register" />
+                <ScalarProperty Name="regist_time" ColumnName="regist_time" />
+                <ScalarProperty Name="checker" ColumnName="checker" />
+                <ScalarProperty Name="check_time" ColumnName="check_time" />
+                <ScalarProperty Name="interview_status" ColumnName="interview_status" />
+                <ScalarProperty Name="total_points" ColumnName="total_points" />
+                <ScalarProperty Name="test_amount" ColumnName="test_amount" />
+                <ScalarProperty Name="test_checker" ColumnName="test_checker" />
+                <ScalarProperty Name="test_check_time" ColumnName="test_check_time" />
+                <ScalarProperty Name="pass_register" ColumnName="pass_register" />
+                <ScalarProperty Name="pass_regist_time" ColumnName="pass_regist_time" />
+                <ScalarProperty Name="pass_checker" ColumnName="pass_checker" />
+                <ScalarProperty Name="pass_check_time" ColumnName="pass_check_time" />
+                <ScalarProperty Name="pass_check_status" ColumnName="pass_check_status" />
+                <ScalarProperty Name="pass_checkComment" ColumnName="pass_checkComment" />
+                <ScalarProperty Name="pass_passComment" ColumnName="pass_passComment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="engage_subjects">
+            <EntityTypeMapping TypeName="HRModel.engage_subjects">
+              <MappingFragment StoreEntitySet="engage_subjects">
+                <ScalarProperty Name="sub_id" ColumnName="sub_id" />
+                <ScalarProperty Name="first_kind_id" ColumnName="first_kind_id" />
+                <ScalarProperty Name="first_kind_name" ColumnName="first_kind_name" />
+                <ScalarProperty Name="second_kind_id" ColumnName="second_kind_id" />
+                <ScalarProperty Name="second_kind_name" ColumnName="second_kind_name" />
+                <ScalarProperty Name="register" ColumnName="register" />
+                <ScalarProperty Name="regist_time" ColumnName="regist_time" />
+                <ScalarProperty Name="derivation" ColumnName="derivation" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="key_a" ColumnName="key_a" />
+                <ScalarProperty Name="key_b" ColumnName="key_b" />
+                <ScalarProperty Name="key_c" ColumnName="key_c" />
+                <ScalarProperty Name="key_d" ColumnName="key_d" />
+                <ScalarProperty Name="key_e" ColumnName="key_e" />
+                <ScalarProperty Name="correct_key" ColumnName="correct_key" />
+                <ScalarProperty Name="changer" ColumnName="changer" />
+                <ScalarProperty Name="change_time" ColumnName="change_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="human_file">
+            <EntityTypeMapping TypeName="HRModel.human_file">
+              <MappingFragment StoreEntitySet="human_file">
+                <ScalarProperty Name="huf_id" ColumnName="huf_id" />
+                <ScalarProperty Name="human_id" ColumnName="human_id" />
+                <ScalarProperty Name="first_kind_id" ColumnName="first_kind_id" />
+                <ScalarProperty Name="first_kind_name" ColumnName="first_kind_name" />
+                <ScalarProperty Name="second_kind_id" ColumnName="second_kind_id" />
+                <ScalarProperty Name="second_kind_name" ColumnName="second_kind_name" />
+                <ScalarProperty Name="third_kind_id" ColumnName="third_kind_id" />
+                <ScalarProperty Name="third_kind_name" ColumnName="third_kind_name" />
+                <ScalarProperty Name="human_name" ColumnName="human_name" />
+                <ScalarProperty Name="human_address" ColumnName="human_address" />
+                <ScalarProperty Name="human_postcode" ColumnName="human_postcode" />
+                <ScalarProperty Name="human_pro_designation" ColumnName="human_pro_designation" />
+                <ScalarProperty Name="human_major_kind_id" ColumnName="human_major_kind_id" />
+                <ScalarProperty Name="human_major_kind_name" ColumnName="human_major_kind_name" />
+                <ScalarProperty Name="human_major_id" ColumnName="human_major_id" />
+                <ScalarProperty Name="hunma_major_name" ColumnName="hunma_major_name" />
+                <ScalarProperty Name="human_telephone" ColumnName="human_telephone" />
+                <ScalarProperty Name="human_mobilephone" ColumnName="human_mobilephone" />
+                <ScalarProperty Name="human_bank" ColumnName="human_bank" />
+                <ScalarProperty Name="human_account" ColumnName="human_account" />
+                <ScalarProperty Name="human_qq" ColumnName="human_qq" />
+                <ScalarProperty Name="human_email" ColumnName="human_email" />
+                <ScalarProperty Name="human_hobby" ColumnName="human_hobby" />
+                <ScalarProperty Name="human_speciality" ColumnName="human_speciality" />
+                <ScalarProperty Name="human_sex" ColumnName="human_sex" />
+                <ScalarProperty Name="human_religion" ColumnName="human_religion" />
+                <ScalarProperty Name="human_party" ColumnName="human_party" />
+                <ScalarProperty Name="human_nationality" ColumnName="human_nationality" />
+                <ScalarProperty Name="human_race" ColumnName="human_race" />
+                <ScalarProperty Name="human_birthday" ColumnName="human_birthday" />
+                <ScalarProperty Name="human_birthplace" ColumnName="human_birthplace" />
+                <ScalarProperty Name="human_age" ColumnName="human_age" />
+                <ScalarProperty Name="human_educated_degree" ColumnName="human_educated_degree" />
+                <ScalarProperty Name="human_educated_years" ColumnName="human_educated_years" />
+                <ScalarProperty Name="human_educated_major" ColumnName="human_educated_major" />
+                <ScalarProperty Name="human_society_security_id" ColumnName="human_society_security_id" />
+                <ScalarProperty Name="human_id_card" ColumnName="human_id_card" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="salary_standard_id" ColumnName="salary_standard_id" />
+                <ScalarProperty Name="salary_standard_name" ColumnName="salary_standard_name" />
+                <ScalarProperty Name="salary_sum" ColumnName="salary_sum" />
+                <ScalarProperty Name="demand_salaray_sum" ColumnName="demand_salaray_sum" />
+                <ScalarProperty Name="paid_salary_sum" ColumnName="paid_salary_sum" />
+                <ScalarProperty Name="major_change_amount" ColumnName="major_change_amount" />
+                <ScalarProperty Name="bonus_amount" ColumnName="bonus_amount" />
+                <ScalarProperty Name="training_amount" ColumnName="training_amount" />
+                <ScalarProperty Name="file_chang_amount" ColumnName="file_chang_amount" />
+                <ScalarProperty Name="human_histroy_records" ColumnName="human_histroy_records" />
+                <ScalarProperty Name="human_family_membership" ColumnName="human_family_membership" />
+                <ScalarProperty Name="human_picture" ColumnName="human_picture" />
+                <ScalarProperty Name="attachment_name" ColumnName="attachment_name" />
+                <ScalarProperty Name="check_status" ColumnName="check_status" />
+                <ScalarProperty Name="register" ColumnName="register" />
+                <ScalarProperty Name="checker" ColumnName="checker" />
+                <ScalarProperty Name="changer" ColumnName="changer" />
+                <ScalarProperty Name="regist_time" ColumnName="regist_time" />
+                <ScalarProperty Name="check_time" ColumnName="check_time" />
+                <ScalarProperty Name="change_time" ColumnName="change_time" />
+                <ScalarProperty Name="lastly_change_time" ColumnName="lastly_change_time" />
+                <ScalarProperty Name="delete_time" ColumnName="delete_time" />
+                <ScalarProperty Name="recovery_time" ColumnName="recovery_time" />
+                <ScalarProperty Name="human_file_status" ColumnName="human_file_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="human_file_dig">
+            <EntityTypeMapping TypeName="HRModel.human_file_dig">
+              <MappingFragment StoreEntitySet="human_file_dig">
+                <ScalarProperty Name="hfd_id" ColumnName="hfd_id" />
+                <ScalarProperty Name="human_id" ColumnName="human_id" />
+                <ScalarProperty Name="first_kind_id" ColumnName="first_kind_id" />
+                <ScalarProperty Name="first_kind_name" ColumnName="first_kind_name" />
+                <ScalarProperty Name="second_kind_id" ColumnName="second_kind_id" />
+                <ScalarProperty Name="second_kind_name" ColumnName="second_kind_name" />
+                <ScalarProperty Name="third_kind_id" ColumnName="third_kind_id" />
+                <ScalarProperty Name="third_kind_name" ColumnName="third_kind_name" />
+                <ScalarProperty Name="human_name" ColumnName="human_name" />
+                <ScalarProperty Name="human_address" ColumnName="human_address" />
+                <ScalarProperty Name="human_postcode" ColumnName="human_postcode" />
+                <ScalarProperty Name="human_pro_designation" ColumnName="human_pro_designation" />
+                <ScalarProperty Name="human_major_kind_id" ColumnName="human_major_kind_id" />
+                <ScalarProperty Name="human_major_kind_name" ColumnName="human_major_kind_name" />
+                <ScalarProperty Name="human_major_id" ColumnName="human_major_id" />
+                <ScalarProperty Name="hunma_major_name" ColumnName="hunma_major_name" />
+                <ScalarProperty Name="human_telephone" ColumnName="human_telephone" />
+                <ScalarProperty Name="human_mobilephone" ColumnName="human_mobilephone" />
+                <ScalarProperty Name="human_bank" ColumnName="human_bank" />
+                <ScalarProperty Name="human_account" ColumnName="human_account" />
+                <ScalarProperty Name="human_qq" ColumnName="human_qq" />
+                <ScalarProperty Name="human_email" ColumnName="human_email" />
+                <ScalarProperty Name="human_hobby" ColumnName="human_hobby" />
+                <ScalarProperty Name="human_speciality" ColumnName="human_speciality" />
+                <ScalarProperty Name="human_sex" ColumnName="human_sex" />
+                <ScalarProperty Name="human_religion" ColumnName="human_religion" />
+                <ScalarProperty Name="human_party" ColumnName="human_party" />
+                <ScalarProperty Name="human_nationality" ColumnName="human_nationality" />
+                <ScalarProperty Name="human_race" ColumnName="human_race" />
+                <ScalarProperty Name="human_birthday" ColumnName="human_birthday" />
+                <ScalarProperty Name="human_birthplace" ColumnName="human_birthplace" />
+                <ScalarProperty Name="human_age" ColumnName="human_age" />
+                <ScalarProperty Name="human_educated_degree" ColumnName="human_educated_degree" />
+                <ScalarProperty Name="human_educated_years" ColumnName="human_educated_years" />
+                <ScalarProperty Name="human_educated_major" ColumnName="human_educated_major" />
+                <ScalarProperty Name="human_society_security_id" ColumnName="human_society_security_id" />
+                <ScalarProperty Name="human_id_card" ColumnName="human_id_card" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="salary_standard_id" ColumnName="salary_standard_id" />
+                <ScalarProperty Name="salary_standard_name" ColumnName="salary_standard_name" />
+                <ScalarProperty Name="salary_sum" ColumnName="salary_sum" />
+                <ScalarProperty Name="demand_salaray_sum" ColumnName="demand_salaray_sum" />
+                <ScalarProperty Name="paid_salary_sum" ColumnName="paid_salary_sum" />
+                <ScalarProperty Name="major_change_amount" ColumnName="major_change_amount" />
+                <ScalarProperty Name="bonus_amount" ColumnName="bonus_amount" />
+                <ScalarProperty Name="training_amount" ColumnName="training_amount" />
+                <ScalarProperty Name="file_chang_amount" ColumnName="file_chang_amount" />
+                <ScalarProperty Name="human_histroy_records" ColumnName="human_histroy_records" />
+                <ScalarProperty Name="human_family_membership" ColumnName="human_family_membership" />
+                <ScalarProperty Name="human_picture" ColumnName="human_picture" />
+                <ScalarProperty Name="attachment_name" ColumnName="attachment_name" />
+                <ScalarProperty Name="check_status" ColumnName="check_status" />
+                <ScalarProperty Name="register" ColumnName="register" />
+                <ScalarProperty Name="checker" ColumnName="checker" />
+                <ScalarProperty Name="changer" ColumnName="changer" />
+                <ScalarProperty Name="regist_time" ColumnName="regist_time" />
+                <ScalarProperty Name="check_time" ColumnName="check_time" />
+                <ScalarProperty Name="change_time" ColumnName="change_time" />
+                <ScalarProperty Name="lastly_change_time" ColumnName="lastly_change_time" />
+                <ScalarProperty Name="delete_time" ColumnName="delete_time" />
+                <ScalarProperty Name="recovery_time" ColumnName="recovery_time" />
+                <ScalarProperty Name="human_file_status" ColumnName="human_file_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="major_change">
+            <EntityTypeMapping TypeName="HRModel.major_change">
+              <MappingFragment StoreEntitySet="major_change">
+                <ScalarProperty Name="mch_id" ColumnName="mch_id" />
+                <ScalarProperty Name="first_kind_id" ColumnName="first_kind_id" />
+                <ScalarProperty Name="first_kind_name" ColumnName="first_kind_name" />
+                <ScalarProperty Name="second_kind_id" ColumnName="second_kind_id" />
+                <ScalarProperty Name="second_kind_name" ColumnName="second_kind_name" />
+                <ScalarProperty Name="third_kind_id" ColumnName="third_kind_id" />
+                <ScalarProperty Name="third_kind_name" ColumnName="third_kind_name" />
+                <ScalarProperty Name="major_kind_id" ColumnName="major_kind_id" />
+                <ScalarProperty Name="major_kind_name" ColumnName="major_kind_name" />
+                <ScalarProperty Name="major_id" ColumnName="major_id" />
+                <ScalarProperty Name="major_name" ColumnName="major_name" />
+                <ScalarProperty Name="new_first_kind_id" ColumnName="new_first_kind_id" />
+                <ScalarProperty Name="new_first_kind_name" ColumnName="new_first_kind_name" />
+                <ScalarProperty Name="new_second_kind_id" ColumnName="new_second_kind_id" />
+                <ScalarProperty Name="new_second_kind_name" ColumnName="new_second_kind_name" />
+                <ScalarProperty Name="new_third_kind_id" ColumnName="new_third_kind_id" />
+                <ScalarProperty Name="new_third_kind_name" ColumnName="new_third_kind_name" />
+                <ScalarProperty Name="new_major_kind_id" ColumnName="new_major_kind_id" />
+                <ScalarProperty Name="new_major_kind_name" ColumnName="new_major_kind_name" />
+                <ScalarProperty Name="new_major_id" ColumnName="new_major_id" />
+                <ScalarProperty Name="new_major_name" ColumnName="new_major_name" />
+                <ScalarProperty Name="human_id" ColumnName="human_id" />
+                <ScalarProperty Name="human_name" ColumnName="human_name" />
+                <ScalarProperty Name="salary_standard_id" ColumnName="salary_standard_id" />
+                <ScalarProperty Name="salary_standard_name" ColumnName="salary_standard_name" />
+                <ScalarProperty Name="salary_sum" ColumnName="salary_sum" />
+                <ScalarProperty Name="new_salary_standard_id" ColumnName="new_salary_standard_id" />
+                <ScalarProperty Name="new_salary_standard_name" ColumnName="new_salary_standard_name" />
+                <ScalarProperty Name="new_salary_sum" ColumnName="new_salary_sum" />
+                <ScalarProperty Name="change_reason" ColumnName="change_reason" />
+                <ScalarProperty Name="check_reason" ColumnName="check_reason" />
+                <ScalarProperty Name="check_status" ColumnName="check_status" />
+                <ScalarProperty Name="register" ColumnName="register" />
+                <ScalarProperty Name="checker" ColumnName="checker" />
+                <ScalarProperty Name="regist_time" ColumnName="regist_time" />
+                <ScalarProperty Name="check_time" ColumnName="check_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="salary_grant">
+            <EntityTypeMapping TypeName="HRModel.salary_grant">
+              <MappingFragment StoreEntitySet="salary_grant">
+                <ScalarProperty Name="sgr_id" ColumnName="sgr_id" />
+                <ScalarProperty Name="salary_grant_id" ColumnName="salary_grant_id" />
+                <ScalarProperty Name="salary_standard_id" ColumnName="salary_standard_id" />
+                <ScalarProperty Name="first_kind_id" ColumnName="first_kind_id" />
+                <ScalarProperty Name="first_kind_name" ColumnName="first_kind_name" />
+                <ScalarProperty Name="second_kind_id" ColumnName="second_kind_id" />
+                <ScalarProperty Name="second_kind_name" ColumnName="second_kind_name" />
+                <ScalarProperty Name="third_kind_id" ColumnName="third_kind_id" />
+                <ScalarProperty Name="third_kind_name" ColumnName="third_kind_name" />
+                <ScalarProperty Name="human_amount" ColumnName="human_amount" />
+                <ScalarProperty Name="salary_standard_sum" ColumnName="salary_standard_sum" />
+                <ScalarProperty Name="salary_paid_sum" ColumnName="salary_paid_sum" />
+                <ScalarProperty Name="register" ColumnName="register" />
+                <ScalarProperty Name="regist_time" ColumnName="regist_time" />
+                <ScalarProperty Name="checker" ColumnName="checker" />
+                <ScalarProperty Name="check_time" ColumnName="check_time" />
+                <ScalarProperty Name="check_status" ColumnName="check_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="salary_grant_details">
+            <EntityTypeMapping TypeName="HRModel.salary_grant_details">
+              <MappingFragment StoreEntitySet="salary_grant_details">
+                <ScalarProperty Name="grd_id" ColumnName="grd_id" />
+                <ScalarProperty Name="salary_grant_id" ColumnName="salary_grant_id" />
+                <ScalarProperty Name="human_id" ColumnName="human_id" />
+                <ScalarProperty Name="human_name" ColumnName="human_name" />
+                <ScalarProperty Name="bouns_sum" ColumnName="bouns_sum" />
+                <ScalarProperty Name="sale_sum" ColumnName="sale_sum" />
+                <ScalarProperty Name="deduct_sum" ColumnName="deduct_sum" />
+                <ScalarProperty Name="salary_standard_sum" ColumnName="salary_standard_sum" />
+                <ScalarProperty Name="salary_paid_sum" ColumnName="salary_paid_sum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="salary_standard">
+            <EntityTypeMapping TypeName="HRModel.salary_standard">
+              <MappingFragment StoreEntitySet="salary_standard">
+                <ScalarProperty Name="ssd_id" ColumnName="ssd_id" />
+                <ScalarProperty Name="standard_id" ColumnName="standard_id" />
+                <ScalarProperty Name="standard_name" ColumnName="standard_name" />
+                <ScalarProperty Name="designer" ColumnName="designer" />
+                <ScalarProperty Name="register" ColumnName="register" />
+                <ScalarProperty Name="checker" ColumnName="checker" />
+                <ScalarProperty Name="changer" ColumnName="changer" />
+                <ScalarProperty Name="regist_time" ColumnName="regist_time" />
+                <ScalarProperty Name="check_time" ColumnName="check_time" />
+                <ScalarProperty Name="change_time" ColumnName="change_time" />
+                <ScalarProperty Name="salary_sum" ColumnName="salary_sum" />
+                <ScalarProperty Name="check_status" ColumnName="check_status" />
+                <ScalarProperty Name="change_status" ColumnName="change_status" />
+                <ScalarProperty Name="check_comment" ColumnName="check_comment" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="salary_standard_details">
+            <EntityTypeMapping TypeName="HRModel.salary_standard_details">
+              <MappingFragment StoreEntitySet="salary_standard_details">
+                <ScalarProperty Name="sdt_id" ColumnName="sdt_id" />
+                <ScalarProperty Name="standard_id" ColumnName="standard_id" />
+                <ScalarProperty Name="standard_name" ColumnName="standard_name" />
+                <ScalarProperty Name="item_id" ColumnName="item_id" />
+                <ScalarProperty Name="item_name" ColumnName="item_name" />
+                <ScalarProperty Name="salary" ColumnName="salary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="training">
+            <EntityTypeMapping TypeName="HRModel.training">
+              <MappingFragment StoreEntitySet="training">
+                <ScalarProperty Name="tra_id" ColumnName="tra_id" />
+                <ScalarProperty Name="major_kind_id" ColumnName="major_kind_id" />
+                <ScalarProperty Name="major_kind_name" ColumnName="major_kind_name" />
+                <ScalarProperty Name="major_id" ColumnName="major_id" />
+                <ScalarProperty Name="major_name" ColumnName="major_name" />
+                <ScalarProperty Name="human_id" ColumnName="human_id" />
+                <ScalarProperty Name="human_name" ColumnName="human_name" />
+                <ScalarProperty Name="training_item" ColumnName="training_item" />
+                <ScalarProperty Name="training_time" ColumnName="training_time" />
+                <ScalarProperty Name="training_hour" ColumnName="training_hour" />
+                <ScalarProperty Name="training_degree" ColumnName="training_degree" />
+                <ScalarProperty Name="register" ColumnName="register" />
+                <ScalarProperty Name="checker" ColumnName="checker" />
+                <ScalarProperty Name="regist_time" ColumnName="regist_time" />
+                <ScalarProperty Name="check_time" ColumnName="check_time" />
+                <ScalarProperty Name="checkstatus" ColumnName="checkstatus" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="HRModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
+                <ScalarProperty Name="u_name" ColumnName="u_name" />
+                <ScalarProperty Name="u_true_name" ColumnName="u_true_name" />
+                <ScalarProperty Name="u_password" ColumnName="u_password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="salary">
+            <EntityTypeMapping TypeName="HRModel.salary">
+              <MappingFragment StoreEntitySet="salary">
+                <ScalarProperty Name="sid_sname" ColumnName="sid_sname" />
+                <ScalarProperty Name="sid_id" ColumnName="sid_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
