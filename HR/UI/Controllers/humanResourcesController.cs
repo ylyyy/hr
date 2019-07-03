@@ -607,7 +607,7 @@ namespace UI.Controllers
             };
             if (human.Delete(hm) > 0)
             {
-                return Content("<script>location.href='/humanResources/success';</script>");
+                return Content("<script>alert('删除成功！');location.href='/humanResources/delete_forever_list';</script>");
             }
             else {
                 return Content("<script>alert('删除失败！');location.href='/humanResources/delete_forever_list';</script>");
