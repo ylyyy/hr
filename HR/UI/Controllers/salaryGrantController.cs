@@ -350,24 +350,9 @@ namespace UI.Controllers
         }
         //薪酬发放查询 查询显示
         [HttpPost]
-        public ActionResult query_list(string salaryGrantId,string startDate,string endDate,int currentpage) {
+        public ActionResult query_list(string salaryGrantId,string year,string month,int currentpage) {
             //条件模糊查询
-            if (startDate != "" && endDate == "")
-            {
-                DateTime dtime = Convert.ToDateTime(startDate);
-                return Content(getList(e => e.salary_grant_id.Contains(salaryGrantId) && e.regist_time >= dtime && e.check_status == 1, currentpage));
-            }
-            if (endDate != "" && startDate == "")
-            {
-                DateTime dtime2 = Convert.ToDateTime(endDate);
-                return Content(getList(e => e.salary_grant_id.Contains(salaryGrantId) && e.regist_time <= dtime2 && e.check_status == 1, currentpage));
-            }
-            if (endDate != "" && startDate != "")
-            {
-                DateTime dtime = Convert.ToDateTime(startDate);
-                DateTime dtime2 = Convert.ToDateTime(endDate);
-                return Content(getList(e => e.salary_grant_id.Contains(salaryGrantId) && e.regist_time >= dtime && e.regist_time <= dtime2 && e.check_status == 1, currentpage));
-            }
+            
             return Content(getList(e => e.salary_grant_id.Contains(salaryGrantId) && e.check_status == 1, currentpage));
         }
         //薪酬发放查询 查询grant_details
