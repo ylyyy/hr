@@ -109,7 +109,6 @@ namespace UI.Controllers
             ViewData["salary"] = isd.SelectWhere(e=>e.standard_id==id);
             return View();
         }
-
         //薪酬发放登记 登记完成
         [HttpGet]
         public ActionResult register_success() {
@@ -342,33 +341,29 @@ namespace UI.Controllers
         }
         //薪酬发放查询 查询条件
         [HttpGet]
-        public ActionResult query_list(string salaryGrantId, string startDate, string endDate) {
+        public ActionResult query_list(string salaryGrantId, string year, string month) {
             ViewData["salaryGrantId"] = salaryGrantId;
-            ViewData["startDate"] = startDate;
-            ViewData["endDate"] = endDate;
+            ViewData["year"] = year;
+            ViewData["month"] = month;
             return View();
         }
         //薪酬发放查询 查询显示
         [HttpPost]
-        public ActionResult query_list(string salaryGrantId,string startDate,string endDate,int currentpage) {
+        public ActionResult query_list(string salaryGrantId,string year,string month,int currentpage) {
             //条件模糊查询
-            if (startDate != "" && endDate == "")
+            int monthjian =Convert.ToInt32(month);
+            int newyear =Convert.ToInt32(year);
+            if (Convert.ToInt32(month) == 12)
             {
-                DateTime dtime = Convert.ToDateTime(startDate);
-                return Content(getList(e => e.salary_grant_id.Contains(salaryGrantId) && e.regist_time >= dtime && e.check_status == 1, currentpage));
+                newyear = Convert.ToInt32(year)+1;
+                monthjian = 1;
+            }else {
+                
+                monthjian++;
             }
-            if (endDate != "" && startDate == "")
-            {
-                DateTime dtime2 = Convert.ToDateTime(endDate);
-                return Content(getList(e => e.salary_grant_id.Contains(salaryGrantId) && e.regist_time <= dtime2 && e.check_status == 1, currentpage));
-            }
-            if (endDate != "" && startDate != "")
-            {
-                DateTime dtime = Convert.ToDateTime(startDate);
-                DateTime dtime2 = Convert.ToDateTime(endDate);
-                return Content(getList(e => e.salary_grant_id.Contains(salaryGrantId) && e.regist_time >= dtime && e.regist_time <= dtime2 && e.check_status == 1, currentpage));
-            }
-            return Content(getList(e => e.salary_grant_id.Contains(salaryGrantId) && e.check_status == 1, currentpage));
+            DateTime star =Convert.ToDateTime(year + "-" + month + "-" +"1");
+            DateTime end = Convert.ToDateTime(newyear+"-"+monthjian+"-"+"1");
+            return Content(getList(e => e.salary_grant_id.Contains(salaryGrantId) && e.regist_time >= star&&e.regist_time<end && e.check_status == 1, currentpage));
         }
         //薪酬发放查询 查询grant_details
         public ActionResult query(string salary_grant_id) {

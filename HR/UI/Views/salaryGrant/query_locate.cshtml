@@ -57,13 +57,54 @@
                 <td class="TD_STYLE1">
                     请输入发放时间:
                 </td>
-                <td width="70%" class="TD_STYLE2">
-                    <input name="startDate" readonly="readonly" onclick="aa('startDate')" type="text" class="INPUT_STYLE2" id="date_start" style="width:24% " size="30">
-                    至 <input type="text" readonly="readonly" name="endDate" onclick="aa('endDate')" style="width:24% " class="INPUT_STYLE2">
-                    （YYYY-MM-DD）
+                <td width="70%" class="SELECT_STYLE1" style="height:25px;width:200px;">
+                    年份:
+                    <select name="year" id="year" class="SELECT_STYLE1" style="height:25px;width:200px;">
+                    </select>
+                    &nbsp;&nbsp;
+                    月份:
+                    <select name="month" class="SELECT_STYLE1" style="height:25px;width:200px;">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                    
+                    @*<input name="startDate" readonly="readonly" onclick="aa('startDate')" type="text" class="INPUT_STYLE2" id="date_start" style="width:24% " size="30">*@
+                    @*至 <input type="text" readonly="readonly" name="endDate" onclick="aa('endDate')" style="width:24% " class="INPUT_STYLE2">
+                    （YYYY-MM-DD）*@
                 </td>
             </tr>
         </table>
     </form>
+    <script>
+        $(function () {
+            chayear();
+        });
+        //查询年份
+        function chayear() {
+            var myDate = new Date();
+            var thisYear = myDate.getFullYear();  // 获取当年年份
+            var Section = thisYear - 2008;  // 声明一个变量 获得当前年份至想获取年份差 eg.2008
+            var arrYear = []; // 声明一个空数组 把遍历出的年份添加到数组里
+            for (var i = 0; i <= Section; i++) {
+                arrYear.push(thisYear--)
+            } // 遍历并添加年份到数组
+            // arrYear里是2008年到当前的所有年份了
+            for (var i = 0; i < arrYear.length; i++) {
+                var $option = $('<option value="' + arrYear[i] + '">' + arrYear[i] + '</option>');
+                $("#year").append($option);
+            }
+        }
+            
+    </script>
 </body>
 </html>

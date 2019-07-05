@@ -14,8 +14,8 @@
 </head>
 <body>
     <input type="hidden" name="salaryGrantId" value="@ViewData["salaryGrantId"]" />
-    <input type="hidden" name="startDate" value="@ViewData["startDate"]" />
-    <input type="hidden" name="endDate" value="@ViewData["endDate"]" />
+    <input type="hidden" name="year" value="@ViewData["year"]" />
+    <input type="hidden" name="month" value="@ViewData["month"]" />
         <table width="100%">
             <tr>
                 <td style="text-align:left;">
@@ -116,7 +116,7 @@
                 fenye(1);
             });
             function fenye(currentpage) {
-                $.post("/salaryGrant/query_list", { "salaryGrantId": $("[name=salaryGrantId]").val(), "startDate": $("[name=startDate]").val(), "endDate": $("[name=endDate]").val(), "currentpage": currentpage }, function (data) {
+                $.post("/salaryGrant/query_list", { "salaryGrantId": $("[name=salaryGrantId]").val(), "year": $("[name=year]").val(), "month": $("[name=month]").val(), "currentpage": currentpage }, function (data) {
                     $("#salary_tr tr:gt(0)").remove();
                     $("#rows").text(data.rows);
                     $("#pages").text(data.pages);
@@ -136,7 +136,6 @@
                     document.getElementById("page").value = document.getElementById("startpage").value;
                 }
                 document.forms[0].submit();
-
             }
             function doPage(startsize) {
                 document.getElementById("startpage").value = startsize;

@@ -149,16 +149,18 @@
         @{ int num = 0;}
         <div style="margin:auto;width:500px;height:auto;" id="salaryxz">
             <input type="checkbox" id="qx" onclick="xz()"/>全选<br />
-            @foreach (salary item in list)
+            <fieldset>
+                @foreach (salary item in list)
             {
-                if (num == 6)
+                    @*if (num == 6)
                 {
                     { num = 0; }
                     <br />
+                }*@
+                    <input type="checkbox" name="cbox" value="@item.sid_id" />@item.sid_sname
+                    //{ num++; }
                 }
-                <input type="checkbox" name="cbox" value="@item.sid_id"/>@item.sid_sname
-                { num++; }
-            }
+            </fieldset>
             <br />
             <input type="button" value="确定" onclick="chasalary()"/>
         </div>
@@ -198,6 +200,7 @@
                     $("#stable").append($tr);
                 }
                 $("#sumSalary").val('0.00');
+                $("#salaryxz").hide();
             });
         }
         function check() {
