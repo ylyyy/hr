@@ -97,15 +97,20 @@ namespace UI.Controllers
             di.Add("list8", list8);
             return Content(JsonConvert.SerializeObject(di));
         }
-
         public ActionResult registerAdd(engage_resume er)
         {
             //int b=TimeSpan.Compare((TimeSpan)er.regist_time, (TimeSpan)er.human_birthday);
+            users u = Session["user"] as users;
             er.check_status = 0;
             er.interview_status = 0;
-            DateTime t1 = (DateTime)er.regist_time;
-            DateTime t2 = (DateTime)er.human_birthday;
-            er.human_age = (short)(t1.Year - t2.Year);
+            er.register = u.u_true_name;
+            er.regist_time = DateTime.Now;
+            if (er.human_birthday.ToString() != "")
+            {
+                DateTime t1 = (DateTime)er.regist_time;
+                DateTime t2 = (DateTime)er.human_birthday;
+                er.human_age = (short)(t1.Year - t2.Year);
+            }
             if (irb.Add(er) > 0)
             {
                 return Content("<script>alert('添加成功');location.href='/resume/register';</script>");
@@ -120,11 +125,17 @@ namespace UI.Controllers
             config_major cm = ifm.SelectWhere(e => e.major_id == er.human_major_id && e.major_kind_id == er.human_major_kind_id).FirstOrDefault();
             er.human_major_kind_name = cm.major_kind_name;
             er.human_major_name = cm.major_name;
+            users u = Session["user"] as users;
             er.check_status = 0;
             er.interview_status = 0;
-            DateTime t1 = (DateTime)er.regist_time;
-            DateTime t2 = (DateTime)er.human_birthday;
-            er.human_age = (short)(t1.Year - t2.Year);
+            er.register = u.u_true_name;
+            er.regist_time = DateTime.Now;
+            if (er.human_birthday.ToString() != "")
+            {
+                DateTime t1 = (DateTime)er.regist_time;
+                DateTime t2 = (DateTime)er.human_birthday;
+                er.human_age = (short)(t1.Year - t2.Year);
+            }
             if (irb.Add(er) > 0)
             {
                 return Content("<script>alert('添加成功');location.href='/resume/register';</script>");
