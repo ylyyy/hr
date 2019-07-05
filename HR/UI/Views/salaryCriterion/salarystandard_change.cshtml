@@ -117,7 +117,7 @@
                     金额
                 </td>
             </tr>
-            @*<tbody>
+            <tbody>
                 @for (int i = 0; i < salary_details.Count; i++)
             {
                     <tr class="TD_STYLE2">
@@ -137,9 +137,9 @@
                         </td>
                     </tr>
                 }
-            </tbody>*@
+            </tbody>
         </table>
-        @{List<salary> list = ViewData["list"] as List<salary>;}
+        @*@{List<salary> list = ViewData["list"] as List<salary>;}
 
         @{ int num = 0;}
         <div style="margin:auto;width:500px;height:auto;" id="salaryxz">
@@ -156,7 +156,7 @@
             }
             <br />
             <input type="button" value="确定" onclick="chasalary()" />
-        </div>
+        </div>*@
     </form>
     <script type="text/javascript">
         //全选或全不选
