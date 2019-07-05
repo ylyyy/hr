@@ -33,7 +33,9 @@
                                 tools: [{
                                     iconCls: 'icon-mini-refresh',
                                     handler: function () {
-                                        alert('refresh');
+                                        var tab = $('#tabs').tabs('getSelected');
+                                        var url = $(tab.panel('options')).attr('href');
+                                        tab.panel('refresh', url);
                                     }
                                 }]
                             });

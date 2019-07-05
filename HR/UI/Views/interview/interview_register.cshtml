@@ -38,7 +38,7 @@
  	if(document.getElementById("date").value==""){
  	alert("请选择面试时间");
  	}else{
- 	document.interviewForm.submit();
+ 	    document.humanfileForm.submit();
  	}}
     </script>
 </head>
@@ -53,7 +53,7 @@
             </tr>
             <tr>
                 <td align="right">
-                    <input type="submit" value="面试登记" class="BUTTON_STYLE1"
+                    <input type="button" value="面试登记" class="BUTTON_STYLE1"
                            onclick="return search();">
                     <input type="button" value="返回" class="BUTTON_STYLE1" onclick="history.back();">
                 </td>
@@ -307,7 +307,7 @@
                 </td>
                 <td class="TD_STYLE2">
                     <input type="text" name="engageResume.passChecker"
-                           value="@er.pass_checker"
+                           value="@er.checker"
                            class="INPUT_STYLE2" readonly="readonly" />
 
                 </td>

@@ -186,8 +186,10 @@ namespace UI.Controllers
                     b = ib.Update(ei);
 
                 }
-                else if (er.pass_checkComment == "删除简历")
+                else if (er.pass_checkComment == "释放简历")
                 {
+                    ere.interview_status = 7;
+                    ei.interview_status = 7;
                     a = irb.Delete(ere);
                     b = ib.Delete(ei);
                 }

@@ -191,7 +191,7 @@ function toCheck(id)
                 <td align="right">
                     <input type="radio" name="ei.result" value="建议面试" onclick="mians()">建议面试
                     <input type="radio" name="ei.result" value="建议录用" checked="checked" onclick="luy()">建议录用
-                    <input type="radio" name="ei.result" value="删除简历" onclick="del()">删除简历
+                    <input type="radio" name="ei.result" value="删除简历" onclick="del()">释放简历
                     <input type="submit" value="确认" class="BUTTON_STYLE1"
                            onclick="search('542')">
                     <input type="button" value="返回" class="BUTTON_STYLE1"
@@ -560,7 +560,8 @@ function toCheck(id)
                     面试人
                 </td>
                 <td class="TD_STYLE2">
-                    <input type="text" name="engageInterview.register" value="@ei.register" class="INPUT_STYLE2" />
+                    @{ users user = Session["user"] as users;}
+                    <input type="text" name="register" value="@user.u_true_name" readonly="readonly" class="INPUT_STYLE2">
                 </td>
                 <td class="TD_STYLE1">
                     面试时间
@@ -590,8 +591,7 @@ function toCheck(id)
                 </td>
                 <td class="TD_STYLE2" colspan="7">
                     <textarea name="pass_checkComment" class="TEXTAREA_STYLE1"
-                              rows="4" readonly="readonly" id="passCheckcomment">建议录用
-                    </textarea>
+                              rows="4" readonly="readonly" id="passCheckcomment">建议录用</textarea>
                 </td>
             </tr>
         </table>
