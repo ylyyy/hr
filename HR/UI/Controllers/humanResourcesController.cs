@@ -23,11 +23,17 @@ namespace UI.Controllers
         Iconfig_majorBLL ifm = IocContain.CreateAll<Iconfig_majorBLL>("yibll", "config_majorBLL");//职位设置
         Ihuman_fileBll human = IocContain.CreateAll<Ihuman_fileBll>("yibll", "humanbll");
         ISalary_strandardBll issbll = IocContain.CreateAll<ISalary_strandardBll>("yibll", "ssarybll");//薪酬标准
+        Iengage_resumeBLL irb = IocContain.CreateAll<Iengage_resumeBLL>("yibll", "engage_resumeBLL");
+        Iengage_interviewBLL ib = IocContain.CreateAll<Iengage_interviewBLL>("yibll", "engage_interviewBLL");
 
+        public ActionResult human_registerIndex()
+        {
+            return View();
+        }
 
         //人力资源档案登记 显示
         [HttpGet]
-        public ActionResult human_register()
+        public ActionResult human_register(int id)
         {
             ViewData["first"] = iffk.SelectAll();
             ViewData["major_kind"] = ifmk.SelectAll();
@@ -42,7 +48,7 @@ namespace UI.Controllers
             ViewData["techang"] = ipcc.SelectWhere(e => e.attribute_kind == "特长");
             ViewData["aihao"] = ipcc.SelectWhere(e => e.attribute_kind == "爱好");
             ViewData["salarystrandard"] = issbll.SelectWhere(e => e.check_status == 1);
-
+            ViewData["engage_resume"] = irb.SelectWhere(e => e.res_id == id).FirstOrDefault();
             return View();
         }
         //人力资源档案登记 几级

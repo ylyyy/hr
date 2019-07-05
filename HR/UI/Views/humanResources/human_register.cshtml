@@ -57,6 +57,7 @@
             List<config_major_kind> mk = ViewData["major_kind"] as List<config_major_kind>;
             List<config_public_char> cpc = ViewData["designation"] as List<config_public_char>;
         }
+        @{ engage_resume er = ViewData["engage_resume"] as engage_resume;}
         <table width="100%" border="1" cellpadding=3 cellspacing=1
                bordercolorlight=#848284 bordercolordark=#eeeeee
                class="TABLE_STYLE1">
@@ -136,17 +137,17 @@
                 </td>
                 <td class="TD_STYLE2">
                     <input type="text" id="humanName" name="human_name"
-                           class="INPUT_STYLE2" />
+                           class="INPUT_STYLE2" value="@er.human_name"/>
                 </td>
                 <td class="TD_STYLE1">
                     性别
                 </td>
                 <td class="TD_STYLE2">
                     <select name="human_sex" class="SELECT_STYLE1">
-                        <option value="男" selected="selected">
+                        <option value="男" @(er.human_sex=="男"?"selected":"")>
                             男
                         </option>
-                        <option value="女">
+                        <option value="女" @(er.human_sex=="女" ? "selected":"")>
                             女
                         </option>
                     </select>
@@ -155,7 +156,7 @@
                     EMAIL
                 </td>
                 <td colspan="2" class="TD_STYLE2">
-                    <input type="text" name="human_email" id="humanEmail"
+                    <input type="text" name="human_email" id="humanEmail" value="@er.human_email"
                            class="INPUT_STYLE2">
                 </td>
             </tr>
@@ -164,7 +165,7 @@
                     电话
                 </td>
                 <td class="TD_STYLE2">
-                    <input type="text" name="human_telephone" id="humanTelephone"
+                    <input type="text" name="human_telephone" id="humanTelephone" value="@er.human_telephone"
                            class="INPUT_STYLE2">
                 </td>
                 <td class="TD_STYLE1">
@@ -178,7 +179,7 @@
                     手机
                 </td>
                 <td colspan="2" class="TD_STYLE2">
-                    <input type="text" name="human_mobilephone" id="humanMobilephone"
+                    <input type="text" name="human_mobilephone" id="humanMobilephone" value="@er.human_mobilephone"
                            class="INPUT_STYLE2">
                 </td>
             </tr>
@@ -188,13 +189,13 @@
                 </td>
                 <td colspan="3" class="TD_STYLE2">
                     <input type="text" name="human_address"
-                           class="INPUT_STYLE2">
+                           class="INPUT_STYLE2" value="@er.human_address">
                 </td>
                 <td class="TD_STYLE1">
                     邮编
                 </td>
                 <td colspan="2" class="TD_STYLE2">
-                    <input type="text" name="human_postcode"
+                    <input type="text" name="human_postcode" value="@er.human_postcode"
                            class="INPUT_STYLE2">
                 </td>
             </tr>
@@ -206,7 +207,7 @@
                     <select name="human_nationality" class="SELECT_STYLE1">
                         @foreach (config_public_char item in ViewData["guoji"] as List<config_public_char>)
                         {
-                            <option>@item.attribute_name</option>
+                            <option @(er.human_nationality== item.attribute_name ? "selected":"")>@item.attribute_name</option>
                         }
                     </select>
                 </td>
@@ -214,14 +215,14 @@
                     出生地
                 </td>
                 <td class="TD_STYLE2">
-                    <input type="text" name="human_birthplace"
+                    <input type="text" name="human_birthplace" value="@er.human_birthplace"
                            class="INPUT_STYLE2">
                 </td>
                 <td class="TD_STYLE1">
                     生日
                 </td>
                 <td width="13%" class="TD_STYLE2">
-                    <input type="text" name="startDate" onclick="aa('startDate')" readonly="readonly"
+                    <input type="text" name="startDate" onclick="aa('startDate')" readonly="readonly" value="@er.human_birthday"
                            class="INPUT_STYLE2" id="birthday">
                 </td>
                 <td width="11%" class="TD_STYLE1">
@@ -231,7 +232,7 @@
                     <select name="human_race" class="SELECT_STYLE1">
                         @foreach (config_public_char item in ViewData["mingzu"] as List<config_public_char>)
                         {
-                            <option>@item.attribute_name</option>
+                            <option @(er.human_race== item.attribute_name ? "selected":"")>@item.attribute_name</option>
                         }
                     </select>
                 </td>
@@ -244,7 +245,7 @@
             <select name="human_religion" class="SELECT_STYLE1">
                 @foreach (config_public_char item in ViewData["zongj"] as List<config_public_char>)
                 {
-                    <option>@item.attribute_name</option>
+                    <option @(er.human_religion== item.attribute_name ? "selected":"")>@item.attribute_name</option>
                 }
             </select>
         </td>
@@ -255,7 +256,7 @@
             <select name="human_party" class="SELECT_STYLE1">
                 @foreach (config_public_char item in ViewData["zzmmao"] as List<config_public_char>)
                 {
-                    <option>@item.attribute_name</option>
+                    <option @(er.human_party== item.attribute_name ? "selected":"")>@item.attribute_name</option>
                 }
             </select>
         </td>
@@ -263,7 +264,7 @@
             身份证号码
         </td>
         <td class="TD_STYLE2">
-            <input type="text" name="human_id_card" id="humanIdCard"
+            <input type="text" name="human_id_card" id="humanIdCard" value="@er.human_idcard"
                    class="INPUT_STYLE2">
         </td>
         <td class="TD_STYLE1">
@@ -279,7 +280,7 @@
             年龄
         </td>
         <td class="TD_STYLE2">
-            <input type="text" name="human_age" id="humanAge"
+            <input type="text" name="human_age" id="humanAge" value="@er.human_age"
                    class="INPUT_STYLE2">
         </td>
         <td class="TD_STYLE1">
@@ -289,7 +290,7 @@
             <select name="human_educated_degree" class="SELECT_STYLE1">
                 @foreach (config_public_char item in ViewData["xueli"] as List<config_public_char>)
                 {
-                    <option>@item.attribute_name</option>
+                    <option @(er.human_educated_degree== item.attribute_name ? "selected":"")>@item.attribute_name</option>
                 }
             </select>
         </td>
@@ -300,7 +301,7 @@
             <select name="human_educated_years" class="SELECT_STYLE1">
                 @foreach (config_public_char item in ViewData["jyuage"] as List<config_public_char>)
                 {
-                    <option>@item.attribute_name</option>
+                    <option @(er.human_educated_years.ToString()== item.attribute_name ? "selected":"")>@item.attribute_name</option>
                 }
             </select>
         </td>
@@ -311,7 +312,7 @@
             <select name="human_educated_major" class="SELECT_STYLE1">
                 @foreach (config_public_char item in ViewData["zhuanye"] as List<config_public_char>)
                 {
-                    <option>@item.attribute_name</option>
+                    <option @(er.human_educated_major== item.attribute_name ? "selected":"")>@item.attribute_name</option>
                 }
             </select>
         </td>
@@ -366,7 +367,7 @@
             <select name="human_speciality" class="SELECT_STYLE1">
                 @foreach (config_public_char item in ViewData["techang"] as List<config_public_char>)
                 {
-                    <option>@item.attribute_name</option>
+                    <option @(er.human_specility== item.attribute_name ? "selected":"")>@item.attribute_name</option>
                 }
             </select>
         </td>
@@ -377,7 +378,7 @@
                     <select name="human_hobby" class="SELECT_STYLE1">
                         @foreach (config_public_char item in ViewData["aihao"] as List<config_public_char>)
                         {
-                            <option>@item.attribute_name</option>
+                            <option @(er.human_hobby== item.attribute_name ? "selected":"")>@item.attribute_name</option>
                         }
                     </select>
                 </td>
@@ -394,7 +395,7 @@
                 </td>
                 <td colspan="7" class="TD_STYLE2">
                     <textarea name="human_histroy_records" rows="4"
-                              class="TEXTAREA_STYLE1"></textarea>
+                              class="TEXTAREA_STYLE1">@er.human_history_records</textarea>
                 </td>
             </tr>
             <tr>
@@ -411,7 +412,7 @@
                     备注
                 </td>
                 <td colspan="7" class="TD_STYLE2">
-                    <textarea name="remark" rows="4" class="TEXTAREA_STYLE1"></textarea>
+                    <textarea name="remark" rows="4" class="TEXTAREA_STYLE1">@er.remark</textarea>
                 </td>
             </tr>
         </table>

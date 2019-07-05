@@ -53,6 +53,9 @@
     <Compile Include="Iconfig_file_second_kindDao.cs" />
     <Compile Include="Iconfig_file_third_kindDao.cs" />
     <Compile Include="Father.cs" />
+    <Compile Include="Iengage_interviewDao.cs" />
+    <Compile Include="Iengage_major_releaseDao.cs" />
+    <Compile Include="Iengage_resumeDao.cs" />
     <Compile Include="Ihuman_fileDal.cs" />
     <Compile Include="Iconfig_majorDao.cs" />
     <Compile Include="Iconfig_major_kindDao.cs" />
