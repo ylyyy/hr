@@ -223,13 +223,16 @@ namespace UI.Controllers
         public ActionResult check(string salary_grant_id) {
             salary_grant sagrant = grant.SelectWhere(e=>e.salary_grant_id==salary_grant_id)[0];
             List<salary_grant_details> grantde=grantdetail.SelectWhere(e=>e.salary_grant_id==salary_grant_id);
+            List<string> standardsum = new List<string>();
             List<string> standardid = new List<string>();
             for (int i = 0; i < grantde.Count; i++)
             {
                 string ghmid = grantde[i].human_id;
                 human_file hmf=human.SelectWhere(e=>e.human_id ==ghmid)[0];
                 standardid.Add(hmf.salary_standard_id);
+                standardsum.Add(hmf.paid_salary_sum.ToString());
             }
+            ViewData["paidsum"] = standardsum;
             ViewData["grantde"] = grantde;
             ViewData["standardid"] = standardid;
             ViewData["sagrant"] = sagrant;
