@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Index2";
+}
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="~/CSS/table.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                url: "/major_change3/Index3",
+                type: "get",
+                success: function (img) {
+                    var dt = JSON.parse(img);
+                    for (var i = 0; i < dt.length; i++) {
+                        var $tr = $("<tr></tr>");
+                        var $td = $("<td>" + dt[i]["first_kind_name"] + "</td>");
+                        var $td2 = $("<td>" + dt[i]["second_kind_name"] + "</td>");
+                        var $td3 = $("<td>" + dt[i]["third_kind_name"] + "</td>");
+                        var $td4 = $("<td>" + dt[i]["salary_standard_name"] + "</td>");
+                        var $td5 = $("<td>" + dt[i]["human_name"] + "</td>");
+                        var $td6 = $("<td><a href='/major_change3/Update/" + dt[i]["mch_id"] + "'>查看</a></td>");
+                        $tr.append($td, $td2, $td3, $td4, $td5, $td6);
+                        $("#tables").append($tr);
+                    }
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+    <form action="list.html" method="post">
+        <font color="black"> 您在做的业务是-人力资源-调动管理-调动查询列表 </font>
+        <br /><br /><br />
+
+        <table width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1" id="tables">
+            <tr height="21">
+                <td width="19%" class="TD_STYLE1">
+                    I级机构
+                </td>
+                <td width="19%" class="TD_STYLE1">
+                    II级机构
+                </td>
+                <td width="19%" class="TD_STYLE1">
+                    Ⅲ级机构
+                </td>
+                <td width="19%" class="TD_STYLE1">
+                    薪酬标准
+                </td>
+                <td width="19%" class="TD_STYLE1">
+                    名字
+                </td>
+                <td width="5%" class="TD_STYLE1">
+                    查看
+                </td>
+
+            </tr>
+        </table>
+        <br>
+        <br>
+
+
+    </form>
+</body>
+</html>
