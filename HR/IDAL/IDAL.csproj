@@ -66,7 +66,6 @@
     <Compile Include="ISalary_strandardDal.cs" />
     <Compile Include="Isalary_standard_detailsDal.cs" />
     <Compile Include="IusersDal.cs" />
-    <Compile Include="human_fileIDAO.cs" />
     <Compile Include="major_changeIDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleIDAO.cs" />

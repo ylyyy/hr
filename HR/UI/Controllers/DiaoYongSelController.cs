@@ -14,7 +14,7 @@ namespace UI.Controllers
 {
     public class DiaoYongSelController : Controller
     {
-        HREntities3 aet = new HREntities3();
+        HREntities1 aet = new HREntities1();
         transferIBLL tib = IocContain.CreateAll<transferIBLL>("yibll", "transferBll");
         // GET: DiaoYongSel
         public ActionResult Index()

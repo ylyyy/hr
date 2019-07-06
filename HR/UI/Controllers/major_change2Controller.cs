@@ -18,7 +18,7 @@ namespace UI.Controllers
         int rows = 0;
         int currentPage = 0;
         string where = "where check_status=2";
-        HREntities3 aet = new HREntities3();
+        HREntities1 aet = new HREntities1();
         major_changeIBLL mc = IocContain.CreateAll<major_changeIBLL>("yibll", "major_changeBll");
         // GET: major_change2
         public ActionResult Index()

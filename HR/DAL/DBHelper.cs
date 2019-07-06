@@ -11,7 +11,7 @@ namespace DAL
 {
     public class DBHelper
     {
-        public static string str = "Data Source=.;Initial Catalog=HR;User ID=sa;Password=123";
+        public static string str = "Data Source=.;Initial Catalog=HR;User ID=sa;Password=sasa";
         public static DataTable Select(string sql, string fileName, params SqlParameter[] ps)
         {
             SqlConnection cn = new SqlConnection(str);
@@ -33,7 +33,6 @@ namespace DAL
             }
             return dt;
         }
-        public static string str = "Data Source=.;Initial Catalog=HR;User ID=sa;Password=sasa";
         public static void WRZ(string fileName, Exception e)
         {
             using (StreamWriter sw = new StreamWriter("D:/错误日志.txt", true))
@@ -137,7 +136,6 @@ namespace DAL
         {
             SqlConnection cn = new SqlConnection(str);
             string sql = "proc_FenYe";
-
             SqlDataAdapter ad = new SqlDataAdapter(sql, cn);
             //执行的是存储过程
             ad.SelectCommand.CommandType = CommandType.StoredProcedure;

@@ -14,8 +14,11 @@ namespace UI.Controllers
 {
     public class human_fileController : Controller
     {
-        human_fileIBLL hb = IocContain.CreateAll<human_fileIBLL>("yibll", "human_fileBll");
-        HREntities3 hd = new HREntities3();
+        Ihuman_fileBll hb = IocContain.CreateAll<Ihuman_fileBll>("yibll", "human_filebll");
+        Iconfig_file_first_kindBLL iffk = IocContain.CreateAll<Iconfig_file_first_kindBLL>("yibll", "config_file_first_kindBLL");
+        Iconfig_file_second_kindBLL ifsk = IocContain.CreateAll<Iconfig_file_second_kindBLL>("yibll", "config_file_second_kindBLL");
+        Iconfig_file_third_kindBLL iftk = IocContain.CreateAll<Iconfig_file_third_kindBLL>("yibll", "config_file_third_kindBLL");
+        HREntities1 hd = new HREntities1();
         // GET: human_file
         public ActionResult Index()
         {
@@ -25,7 +28,7 @@ namespace UI.Controllers
         //查询全部
         public ActionResult Index2()
         {
-            var dt = hb.SelectAll<config_file_first_kind>();
+            var dt = iffk.SelectAll();
             return Content(JsonConvert.SerializeObject(dt));
         }
 
@@ -33,7 +36,7 @@ namespace UI.Controllers
         //查询二级菜单
         public ActionResult Index3(string id)
         {
-         var dt = hb.SelectWhere(e=>e.first_kind_id==id);
+            var dt = ifsk.SelectWhere(e=>e.first_kind_id==id);
             return Content(JsonConvert.SerializeObject(dt));
         }
         //查询三级菜单
@@ -41,7 +44,7 @@ namespace UI.Controllers
         {
             string sid=  Request["sid"];
             string fid = Request["fid"];
-            var dt = hd.Set<config_file_third_kind>().Where(e=>e.first_kind_id==fid&&e.second_kind_id==sid).Select(e => e).ToList();
+            var dt = iftk.SelectWhere(e=>e.first_kind_id==fid&&e.second_kind_id==sid).Select(e => e).ToList();
             return Content(JsonConvert.SerializeObject(dt));
         }
 

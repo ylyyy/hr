@@ -14,7 +14,7 @@ namespace UI.Controllers
 {
     public class machangeController : Controller
     {
-        HREntities3 aet = new HREntities3();
+        HREntities1 aet = new HREntities1();
         transferIBLL tib = IocContain.CreateAll<transferIBLL>("yibll", "transferBll");
         // GET: machange
         public ActionResult Index()

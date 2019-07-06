@@ -14,7 +14,6 @@ namespace UI.Controllers
 {
     public class major_changeController : Controller
     {
-        HREntities3 aet = new HREntities3();
         major_changeIBLL mc = IocContain.CreateAll<major_changeIBLL>("yibll", "major_changeBll");
         
         int page = 0;

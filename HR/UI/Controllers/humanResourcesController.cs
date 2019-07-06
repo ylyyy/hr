@@ -25,7 +25,7 @@ namespace UI.Controllers
         ISalary_strandardBll issbll = IocContain.CreateAll<ISalary_strandardBll>("yibll", "ssarybll");//薪酬标准
         Iengage_resumeBLL irb = IocContain.CreateAll<Iengage_resumeBLL>("yibll", "engage_resumeBLL");
         Iengage_interviewBLL ib = IocContain.CreateAll<Iengage_interviewBLL>("yibll", "engage_interviewBLL");
-
+        
         public ActionResult human_registerIndex()
         {
             return View();
