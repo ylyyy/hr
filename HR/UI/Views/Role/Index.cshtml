@@ -92,7 +92,6 @@
                 type: "get",
                 success: function (da) {
                     var dt = eval("(" + da + ")");
-                    $("#table1 tr:eq(0)").remove();
                     for (var i = 0; i < dt.length; i++) {
                         var $tr = $("<tr></tr>");
                         var $td1 = $("<td>" + dt[i]["u_id"] + "</td>");

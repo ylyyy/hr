@@ -12,5 +12,7 @@ namespace IBLL
     public interface transferIBLL
     {
         List<major_change> SelectAll();
+        List<major_change> SelectWhere(Expression<Func<major_change, bool>> where);
+        int Update(major_change t);
     }
 }

@@ -1,0 +1,281 @@
+﻿@model Model.major_change
+
+@{
+    ViewBag.Title = "Update";
+}
+<link href="~/CSS/table.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.7.1.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<SCRIPT type="text/javascript">
+    function check(obj) {
+        if (obj ==null) {
+            alert("成功");
+            window.location.href = "/major_change2/Index3";
+					    }
+						var rs=document.getElementsByName("s");
+						 if(rs[0].checked==false&&rs[1].checked==false){
+						 alert("请选择通过或者不通过！");
+						 }
+					}
+</SCRIPT>
+@using (Ajax.BeginForm("Update", new AjaxOptions() { HttpMethod = "post", OnSuccess = "check()" }))
+{
+    <table width="100%">
+        <tr>
+            <td>
+                <font color="black">您正在做的业务是:人力资源--调动管理--调动审核</font>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                @Html.RadioButton("s", "true")通过
+                @Html.RadioButton("s", "false")不通过
+
+                <input type="submit" value="确认" class="BUTTON_STYLE1" onclick="check()">
+                <input type="button" class="BUTTON_STYLE1" onclick="javascript:window.history.back();" value="返回">
+
+            </td>
+        </tr>
+    </table>
+    <table width="100%" border="1" cellpadding=0 cellspacing=1
+           bordercolorlight=#848284 bordercolordark=#eeeeee
+           class="TABLE_STYLE1">
+        <tr height="21">
+            <td class="TD_STYLE1" width="8%">
+                档案编号
+            </td>
+            <td class="TD_STYLE2" width="10%">
+                @Html.TextBoxFor(e => e.human_id, new { @readonly = true })
+            </td>
+            <td class="TD_STYLE1" width="8%">
+                姓名
+            </td>
+            <td class="TD_STYLE2" width="10%">
+                @Html.TextBoxFor(e => e.human_name, new { @readonly = true })
+            </td>
+            <td class="TD_STYLE1" width="8%"></td>
+            <td class="TD_STYLE2" width="10%"></td>
+            <td class="TD_STYLE1" width="8%"></td>
+            <td class="TD_STYLE2" width="10%"></td>
+        </tr>
+        <tr>
+
+            <td class="TD_STYLE1" width="8%">
+                原一级机构
+            </td>
+            <td class="TD_STYLE2">
+                @Html.TextBoxFor(e => e.first_kind_name, new { @readonly = true })
+                <input type="hidden" name="majorChange.firstKindId" value="1353318953319">
+            </td>
+            <td class="TD_STYLE1" width="8%">
+                原二级机构
+            </td>
+            <td class="TD_STYLE2" width="10%">
+                @Html.TextBoxFor(e => e.second_kind_name, new { @readonly = true })
+                <input type="hidden" name="majorChange.secondKindId" value="1353318979558">
+            </td>
+            <td class="TD_STYLE1" width="8%">
+                原三级机构
+            </td>
+            <td class="TD_STYLE2" width="10%">
+                @Html.TextBoxFor(e => e.third_kind_name, new { @readonly = true })
+                <input type="hidden" name="majorChange.thirdKindId" value="1353319077370">
+            </td>
+            <td class="TD_STYLE1" width="8%"></td>
+            <td class="TD_STYLE2" width="10%"></td>
+        </tr>
+
+        <tr>
+            <td class="TD_STYLE1">
+                原职位分类
+            </td>
+            <td class="TD_STYLE2">
+                @Html.TextBoxFor(e => e.major_kind_name, new { @readonly = true })
+                <input type="hidden" name="majorChange.majorKindId" value="02">
+            </td>
+            <td class="TD_STYLE1" width="12%">
+                原职位名称
+            </td>
+            <td class="TD_STYLE2">
+                @Html.TextBoxFor(e => e.major_name, new { @readonly = true })
+                <input type="hidden" name="majorChange.majorId" value="02">
+            </td>
+            <td class="TD_STYLE1">
+                原薪酬标准
+            </td>
+            <td class="TD_STYLE2">
+                @Html.TextBoxFor(e => e.salary_standard_name, new { @readonly = true })
+                <input type="hidden" name="majorChange.salaryStandardId" value="1353320082662">
+            </td>
+            <td class="TD_STYLE1">
+                原薪酬总额
+            </td>
+            <td class="TD_STYLE2">
+                @Html.TextBoxFor(e => e.salary_sum, new { @readonly = true })
+            </td>
+
+        </tr>
+        <tr>
+            <td class="TD_STYLE1">
+                新一级机构名称
+            </td>
+            <td class="TD_STYLE2">
+                @Html.DropDownListFor(model => model.new_first_kind_name, ViewData["s"] as IEnumerable<SelectListItem>)
+                <input type="hidden" name="majorChange.newFirstKindName" value="Ⅰ级结构" id="newFirstKindName">
+            </td>
+            <td class="TD_STYLE1" width="12%">
+                新二级机构名称
+            </td>
+            <td class="TD_STYLE2">
+
+                @Html.DropDownListFor(model => model.new_second_kind_name, ViewData["s1"] as IEnumerable<SelectListItem>)
+                <input type="hidden" name="majorChange.newSecondKindName" value="" id="newSecondKindName">
+            </td>
+            <td class="TD_STYLE1" width="12%">
+                新三级机构名称
+            </td>
+            <td class="TD_STYLE2">
+                @Html.DropDownListFor(model => model.new_third_kind_name, ViewData["s2"] as IEnumerable<SelectListItem>)
+                <input type="hidden" name="majorChange.newThirdKindName" value="" id="newThirdKindName">
+            </td>
+            <td class="TD_STYLE1" width="8%"></td>
+            <td class="TD_STYLE2" width="10%"></td>
+        </tr>
+        <tr>
+            <td class="TD_STYLE1">
+                新职位分类
+            </td>
+            <td class="TD_STYLE2">
+                @Html.DropDownListFor(model => model.new_major_kind_name, ViewData["s3"] as IEnumerable<SelectListItem>)
+                <input type="hidden" name="majorChange.newMajorKindName" value="软件开发" id="newMajorKindName">
+
+            </td>
+            <td class="TD_STYLE1" width="12%">
+                新职位名称
+            </td>
+            <td class="TD_STYLE2">
+                @Html.DropDownListFor(model => model.new_major_name, ViewData["s4"] as IEnumerable<SelectListItem>)
+                <input type="hidden" name="majorChange.newMajorName" value="项目经理" id="newMajorName">
+            </td>
+            <td class="TD_STYLE1">
+                新薪酬标准
+            </td>
+            <td class="TD_STYLE2">
+                @Html.DropDownListFor(model => model.salary_standard_name, ViewData["s5"] as IEnumerable<SelectListItem>)
+                <input type="hidden" name="majorChange.newSalaryStandardName" value="经理级别" id="newSalaryStandardName">
+
+            </td>
+            <td class="TD_STYLE1">
+                新薪酬总额
+            </td>
+            <td class="TD_STYLE2">
+                @Html.TextBoxFor(e => e.new_salary_sum, new { @readonly = true })
+            </td>
+        </tr>
+
+        <tr>
+
+            <td class="TD_STYLE1">
+                登记人
+            </td>
+            <td class="TD_STYLE2">
+                @Html.TextBoxFor(e => e.register, new { @readonly = true })
+            </td>
+            <td class="TD_STYLE1">
+                登记时间
+            </td>
+            <td class="TD_STYLE2">
+                @Html.TextBoxFor(e => e.regist_time, new { @readonly = true })
+            </td>
+            <td class="TD_STYLE1">
+                复核人
+            </td>
+            <td class="TD_STYLE2">
+                @Html.TextBoxFor(e => e.checker, new { @readonly = true })
+            </td>
+            <td class="TD_STYLE1">
+                复核时间
+            </td>
+            <td class="TD_STYLE2">
+                @Html.TextBoxFor(e => e.check_time, new { @readonly = true })
+            </td>
+        </tr>
+        <tr>
+            <td class="TD_STYLE1">
+                调动原因
+            </td>
+            <td colspan="7" class="TD_STYLE2">
+                @Html.TextAreaFor(e => e.change_reason);
+            </td>
+        </tr>
+        <tr>
+            <td class="TD_STYLE1">
+                复合通过意见
+            </td>
+            <td colspan="7" class="TD_STYLE2">
+                @Html.TextAreaFor(e => e.check_reason);
+            </td>
+        </tr>
+
+        <SCRIPT type="text/javascript">
+					function time(){
+ 					var tdate=document.getElementById("Tdate");
+ 					var d=new Date();
+ 					var y=d.getFullYear();
+ 					var moth=d.getMonth()+1;
+ 					var date=d.getDate();
+ 					var h=d.getHours();
+ 					var m=d.getMinutes();
+ 					var s=d.getSeconds();
+					var hh=20-1-h;
+					var mm=60-1-m;
+					var ss=60-s;
+					if(hh>0){
+							mm=mm+60*hh;
+					}
+ 					if(moth<10){
+ 							moth="0"+moth;
+ 					}
+ 					if(date<10){
+ 							date="0"+date;
+ 					}
+ 					if(h<10){
+ 							h="0"+h;
+ 					}
+ 					if(m<10){
+ 							m="0"+m;
+ 					}
+ 					if(s<10){
+ 							s="0"+s;
+ 					}
+ 					if(mm<10){
+ 							mm="0"+mm;
+ 					}
+ 					if(ss<10){
+ 							ss="0"+ss;
+ 					}
+
+ 					tdate.value=y+"-"+moth+"-"+date+" "+h+":"+m+":"+s;
+
+ 				}
+ 				 function load(){
+
+ 				  document.getElementById("firstKindId").value='1353318953319';
+ 				  document.getElementById("newMajorKindId").value='02';
+ 				  document.getElementById("secondKindId").value='0';
+ 				  document.getElementById("thirdKindId").value='0';
+ 				  document.getElementById("newMajorId").value='01';
+ 				  document.getElementById("newSalaryStandardId").value='1353320082662';
+ 				 time();
+ 				 }
+				window.onload=load;
+ 				var out=window.setInterval(time, 1000);
+
+        </SCRIPT>
+    </table>
+
+}
+
+<div>
+
+</div>

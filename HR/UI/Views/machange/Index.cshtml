@@ -1,0 +1,85 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="../../css/table.css" type="text/css">
+    <script src="~/javascript/jquery-1.7.2.js"></script>
+    <script src="~/javascript/jquery.unobtrusive-ajax.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                url: "/machange/index2",
+                type: "get",
+                success: function (da) {
+                    var dt = eval("(" + da + ")");
+                    for (var i = 0; i < dt.length; i++) {
+                        var $tr = $("<tr></tr>");
+                        var $td1 = $("<td>" + dt[i]["first_kind_name"] + "</td>");
+                        var $td2 = $("<td>" + dt[i]["second_kind_name"] + "</td>");
+                        var $td3 = $("<td>" + dt[i]["third_kind_name"] + "</td>");
+                        var $td4 = $("<td>" + dt[i]["salary_standard_name"] + "</td>");
+                        var $td5 = $("<td>" + dt[i]["human_name"] + "</td>");
+                        var $td6 = $('<td><a href="/machange/Edit/' + dt[i]["mch_id"] + '">审核</a></td>');
+                        $tr.append($td1, $td2, $td3, $td4, $td5, $td6);
+                        $("#table1").append($tr);
+                    }
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+    <font color="black"> 您在做的业务是-人力资源-调动管理-调动登记列表 </font>
+    <br /><br /><br />
+
+    <table width="100%" border="1" cellpadding=0 cellspacing=1
+           bordercolorlight=#848284 bordercolordark=#eeeeee
+           class="TABLE_STYLE1" id="table1">
+        <tr height="21">
+            <td width="19%" class="TD_STYLE1">
+                I级机构
+            </td>
+            <td width="19%" class="TD_STYLE1">
+                II级机构
+            </td>
+            <td width="19%" class="TD_STYLE1">
+                Ⅲ级机构
+            </td>
+            <td width="19%" class="TD_STYLE1">
+                薪酬标准
+            </td>
+            <td width="19%" class="TD_STYLE1">
+                名字
+            </td>
+            <td width="5%" class="TD_STYLE1">
+                审核
+            </td>
+        </tr>
+    </table>
+    <script type="text/javascript">
+function dopagebybutton() {
+	var reg = /^[0-9]*[1-9][0-9]*$/;
+	if (reg.test(document.getElementById("page").value)) {
+		document.getElementById("startpage").value= document.getElementById("page").value;
+	} else {
+		alert("您的输入有误");
+		document.getElementById("page").value = document.getElementById("startpage").value;
+	}
+	document.forms[0].submit();
+
+}
+function doPage(startsize) {
+	document.getElementById("startpage").value =startsize;
+	document.forms[0].submit();
+
+}
+    </script>
+</body>
+</html>

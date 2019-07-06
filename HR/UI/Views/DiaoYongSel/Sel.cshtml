@@ -1,0 +1,188 @@
+﻿@model Entity.major_change
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Sel</title>
+    <link rel="stylesheet" href="../../css/table.css"
+          type="text/css">
+</head>
+<body>
+    <table width="100%">
+        <tr>
+            <td>
+                <font color="black">您正在做的业务是:人力资源--培训管理--调动登记查看</font>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <input type="button" class="BUTTON_STYLE1" onclick="javascript:window.history.back();" value="返回">
+            </td>
+        </tr>
+    </table>
+    <table width="100%" border="1" cellpadding=0 cellspacing=1
+           bordercolorlight=#848284 bordercolordark=#eeeeee
+           class="TABLE_STYLE1">
+        <tr height="21">
+            <td class="TD_STYLE1" width="8%">
+                档案编号
+            </td>
+            <td class="TD_STYLE2" width="10%">
+               @Html.TextBoxFor(e => e.mch_id, new { @readonly = true })
+            </td>
+            <td class="TD_STYLE1" width="8%">
+                姓名
+            </td>
+            <td class="TD_STYLE2" width="10%">
+                @Html.TextBoxFor(e => e.human_name, new { @readonly = true })
+            </td>
+            <td class="TD_STYLE1" width="8%"></td>
+            <td class="TD_STYLE2" width="10%"></td>
+            <td class="TD_STYLE1" width="8%"></td>
+            <td class="TD_STYLE2" width="10%"></td>
+        </tr>
+        <tr>
+            <td class="TD_STYLE1" width="8%">
+                原一级机构
+            </td>
+            <td class="TD_STYLE2">
+                @Html.TextBoxFor(e => e.first_kind_name, new { @readonly = true })
+            </td>
+            <td class="TD_STYLE1" width="8%">
+                原二级机构
+            </td>
+            <td class="TD_STYLE2" width="10%">
+                @Html.TextBoxFor(e => e.second_kind_name, new { @readonly = true })
+            </td>
+            <td class="TD_STYLE1" width="8%">
+                原三级机构
+            </td>
+            
+                
+          
+            <td class="TD_STYLE2" width="10%">@Html.TextBoxFor(e => e.third_kind_name, new { @readonly = true })</td>
+            <td class="TD_STYLE1" width="8%"></td>
+            <td class="TD_STYLE2" width="10%"></td>
+        </tr>
+
+        <tr>
+            <td class="TD_STYLE1">
+                原职位分类
+            </td>
+            <td class="TD_STYLE2">
+                @Html.TextBoxFor(e => e.major_kind_name, new { @readonly = true })
+            </td>
+            <td class="TD_STYLE1" width="12%">
+                原职位名称
+            </td>
+            <td class="TD_STYLE2">
+                @Html.TextBoxFor(e => e.major_name, new { @readonly = true })
+            </td>
+            <td class="TD_STYLE1">
+                原薪酬标准
+            </td>
+            <td class="TD_STYLE2">
+                @Html.TextBoxFor(e => e.salary_standard_name, new { @readonly = true })
+            </td>
+            <td class="TD_STYLE1">
+                原薪酬总额
+            </td>
+            <td class="TD_STYLE2">
+                @Html.TextBoxFor(e => e.salary_sum, new { @readonly = true })
+            </td>
+        </tr>
+        <tr>
+            <td class="TD_STYLE1">
+                新一级机构名称
+            </td>
+            <td class="TD_STYLE2">
+               @Html.TextBoxFor(e => e.new_first_kind_name, new { @readonly = true })
+
+            </td>
+            <td class="TD_STYLE1" width="12%">
+                新二级机构名称
+            </td>
+            <td class="TD_STYLE2">
+                @Html.TextBoxFor(e => e.new_second_kind_name, new { @readonly = true })
+            </td>
+            <td class="TD_STYLE1" width="12%">
+                新三级机构名称
+            </td>
+            <td class="TD_STYLE2">
+                @Html.TextBoxFor(e => e.new_third_kind_name, new { @readonly = true })
+            </td>
+            <td class="TD_STYLE1" width="8%"></td>
+            <td class="TD_STYLE2" width="10%"></td>
+        </tr>
+        <tr>
+            <td class="TD_STYLE1">
+                新职位分类
+            </td>
+            <td class="TD_STYLE2">
+                @Html.TextBoxFor(e => e.new_major_kind_name, new { @readonly = true })
+            </td>
+            <td class="TD_STYLE1" width="12%">
+                新职位名称
+            </td>
+            <td class="TD_STYLE2">
+                @Html.TextBoxFor(e => e.new_major_kind_name, new { @readonly = true })
+            </td>
+            <td class="TD_STYLE1">
+                新薪酬标准
+            </td>
+            <td class="TD_STYLE2">
+                @Html.TextBoxFor(e => e.salary_standard_name, new { @readonly = true })
+            </td>
+            <td class="TD_STYLE1">
+                新薪酬总额
+            </td>
+            <td class="TD_STYLE2">
+                @Html.TextBoxFor(e => e.new_salary_sum, new { @readonly = true })
+            </td>
+        </tr>
+
+        <tr>
+            <td class="TD_STYLE1">
+                登记人
+            </td>
+            <td class="TD_STYLE2">
+                
+                @Html.TextBoxFor(e => e.register, new { @readonly = true })
+            </td>
+            <td class="TD_STYLE1">
+                登记时间
+            </td>
+            <td class="TD_STYLE2">
+                
+                @Html.TextBoxFor(e => e.regist_time, new { @readonly = true })
+            </td>
+            <td class="TD_STYLE1">
+                复核人
+            </td>
+            <td class="TD_STYLE2">
+                @Html.TextBoxFor(e => e.checker, new { @readonly = true })
+            </td>
+            <td class="TD_STYLE1">
+                复核时间
+            </td>
+            <td class="TD_STYLE2">
+                @Html.TextBoxFor(e => e.regist_time, new { @readonly = true })
+            </td>
+        </tr>
+        <tr>
+            <td class="TD_STYLE1">
+                调动原因
+            </td>
+            <td colspan="7" class="TD_STYLE2">
+               @Html.TextAreaFor(e => e.salary_standard_name, new { @readonly = true, @style = "width:1260px;height:70px;" })
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>

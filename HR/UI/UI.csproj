@@ -168,9 +168,15 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\DiaoYongSelController.cs" />
+    <Compile Include="Controllers\human_fileController.cs" />
+    <Compile Include="Controllers\machangeController.cs" />
     <Compile Include="Controllers\employController.cs" />
     <Compile Include="Controllers\interviewController.cs" />
     <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\major_change2Controller.cs" />
+    <Compile Include="Controllers\major_change3Controller.cs" />
+    <Compile Include="Controllers\major_changeController.cs" />
     <Compile Include="Controllers\resumeController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\rolesController.cs" />
@@ -656,6 +662,24 @@
     <Content Include="Views\Main\Index.cshtml" />
     <Content Include="Views\roles\Edit.cshtml" />
     <Content Include="Views\transfer\Index.cshtml" />
+    <Content Include="Views\transfer\mhcx.cshtml" />
+    <Content Include="Views\transfer\Edit.cshtml" />
+    <Content Include="Views\transfer\djcg.cshtml" />
+    <Content Include="Views\machange\Index.cshtml" />
+    <Content Include="Views\machange\Edit.cshtml" />
+    <Content Include="Views\machange\hscg.cshtml" />
+    <Content Include="Views\DiaoYongSel\Index.cshtml" />
+    <Content Include="Views\DiaoYongSel\SelChange.cshtml" />
+    <Content Include="Views\DiaoYongSel\Sel.cshtml" />
+    <Content Include="Views\major_change\Index.cshtml" />
+    <Content Include="Views\human_file\Index.cshtml" />
+    <Content Include="Views\major_change\Update.cshtml" />
+    <Content Include="Views\major_change2\Index.cshtml" />
+    <Content Include="Views\major_change2\Index3.cshtml" />
+    <Content Include="Views\major_change2\Update.cshtml" />
+    <Content Include="Views\major_change3\Index.cshtml" />
+    <Content Include="Views\major_change3\Index2.cshtml" />
+    <Content Include="Views\major_change3\Update.cshtml" />
     <Content Include="Views\position\position_change_update.cshtml" />
     <Content Include="Views\position\position_release_change.cshtml" />
     <Content Include="Views\position\position_release_details.cshtml" />
@@ -686,6 +710,11 @@
     <Folder Include="images\" />
     <Folder Include="jquery-easyui-1.3.5\" />
     <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="Views\index\" />
+    <Folder Include="Views\transfer_check_list\" />
+    <Folder Include="Views\transfer_locate\" />
+    <Folder Include="Views\transfer_register_locate\" />
+    <Folder Include="Views\调动管理\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
