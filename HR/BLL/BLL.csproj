@@ -49,6 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="human_fileBll.cs" />
+    <Compile Include="major_changeBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleBll.cs" />
     <Compile Include="transferBll.cs" />

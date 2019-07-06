@@ -18,5 +18,13 @@ namespace BLL
         public List<major_change> SelectAll() {
             return rd.SelectAll<major_change>();
         }
+        public List<major_change> SelectWhere(Expression<Func<major_change, bool>> where)
+        {
+            return rd.SelectWhere<major_change>(where);
+        }
+        public int Update(major_change t)
+        {
+            return rd.Update(t);
+        }
     }
 }

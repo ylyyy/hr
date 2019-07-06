@@ -12,6 +12,27 @@ namespace DAL
     public class DBHelper
     {
         public static string str = "Data Source=.;Initial Catalog=HR;User ID=sa;Password=123";
+        public static DataTable Select(string sql, string fileName, params SqlParameter[] ps)
+        {
+            SqlConnection cn = new SqlConnection(str);
+
+            SqlDataAdapter ad = new SqlDataAdapter(sql, cn);
+            if (ps != null)
+            {
+                ad.SelectCommand.Parameters.AddRange(ps);
+            }
+            DataTable dt = new DataTable();
+            try
+            {
+                ad.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+
+                WRZ(fileName, ex);
+            }
+            return dt;
+        }
         public static void WRZ(string fileName, Exception e)
         {
             using (StreamWriter sw = new StreamWriter("D:/错误日志.txt", true))
@@ -110,6 +131,55 @@ namespace DAL
                 WRZ(fileName, e);
                 return null;
             }
+        }
+        public static DataTable SelectProc(SqlParameter[] ps, string fileName)
+        {
+            SqlConnection cn = new SqlConnection(str);
+            string sql = "proc_FenYe";
+
+            SqlDataAdapter ad = new SqlDataAdapter(sql, cn);
+            //执行的是存储过程
+            ad.SelectCommand.CommandType = CommandType.StoredProcedure;
+            //命令对象添加参数对象
+            ad.SelectCommand.Parameters.AddRange(ps);
+            DataTable dt = new DataTable();
+            try
+            {
+                ad.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                throw;
+
+            }
+            return dt;
+        }
+
+        public static object SelectSinger(string sql, string fileName, params SqlParameter[] ps)
+        {
+            SqlConnection cn = new SqlConnection(str);
+            SqlCommand cmd = new SqlCommand(sql, cn);
+            if (ps != null)
+            {
+                cmd.Parameters.AddRange(ps);
+            }
+            object obj = null;
+            try
+            {
+                cn.Open();
+                obj = cmd.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+                WRZ(fileName, ex);
+
+            }
+            finally
+            {
+                cn.Close();
+            }
+
+            return obj;
         }
         //分页查询
         public static DataTable MyFenYe(string fyname,SqlParameter[] ps, string fileName)

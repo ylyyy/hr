@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using Entity;
-using System.Data;
-using System.Linq.Expressions;
 
 namespace IDAL
 {
-   public interface transferIDAO
+    public interface  human_fileIDAO
     {
+        //查询全部
         List<T> SelectAll<T>() where T : class;
+
+        //条件查询
         List<T> SelectWhere<T>(Expression<Func<T, bool>> where) where T : class;
-        int Update<T>(T t) where T : class;
     }
 }
