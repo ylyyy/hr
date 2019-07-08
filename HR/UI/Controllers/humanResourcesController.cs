@@ -35,6 +35,7 @@ namespace UI.Controllers
         [HttpGet]
         public ActionResult human_register(int id)
         {
+            Session["LuYong"] = id;
             ViewData["first"] = iffk.SelectAll();
             ViewData["major_kind"] = ifmk.SelectAll();
             ViewData["designation"] = ipcc.SelectWhere(e => e.attribute_kind == "职称");
@@ -116,6 +117,12 @@ namespace UI.Controllers
             if (human.Add(hm) > 0)
             {
                 ViewData["hmid"] = hmid;
+                int id = Convert.ToInt32(Session["LuYong"]);
+                engage_resume er = new engage_resume()
+                {
+                    res_id = (short)id,
+                };
+                irb.Delete(er);
                 return View();
             }
             else

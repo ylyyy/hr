@@ -15,7 +15,8 @@ namespace UI.Controllers
     public class major_changeController : Controller
     {
         major_changeIBLL mc = IocContain.CreateAll<major_changeIBLL>("yibll", "major_changeBll");
-        
+        Ihuman_fileBll hb = IocContain.CreateAll<Ihuman_fileBll>("yibll", "human_filebll");
+
         int page = 0;
         int rows = 0;
         string where = "";  
