@@ -59,7 +59,5 @@ namespace UI.Controllers
         //public ActionResult Error() {
         //    throw new Exception("报错了！！");
         //}
-        
-
     }
 }

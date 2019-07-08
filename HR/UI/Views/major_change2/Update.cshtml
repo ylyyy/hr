@@ -213,7 +213,7 @@
                     调动原因
                 </td>
                 <td colspan="7" class="TD_STYLE2">
-                    @Html.TextAreaFor(e => e.change_reason);
+                    @Html.TextAreaFor(e => e.change_reason, new { @readonly = true, @style = "width:1260px;height:70px;" })
                 </td>
             </tr>
             <tr>
@@ -221,7 +221,7 @@
                     复合通过意见
                 </td>
                 <td colspan="7" class="TD_STYLE2">
-                    @Html.TextAreaFor(e => e.check_reason);
+                    @Html.TextAreaFor(e => e.change_reason, new { @readonly = true, @style = "width:1260px;height:70px;" })
                 </td>
             </tr>
 

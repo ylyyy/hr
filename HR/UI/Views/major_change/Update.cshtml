@@ -11,6 +11,8 @@
 <script type="text/javascript">
     var fid = 0;
     var sid = 0;
+    var mkid = 0;
+    var id = 0;
     $(function () {
         $.ajax({
             url: "/human_file/Index2",
@@ -57,36 +59,41 @@
         })
 
         $.ajax({
-            url: "/human_file/Index5/",
+            url: "/human_file/Index51/",
             type: "get",
             success: function (dt2) {
                 var dt = eval("(" + dt2 + ")");
                 for (var i = 0; i < dt.length; i++) {
-                    var $option2 = $("<option value=" + dt[i]["human_major_kind_id"] + ">" + dt[i]["human_major_kind_name"] + "</option>");
+                    var $option2 = $("<option value=" + dt[i]["major_kind_id"] + ">" + dt[i]["major_kind_name"] + "</option>");
                     $("#newMajorKindId").append($option2);
                 }
             }
         })
+        $("#newMajorKindId").change(function () {
+            mkid = $("#newMajorKindId option:selected").val();
+            $.ajax({
 
-        $.ajax({
-            url: "/human_file/Index5/",
-            type: "get",
-            success: function (dt2) {
-                var dt = eval("(" + dt2 + ")");
-                for (var i = 0; i < dt.length; i++) {
-                    var $option2 = $("<option value=" + dt[i]["human_major_id"] + ">" + dt[i]["hunma_major_name"] + "</option>");
-                    $("#newMajorId").append($option2);
+                url: "/human_file/Index52/"+mkid,
+                type: "get",
+                success: function (dt2) {
+
+                    var dt = eval("(" + dt2 + ")");
+                    $("#newMajorId option:gt(0)").remove();
+                    for (var i = 0; i < dt.length; i++) {
+                        var $option2 = $("<option value=" + dt[i]["major_id"] + ">" + dt[i]["major_name"] + "</option>");
+                        $("#newMajorId").append($option2);
+                    }
                 }
-            }
+            })
         })
 
         $.ajax({
-            url: "/human_file/Index5/",
+            url: "/human_file/Index53/",
             type: "get",
             success: function (dt2) {
                 var dt = eval("(" + dt2 + ")");
                 for (var i = 0; i < dt.length; i++) {
-                    var $option2 = $("<option value=" + dt[i]["salary_standard_id"] + ">" + dt[i]["salary_standard_name"] + "</option>");
+                    var $option2 = $("<option value=" + dt[i]["standard_id"] + ">" + dt[i]["standard_name"] + "</option>");
                     $("#newSalaryStandardId").append($option2);
                 }
             }
@@ -111,11 +118,18 @@
         })
 
         $("#newSalaryStandardId").change(function () {
+
+            id = $("#newMajorKindId option:selected").val();
             $.ajax({
-                url: "/major_change/Indexs?is=" + $("#newSalaryStandardId").val(),
+
+                url: "/human_file/Index54/" + id,
                 type: "get",
-                success: function (dt) {
-                    $("#salary_sum2").val(dt);
+                success: function (dt2) {
+
+                    var dt = eval("(" + dt2 + ")");
+              
+                        $("#salary_sum2").val(dt[0]["salary_sum"]);
+                        $("#register").val(dt[0]["register"]);
                 }
             })
         })
@@ -321,7 +335,7 @@
                 登记人
             </td>
             <td class="TD_STYLE2">
-                <input type="text" name="register" id="register ">
+                <input type="text" name="register" id="register">
 
             </td>
             <td class="TD_STYLE1">
