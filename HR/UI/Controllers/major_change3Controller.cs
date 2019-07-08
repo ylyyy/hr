@@ -14,7 +14,9 @@ namespace UI.Controllers
 {
     public class major_change3Controller : Controller
     {
+
         major_changeIBLL mc = IocContain.CreateAll<major_changeIBLL>("yibll", "major_changeBll");
+
         // GET: major_change3
         public ActionResult Index()
         {
