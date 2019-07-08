@@ -20,6 +20,7 @@ namespace UI.Controllers
         string where = "where check_status=2";
         HREntities1 aet = new HREntities1();
         major_changeIBLL mc = IocContain.CreateAll<major_changeIBLL>("yibll", "major_changeBll");
+        
         // GET: major_change2
         public ActionResult Index()
         {
@@ -53,10 +54,10 @@ namespace UI.Controllers
                 salary_sum = dt[0].salary_sum,
                 register = dt[0].register,
                 regist_time = dt[0].regist_time,
-                checker=dt[0].checker,
-                check_time=dt[0].check_time,
-                change_reason=dt[0].change_reason,
-                check_reason=dt[0].check_reason
+                checker = dt[0].checker,
+                check_time = dt[0].check_time,
+                change_reason = dt[0].change_reason,
+                check_reason = dt[0].check_reason
             };
             GetList();
             GetList1();

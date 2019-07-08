@@ -15,8 +15,8 @@ namespace DAL
         {
             SqlParameter[] sp ={
                             new SqlParameter(){ParameterName="@pageSize",Value=2},
-                            new SqlParameter(){ParameterName="@KeyName",Value="mch_id"},
-                            new SqlParameter(){ParameterName="@TableName",Value="dbo.major_change"},
+                            new SqlParameter(){ParameterName="@KeyName",Value="huf_id"},
+                            new SqlParameter(){ParameterName="@TableName",Value="dbo.human_file"},
                             new SqlParameter(){ParameterName="@CurrentPage",Value=currentPage},
                             new SqlParameter(){ParameterName="@where",Value=where},
                             new SqlParameter(){ParameterName="@pages",SqlDbType= SqlDbType.Int, Direction= ParameterDirection.Output},

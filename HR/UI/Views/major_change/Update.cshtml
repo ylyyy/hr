@@ -1,4 +1,4 @@
-﻿@model Entity.major_change
+﻿@model Entity.human_file
 @{
     Layout = null;
 }
@@ -214,14 +214,14 @@
                 原职位分类
             </td>
             <td class="TD_STYLE2">
-                @Html.TextBoxFor(e => e.major_kind_name, new { @readonly = true })
+                @Html.TextBoxFor(e => e.human_major_kind_name, new { @readonly = true })
                 <input type="hidden" name="majorChange.majorKindId" value="02">
             </td>
             <td class="TD_STYLE1" width="12%">
                 原职位名称
             </td>
             <td class="TD_STYLE2">
-                @Html.TextBoxFor(e => e.major_name, new { @readonly = true })
+                @Html.TextBoxFor(e => e.hunma_major_name, new { @readonly = true })
                 <input type="hidden" name="majorChange.majorId" value="02">
             </td>
             <td class="TD_STYLE1">

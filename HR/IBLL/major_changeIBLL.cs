@@ -17,5 +17,6 @@ namespace IBLL
         DataTable FenYe2(int currentPage,ref int page,ref int rows,string where);
         //查询单行
         List<major_change> SelectWhere(Expression<Func<major_change, bool>> where);
+        //List<major_change> SelectWhere1(Expression<Func<major_change, bool>> where);
     }
 }

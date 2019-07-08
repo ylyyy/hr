@@ -16,5 +16,6 @@ namespace IDAL
         DataTable FenYe2(int currentPage,ref int page,ref int rows,string where);
         //条件查询
         List<T> SelectWhere<T>(Expression<Func<T, bool>> where) where T : class;
+        //List<T> SelectWhere1<T>(Expression<Func<T, bool>> where) where T : class;
     }
 }

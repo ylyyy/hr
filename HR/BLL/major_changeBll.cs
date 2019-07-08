@@ -31,5 +31,9 @@ namespace BLL
         {
             return mc.SelectWhere(where);
         }
+        //public List<major_change> SelectWhere1(Expression<Func<major_change, bool>> where)
+        //{
+        //    return mc.SelectWhere1(where);
+        //}
     }
 }
