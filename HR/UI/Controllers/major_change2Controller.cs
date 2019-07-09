@@ -17,7 +17,7 @@ namespace UI.Controllers
         int page = 0;
         int rows = 0;
         int currentPage = 0;
-        string where = "where check_status=2";
+        string where = "where check_status=1";
         HREntities1 aet = new HREntities1();
         major_changeIBLL mc = IocContain.CreateAll<major_changeIBLL>("yibll", "major_changeBll");
         
