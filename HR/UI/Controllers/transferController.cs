@@ -9,9 +9,11 @@ using IocContainer;
 using System.Data;
 using Newtonsoft.Json;
 using DAL;
+using UI.Filters;
 
 namespace UI.Controllers
 {
+    [Login]
     public class transferController : Controller
     {
         transferIBLL tib= IocContain.CreateAll<transferIBLL>("yibll", "transferBll");

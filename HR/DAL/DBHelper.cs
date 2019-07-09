@@ -11,7 +11,7 @@ namespace DAL
 {
     public class DBHelper
     {
-        public static string str = "Data Source=.;Initial Catalog=HR;User ID=sa;Password=123";
+        public static string str = "Data Source=.;Initial Catalog=HR;User ID=sa;Password=sasa";
         public static DataTable Select(string sql, string fileName, params SqlParameter[] ps)
         {
             SqlConnection cn = new SqlConnection(str);
@@ -148,8 +148,8 @@ namespace DAL
             }
             catch (Exception ex)
             {
+                WRZ(fileName, ex);
                 throw;
-
             }
             return dt;
         }

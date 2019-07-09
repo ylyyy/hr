@@ -9,9 +9,11 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
+using UI.Filters;
 
 namespace UI.Controllers
 {
+    [Login]
     public class humanResourcesController : Controller
     {
         // GET: humanResources
@@ -269,6 +271,13 @@ namespace UI.Controllers
             hm.training_amount = (short)traina;
             int fileca = Convert.ToInt32(Request.Form["ifile_chang_amount"]);
             hm.file_chang_amount = (short)fileca;
+            if (hm.salary_standard_id != "")
+            {
+                salary_standard stan = issbll.SelectWhere(e => e.standard_id == hm.salary_standard_id).FirstOrDefault();
+                hm.salary_sum = stan.salary_sum;
+                hm.demand_salaray_sum = stan.salary_sum;
+                hm.paid_salary_sum = stan.salary_sum - (stan.salary_sum * Convert.ToDecimal(0.05));
+            }
             if (Request.Form["icheck_time"]!="")
             {
                 hm.check_time = Convert.ToDateTime(Request.Form["icheck_time"]);
@@ -432,9 +441,9 @@ namespace UI.Controllers
         [HttpPost]
         public ActionResult register_choose_picture_bgen(human_file hm, string startDate)
         {
-            hm.salary_sum = Convert.ToDecimal(Request.Form["isalary_sum"]);
-            hm.demand_salaray_sum = Convert.ToDecimal(Request.Form["idemand_salaray_sum"]);
-            hm.paid_salary_sum = Convert.ToDecimal(Request.Form["ipaid_salary_sum"]);
+            //hm.salary_sum = Convert.ToDecimal(Request.Form["isalary_sum"]);
+            //hm.demand_salaray_sum = Convert.ToDecimal(Request.Form["idemand_salaray_sum"]);
+            //hm.paid_salary_sum = Convert.ToDecimal(Request.Form["ipaid_salary_sum"]);
             int majorca = Convert.ToInt32(Request.Form["imajor_change_amount"]);
             hm.major_change_amount = (short)majorca;
             int bonusa = Convert.ToInt32(Request.Form["ibonus_amount"]);
@@ -458,6 +467,13 @@ namespace UI.Controllers
             if (Request.Form["irecovery_time"] != "")
             {
                 hm.recovery_time = Convert.ToDateTime(Request.Form["irecovery_time"]);
+            }
+            if (hm.salary_standard_id != "")
+            {
+                salary_standard stan = issbll.SelectWhere(e => e.standard_id == hm.salary_standard_id).FirstOrDefault();
+                hm.salary_sum = stan.salary_sum;
+                hm.demand_salaray_sum = stan.salary_sum;
+                hm.paid_salary_sum = stan.salary_sum - (stan.salary_sum * Convert.ToDecimal(0.05));
             }
             hm.register = Request.Form["iregister"];
             if (startDate != "")

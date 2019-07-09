@@ -9,9 +9,11 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using UI.Filters;
 
 namespace UI.Controllers
 {
+    [Login]
     public class human_fileController : Controller
     {
         Ihuman_fileBll hb = IocContain.CreateAll<Ihuman_fileBll>("yibll", "human_filebll");

@@ -9,9 +9,11 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using UI.Filters;
 
 namespace UI.Controllers
 {
+    [Login]
     public class major_change3Controller : Controller
     {
 

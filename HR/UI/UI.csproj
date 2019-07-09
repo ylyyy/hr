@@ -704,16 +704,29 @@
     <Content Include="Views\employ\register.cshtml" />
     <Content Include="Views\employ\register_list.cshtml" />
     <Content Include="Views\humanResources\human_registerIndex.cshtml" />
+    <Content Include="Views\transfer_check_list\Index.cshtml" />
+    <Content Include="Views\transfer_check_list\successPage.cshtml" />
+    <Content Include="Views\transfer_check_list\UpdateMajorChange.cshtml" />
+    <Content Include="Views\transfer_locate\Index.cshtml" />
+    <Content Include="Views\transfer_locate\register_list.cshtml" />
+    <Content Include="Views\transfer_locate\successPage.cshtml" />
+    <Content Include="Views\transfer_locate\updateRegister.cshtml" />
+    <Content Include="Views\transfer_register_locate\Index.cshtml" />
+    <Content Include="Views\transfer_register_locate\list.cshtml" />
+    <Content Include="Views\transfer_register_locate\selectMajorChange.cshtml" />
+    <Content Include="Views\major_change3\Index2sss.cshtml" />
+    <Content Include="Views\major_change3\Indexsss.cshtml" />
+    <Content Include="Views\major_change2\Index1.cshtml" />
+    <Content Include="Views\major_change2\Index31.cshtml" />
+    <Content Include="Views\major_change2\Update1.cshtml" />
+    <Content Include="Views\major_change\Update1.cshtml" />
+    <Content Include="Views\major_change3\Updatesss.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="images\" />
     <Folder Include="jquery-easyui-1.3.5\" />
     <Folder Include="obj\Debug\TempPE\" />
-    <Folder Include="Views\index\" />
-    <Folder Include="Views\transfer_check_list\" />
-    <Folder Include="Views\transfer_locate\" />
-    <Folder Include="Views\transfer_register_locate\" />
     <Folder Include="Views\调动管理\" />
   </ItemGroup>
   <ItemGroup>

@@ -6,9 +6,11 @@ using System.Web.Mvc;
 using System.Data;
 using Newtonsoft.Json;
 using DAL;
+using UI.Filters;
 
 namespace UI.Controllers
 {
+    [Login]
     public class MainController : Controller
     {
         // GET: Main
@@ -20,7 +22,7 @@ namespace UI.Controllers
         {
             string sql = "";
             string s = Request["id"];
-            int ss= Convert.ToInt32( Session["roid"]);
+            int ss= Convert.ToInt32(Session["roid"]);
             if (Request["id"] == null)
             {
                 sql = string.Format(@"select * from dbo.Quan as qwe

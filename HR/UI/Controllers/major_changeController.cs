@@ -9,9 +9,11 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using UI.Filters;
 
 namespace UI.Controllers
 {
+    [Login]
     public class major_changeController : Controller
     {
         major_changeIBLL mc = IocContain.CreateAll<major_changeIBLL>("yibll", "major_changeBll");
@@ -33,17 +35,16 @@ namespace UI.Controllers
                 if (Request["configThird.firstKindId"].Equals("0") && Request["utilbean.startDate"] == "")
                 {
 
-                    where = string.Format(@"where 1=1 and check_status=1");
+                    where = string.Format(@" where 1=1 and check_status=1");
                 }
                 if (!Request["configThird.thirdKindId"].Equals("0") && Request["utilbean.startDate"] != "")
                 {
-                    where = string.Format(@"where check_status=1 and  first_kind_id='{0}' and second_kind_id='{1}' 
-and third_kind_id='{2}' and regist_time between '{3}' and '{4}'", Session["first_kind_id"], Session["second_kind_id"], Session["third_kind_id"], Session["regist_time"], Session["check_time"]);
+                    where = string.Format(@" where check_status=1 and  first_kind_id='{0}' and second_kind_id='{1}' and third_kind_id='{2}' and regist_time between '{3}' and '{4}'", Session["first_kind_id"], Session["second_kind_id"], Session["third_kind_id"], Session["regist_time"], Session["check_time"]);
                 }
             }
             catch (Exception)
             {
-                where = string.Format(@"where 1=1 and check_status=1");
+                where = string.Format(@" where 1=1 and check_status=1 ");
             }
            
             Session["where"] = where;
@@ -54,8 +55,7 @@ and third_kind_id='{2}' and regist_time between '{3}' and '{4}'", Session["first
         public ActionResult Index2()
         {
             int currentPage = Convert.ToInt32(Request["currentPage"]);
-            where = string.Format(@"where first_kind_id='{0}' and second_kind_id='{1}' 
-and third_kind_id='{2}' and regist_time>='{3}' and check_time<='{4}'", Session["first_kind_id"], Session["second_kind_id"], Session["third_kind_id"], Session["regist_time"], Session["check_time"]);
+            where = string.Format(@" where first_kind_id='{0}' and second_kind_id='{1}' and third_kind_id='{2}' and regist_time>='{3}' and check_time<='{4}'", Session["first_kind_id"], Session["second_kind_id"], Session["third_kind_id"], Session["regist_time"], Session["check_time"]);
             var dt = mc.FenYe(currentPage, ref page, ref rows, Session["where"].ToString());
             Dictionary<string, object> dr = new Dictionary<string, object>();
             dr["dt"] = dt;
