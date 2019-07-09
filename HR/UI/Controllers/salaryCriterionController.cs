@@ -146,7 +146,7 @@ namespace UI.Controllers
             ViewData["alary_details"] = list;
             List<salary_standard> sary_stan = issbll.SelectWhere(e=>e.standard_id==id);
             ViewData["standard"] = sary_stan;
-            ViewData["user"] = "zhangsan";
+            ViewData["users"] = iuser.SelectAll();
             return View();
         }
 

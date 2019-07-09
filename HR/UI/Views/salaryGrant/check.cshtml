@@ -30,6 +30,7 @@
             List<salary_grant_details> details = ViewData["grantde"] as List<salary_grant_details>;
             salary_grant sagrant = ViewData["sagrant"] as salary_grant;
             List<string> standardid = ViewData["standardid"] as List<string>;
+            List<string> standardsum = ViewData["paidsum"] as List<string>;
         }
         <tr>
             <td colspan="2" style="text-align: left">
@@ -94,7 +95,7 @@
             {
             <tr class="TD_STYLE2">
                 <td>
-                    <input type="hidden" id="salaryStandardSum @(i+1)" value="@details[i].salary_paid_sum" />
+                    <input type="hidden" id="salaryStandardSum @(i+1)" value="@standardsum[i]"/>
                     @(i + 1)
                 </td>
                 <td>

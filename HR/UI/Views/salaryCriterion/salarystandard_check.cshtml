@@ -69,7 +69,12 @@
                         制定人
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" name="designer" id="designer" value="@salary_standard[0].designer" readonly="readonly" class="INPUT_STYLE2">
+                        <select id="designer" name="designer" class="INPUT_STYLE2">
+                            @foreach (users item in ViewData["users"] as List<users>)
+                            {
+                                <option value="@item.u_true_name" @((salary_standard[0].designer == item.u_true_name) ? "checked" : "")>@item.u_true_name</option>
+                            }
+                        </select>
                     </td>
                     <td class="TD_STYLE1">
                         复核人

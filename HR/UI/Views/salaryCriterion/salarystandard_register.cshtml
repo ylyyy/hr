@@ -149,16 +149,18 @@
         @{ int num = 0;}
         <div style="margin:auto;width:500px;height:auto;" id="salaryxz">
             <input type="checkbox" id="qx" onclick="xz()"/>全选<br />
+            <fieldset>
             @foreach (salary item in list)
             {
                 if (num == 6)
                 {
                     { num = 0; }
-                    <br />
-                }
-                <input type="checkbox" name="cbox" value="@item.sid_id"/>@item.sid_sname
-                { num++; }
+                        <br />
+                    }
+                    <input type="checkbox" name="cbox" value="@item.sid_id" />@item.sid_sname
+                { num++;}
             }
+            </fieldset>
             <br />
             <input type="button" value="确定" onclick="chasalary()"/>
         </div>
@@ -167,7 +169,6 @@
             &nbsp;
         </p>
     </form>
-
     <script type="text/javascript">
         //全选或全不选
         function xz() {
@@ -198,10 +199,10 @@
                     $("#stable").append($tr);
                 }
                 $("#sumSalary").val('0.00');
+                $("#salaryxz").hide();
             });
         }
         function check() {
-
             //	var designer=document.getElementById("designer");
             //	var standardName=document.getElementById("standardName");
             //	if(designer.value.length<=0){
@@ -230,7 +231,6 @@
 
             }
             document.getElementById("sumSalary").value = sum;
-
         }
         function time() {
             var tdate = document.getElementById("Tdate");
@@ -270,14 +270,11 @@
             }
 
             tdate.value = y + "-" + moth + "-" + date + " " + h + ":" + m + ":" + s;
-
         }
         $(function () {
             window.onload = time;
             var out = window.setInterval(time, 1000);
         });
-
-
         function tijiao() {
             if ($("#sumSalary").val() == "0.00") {
                 alert("薪酬总额不能为0!");
@@ -294,7 +291,6 @@
                 alert("薪酬标准名称不可为空!!!");
                 return;
             }
-
             var salaryid = "";
             var details = "";
             var salarymoney = "";
@@ -318,7 +314,6 @@
             //alert(salarymoney);
             //var aaa = salaryid.split(",");
             //alert(aaa.length);
-
             $.post("/salaryCriterion/salarystandard_register_success", { "standard_id": $("[name=standard_id]").val(), "standard_name": $("[name=standard_name]").val(), "designer": $("[name=designer]").val(), "register": $("[name=register]").val(), "regist_time": $("[name=regist_time]").val(), "salary_sum": $("[name=salary_sum]").val(), "remark": $("[name=remark]").val(), "salaryid": salaryid, "details": details, "salarymoney": salarymoney }, function (data) {
                 if (data == "false") {
                     alert("添加失败！");

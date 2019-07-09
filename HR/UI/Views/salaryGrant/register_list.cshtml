@@ -47,12 +47,10 @@
                     {
                         count++;
                         salary_sum += Convert.ToDecimal(human[j].salary_sum);
-                        paid_salary_sum = Convert.ToDecimal(human[j].paid_salary_sum);
+                        paid_salary_sum += Convert.ToDecimal(human[j].paid_salary_sum);
                     }
                 }
             }
-
-
         }
         else if (ViewData["jigou"].ToString() == "2")
         {
@@ -69,7 +67,7 @@
                     {
                         count++;
                         salary_sum += Convert.ToDecimal(human[j].salary_sum);
-                        paid_salary_sum = Convert.ToDecimal(human[j].paid_salary_sum);
+                        paid_salary_sum += Convert.ToDecimal(human[j].paid_salary_sum);
                     }
                 }
             }
@@ -88,7 +86,7 @@
                     {
                         count++;
                         salary_sum += Convert.ToDecimal(human[j].salary_sum);
-                        paid_salary_sum = Convert.ToDecimal(human[j].paid_salary_sum);
+                        paid_salary_sum += Convert.ToDecimal(human[j].paid_salary_sum);
                     }
                 }
             }
