@@ -18,6 +18,7 @@ namespace UI.Controllers
         Iconfig_file_first_kindBLL iffk = IocContain.CreateAll<Iconfig_file_first_kindBLL>("yibll", "config_file_first_kindBLL");
         Iconfig_file_second_kindBLL ifsk = IocContain.CreateAll<Iconfig_file_second_kindBLL>("yibll", "config_file_second_kindBLL");
         Iconfig_file_third_kindBLL iftk = IocContain.CreateAll<Iconfig_file_third_kindBLL>("yibll", "config_file_third_kindBLL");
+        ISalary_strandardBll issbll = IocContain.CreateAll<ISalary_strandardBll>("yibll", "ssarybll");
         HREntities1 hd = new HREntities1();
         // GET: human_file
         public ActionResult Index()
@@ -30,6 +31,10 @@ namespace UI.Controllers
         {
             var dt = iffk.SelectAll();
             return Content(JsonConvert.SerializeObject(dt));
+        }
+        public ActionResult Salary()
+        {
+            return Content(JsonConvert.SerializeObject(issbll.SelectAll()));
         }
 
 
