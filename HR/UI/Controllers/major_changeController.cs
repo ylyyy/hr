@@ -72,7 +72,7 @@ and third_kind_id='{2}' and regist_time>='{3}' and check_time<='{4}'", Session["
         //    var dt = DBHelper.SelectSinger(sql,"");
         //    return Content(dt.ToString());
         //}
-       
+
         //查询这一列
         public ActionResult Update(short id)
         {
@@ -127,7 +127,7 @@ and third_kind_id='{2}' and regist_time>='{3}' and check_time<='{4}'", Session["
                 second_kind_name = dtq[0].second_kind_name,
                 third_kind_name = dtq[0].third_kind_name,
                 human_major_kind_name = dtq[0].human_major_kind_name,
-                
+
                 hunma_major_name = dtq[0].hunma_major_name,
                 //major_kind_name = dt[0].major_kind_name,
                 //major_name = dt[0].major_name,
