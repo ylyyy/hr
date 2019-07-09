@@ -37,7 +37,7 @@
                     success: function (dt2) {
                         var dt = JSON.parse(dt2);
 
-                            $("#secondKindId option").remove();
+                        $("#secondKindId option:gt(0)").remove();
                             $("#secondKindId").append("<option value='0' selected='selected'>全部</option>");
 
                         for (var i = 0; i < dt.length; i++) {
@@ -55,7 +55,7 @@
                     type: "get",
                     success: function (dt2) {
                         var dt = JSON.parse(dt2);
-                            $("#thirdKindId option").remove();
+                        $("#thirdKindId option:gt(0)").remove();
                             $("#thirdKindId").append("<option value='0' selected='selected'>全部</option>");
                         for (var i = 0; i < dt.length; i++) {
                             var $option2 = $("<option value=" + dt[i]["third_kind_id"] + ">" + dt[i]["third_kind_name"] + "</option>");
@@ -66,12 +66,12 @@
             })
 
             $.ajax({
-                url: "/human_file/Index5/",
+                url: "/human_file/Index51/",
                 type: "get",
                 success: function (dt2) {
                     var dt = eval("(" + dt2 + ")");
                     for (var i = 0; i < dt.length; i++) {
-                        var $option2 = $("<option value=" + dt[i]["human_major_kind_id"] + ">" + dt[i]["human_major_kind_name"] + "</option>");
+                        var $option2 = $("<option value=" + dt[i]["major_kind_id"] + ">" + dt[i]["major_kind_name"] + "</option>");
                         $("#newMajorKindId").append($option2);
                     }
                 }
@@ -80,14 +80,13 @@
             $("#newMajorKindId").change(function () {
                 qid = $("#newMajorKindId option:selected").val();
                 $.ajax({
-                    url: "/human_file/Index6/?qid="+qid,
+                    url: "/human_file/Index52/"+qid,
                     type: "get",
                     success: function (dt2) {
                         var dt = eval("(" + dt2 + ")");
-                        $("#newMajorId option").remove();
-                        $("#newMajorId").append("<option value='0' selected='selected'>全部</option>");
+                        $("#newMajorId option:gt(0)").remove();
                         for (var i = 0; i < dt.length; i++) {
-                            var $option2 = $("<option value=" + dt[i]["human_major_id"] + ">" + dt[i]["hunma_major_name"] + "</option>");
+                            var $option2 = $("<option value=" + dt[i]["major_id"] + ">" + dt[i]["major_name"] + "</option>");
                             $("#newMajorId").append($option2);
                         }
                     }

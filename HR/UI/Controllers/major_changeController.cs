@@ -136,7 +136,7 @@ namespace UI.Controllers
                 register = dtq[0].register
             };
             DateTime dt =Convert.ToDateTime( Request["majorChange.registTime"]);
-            string sql = string.Format(@"update dbo.human_file set check_status=2");
+            //string sql = string.Format(@"update dbo.human_file set check_status=2 where huf_id='{0}'",sss);
 //            insert into dbo.major_change
 //(first_kind_id, first_kind_name,
 //second_kind_id, second_kind_name,
@@ -171,7 +171,7 @@ new_salary_standard_name,new_salary_sum,
 register,change_reason,regist_time,check_status)
 values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}','{21}','{22}','{23}','{24}','{25}','{26}','{27}','{28}','{29}','{30}','{31}')", ma.first_kind_id, ma.first_kind_name, ma.second_kind_id, ma.second_kind_name, ma.third_kind_id, ma.third_kind_name, ma.human_id, ma.human_name, ma.human_major_kind_id, ma.human_major_kind_name,ma.human_major_id, ma.hunma_major_name, ma.salary_standard_id,ma.salary_standard_name, ma.salary_sum, Request["firstKindId2"], Request["firstKindId"], Request["secondKindId2"], Request["secondKindId"], Request["thirdKindId2"], Request["thirdKindId"], Request["newMajorKindId2"], Request["newMajorKindId"], Request["newMajorId2"], Request["newMajorId"], Request["newSalaryStandardId2"], Request["newSalaryStandardId"],Request["salary_sum2"],Request["register"],Request["majorChange.changeReason"],dt,2);
            
-            int xg=DBHelper.InsertUpdateDelte(sql);
+            //int xg=DBHelper.InsertUpdateDelte(sql);
             int zj = DBHelper.InsertUpdateDelte(sql1);
             if (zj > 0)
             {
