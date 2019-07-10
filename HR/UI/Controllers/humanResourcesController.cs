@@ -251,9 +251,9 @@ namespace UI.Controllers
         //人力资源档案登记复核 复核中
         [HttpPost]
         public ActionResult register_choose_picture_fuhe(human_file hm, string startDate) {
-            hm.salary_sum =Convert.ToDecimal(Request.Form["isalary_sum"]);
-            hm.demand_salaray_sum =Convert.ToDecimal(Request.Form["idemand_salaray_sum"]);
-            hm.paid_salary_sum = Convert.ToDecimal(Request.Form["ipaid_salary_sum"]);
+            //hm.salary_sum =Convert.ToDecimal(Request.Form["isalary_sum"]);
+            //hm.demand_salaray_sum =Convert.ToDecimal(Request.Form["idemand_salaray_sum"]);
+            //hm.paid_salary_sum = Convert.ToDecimal(Request.Form["ipaid_salary_sum"]);
             int majorca = Convert.ToInt32(Request.Form["imajor_change_amount"]);
             hm.major_change_amount = (short)majorca;
             int bonusa = Convert.ToInt32(Request.Form["ibonus_amount"]);
@@ -282,6 +282,13 @@ namespace UI.Controllers
             if (startDate != "")
             {
                 hm.human_birthday = Convert.ToDateTime(startDate);
+            }
+            if (hm.salary_standard_id != "")
+            {
+                salary_standard stan = issbll.SelectWhere(e => e.standard_id == hm.salary_standard_id).FirstOrDefault();
+                hm.salary_sum = stan.salary_sum;
+                hm.demand_salaray_sum = stan.salary_sum;
+                hm.paid_salary_sum = stan.salary_sum - (stan.salary_sum * Convert.ToDecimal(0.05));
             }
             hm.human_file_status = true;
             hm.check_status = 1;
@@ -425,9 +432,9 @@ namespace UI.Controllers
         [HttpPost]
         public ActionResult register_choose_picture_bgen(human_file hm, string startDate)
         {
-            hm.salary_sum = Convert.ToDecimal(Request.Form["isalary_sum"]);
-            hm.demand_salaray_sum = Convert.ToDecimal(Request.Form["idemand_salaray_sum"]);
-            hm.paid_salary_sum = Convert.ToDecimal(Request.Form["ipaid_salary_sum"]);
+            //hm.salary_sum = Convert.ToDecimal(Request.Form["isalary_sum"]);
+            //hm.demand_salaray_sum = Convert.ToDecimal(Request.Form["idemand_salaray_sum"]);
+            //hm.paid_salary_sum = Convert.ToDecimal(Request.Form["ipaid_salary_sum"]);
             int majorca = Convert.ToInt32(Request.Form["imajor_change_amount"]);
             hm.major_change_amount = (short)majorca;
             int bonusa = Convert.ToInt32(Request.Form["ibonus_amount"]);
@@ -456,6 +463,13 @@ namespace UI.Controllers
             if (startDate != "")
             {
                 hm.human_birthday = Convert.ToDateTime(startDate);
+            }
+            if (hm.salary_standard_id != "")
+            {
+                salary_standard stan = issbll.SelectWhere(e => e.standard_id == hm.salary_standard_id).FirstOrDefault();
+                hm.salary_sum = stan.salary_sum;
+                hm.demand_salaray_sum = stan.salary_sum;
+                hm.paid_salary_sum = stan.salary_sum - (stan.salary_sum * Convert.ToDecimal(0.05));
             }
             hm.human_file_status = true;
             hm.check_status = 0;
