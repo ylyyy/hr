@@ -21,6 +21,7 @@ namespace UI.Controllers
         ISalaryBll isbll = IocContain.CreateAll<ISalaryBll>("yibll", "sarybll");
         ISalary_strandardBll issbll = IocContain.CreateAll<ISalary_strandardBll>("yibll", "ssarybll");
         IusersBll iuser = IocContain.CreateAll<IusersBll>("yibll", "userbll");
+        Ihuman_fileBll human = IocContain.CreateAll<Ihuman_fileBll>("yibll", "humanbll");
         // GET: salaryCriterion
         //薪酬标准登记
         public ActionResult salarystandard_register()
@@ -158,18 +159,48 @@ namespace UI.Controllers
         [HttpPost]
         public ActionResult salarystandard_check_success(string standard_id,string fhr,string fhtime,string fhyj)
         {
-            salary_standard sary=issbll.SelectWhere(e=>e.standard_id==standard_id)[0];
-            sary.checker = fhr;
-            sary.check_time =Convert.ToDateTime(fhtime);
-            sary.check_comment = fhyj;
-            sary.check_status = 1;
-            sary.change_status = 2;
-            if (issbll.Update(sary) > 0)
+            using (TransactionScope ts=new TransactionScope())
             {
-                return Content("true");
-            }
-            else {
-                return Content("false");
+                salary_standard sary = issbll.SelectWhere(e => e.standard_id == standard_id)[0];
+                sary.checker = fhr;
+                sary.check_time = Convert.ToDateTime(fhtime);
+                sary.check_comment = fhyj;
+                sary.check_status = 1;
+                sary.change_status = 2;
+
+                bool bol = true;
+                if (issbll.Update(sary) > 0)
+                {
+                    List<human_file> hm = human.SelectWhere(e => e.salary_standard_id == standard_id);
+                    salary_standard stan = issbll.SelectWhere(e => e.standard_id == standard_id).FirstOrDefault();
+                    for (int i = 0; i < hm.Count; i++)
+                    {
+                        hm[i].salary_sum = stan.salary_sum;
+                        hm[i].demand_salaray_sum = stan.salary_sum;
+                        hm[i].paid_salary_sum = stan.salary_sum - (stan.salary_sum * Convert.ToDecimal(0.05));
+                        if (human.Update(hm[i]) > 0)
+                        {
+                            bol = true;
+                        }
+                        else
+                        {
+                            bol = false;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    bol = false;
+                }
+                if (bol)
+                {
+                    ts.Complete();
+                    return Content("true");
+                }
+                else {
+                    return Content("false");
+                }
             }
         }
         //薪酬标准查询
@@ -327,7 +358,7 @@ namespace UI.Controllers
                 if (bol)
                 {
                     ts.Complete();
-                    return Content("true");
+                    return Content("true");  return Content("false");
                 }
                 else
                 {
