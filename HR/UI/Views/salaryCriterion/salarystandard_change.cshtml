@@ -55,7 +55,7 @@
                     薪酬总额
                 </td>
                 <td width="17%" class="TD_STYLE2">
-                    <input type="text" name="salary_sum" id="sumSalary" value="0.00" readonly="readonly" class="INPUT_STYLE2">
+                    <input type="text" name="salary_sum" id="sumSalary" value="@salary_standard[0].salary_sum" readonly="readonly" class="INPUT_STYLE2">
                 </td>
                 <td width="12%" class="TD_STYLE1">
                     &nbsp;
@@ -190,10 +190,8 @@
                 $("#sumSalary").val('0.00');
             });
         }
-
-
         function tijiao() {
-            if ($("#sumSalary").val() == "0.00") {
+            if ($("#sumSalary").val() == "0.00" || $("#sumSalary").val()=="0") {
                 alert("薪酬总额不能为0!");
                 return false;
             }
@@ -232,7 +230,6 @@
                 sdtid += $(this).val()+",";
             });
             sdtid = sdtid.substr(0,sdtid.lastIndexOf(','));
-            
             //alert(sdtid);
             //alert(salaryid);
             //alert(details);
