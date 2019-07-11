@@ -171,7 +171,6 @@
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\rolesController.cs" />
-    <Compile Include="Controllers\humanResourcesController.cs" />
     <Compile Include="Controllers\salaryCriterionController.cs" />
     <Compile Include="Controllers\salaryGrantController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -595,32 +594,11 @@
     <Content Include="Views\salaryGrant\query_locate.cshtml" />
     <Content Include="Views\salaryGrant\query_list.cshtml" />
     <Content Include="Views\salaryGrant\query.cshtml" />
-    <Content Include="Views\humanResources\human_register.cshtml" />
-    <Content Include="Views\humanResources\register_choose_picture.cshtml" />
-    <Content Include="Views\humanResources\success.cshtml" />
-    <Content Include="Views\humanResources\check_list.cshtml" />
-    <Content Include="Views\humanResources\human_check.cshtml" />
-    <Content Include="Views\humanResources\register_choose_picture_fuhe.cshtml" />
-    <Content Include="Views\humanResources\query_locate.cshtml" />
-    <Content Include="Views\humanResources\query_list.cshtml" />
-    <Content Include="Views\humanResources\query_list_information.cshtml" />
-    <Content Include="Views\humanResources\change_locate.cshtml" />
-    <Content Include="Views\humanResources\change_list.cshtml" />
-    <Content Include="Views\humanResources\change_list_information.cshtml" />
-    <Content Include="Views\humanResources\register_choose_picture_bgen.cshtml" />
-    <Content Include="Views\humanResources\delete_locate.cshtml" />
-    <Content Include="Views\humanResources\delete_list.cshtml" />
-    <Content Include="Views\humanResources\delete_list_information.cshtml" />
-    <Content Include="Views\humanResources\recovery_locate.cshtml" />
-    <Content Include="Views\humanResources\recovery_list.cshtml" />
-    <Content Include="Views\humanResources\recovery_list_information.cshtml" />
-    <Content Include="Views\humanResources\delete_forever_list.cshtml" />
     <Content Include="Views\Role\Edit.cshtml" />
     <Content Include="Views\roles\Index.cshtml" />
     <Content Include="Views\roles\Create.cshtml" />
     <Content Include="Views\Main\Index.cshtml" />
     <Content Include="Views\roles\Edit.cshtml" />
-    <Content Include="Views\humanResources\human_registerIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
