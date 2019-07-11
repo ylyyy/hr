@@ -82,6 +82,10 @@
                     变更人
                 </td>
                 <td class="TD_STYLE2">
+                    @if (Session["user"] == null)
+                    {
+                        { Response.Redirect("/User/Login"); }
+                    }
                     @{ users user = Session["user"] as users;}
                     <input type="text" id="fhren" name="register" value="@user.u_true_name" readonly="readonly" class="INPUT_STYLE2">
                 </td>

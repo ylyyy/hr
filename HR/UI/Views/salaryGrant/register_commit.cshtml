@@ -76,6 +76,10 @@
 
                 </td>
                 <td style="text-align: right;">
+                    @if (Session["user"] == null)
+                    {
+                        { Response.Redirect("/User/Login"); }
+                    }
                     @{ users user = Session["user"] as users;}
                     登记人:<input type="text" name="salaryGrant.register" id="register" value="@user.u_true_name" size="8" readonly="readonly">
                     登记时间：<span id="Tdate"></span>
