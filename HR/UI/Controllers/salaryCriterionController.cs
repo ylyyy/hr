@@ -22,6 +22,8 @@ namespace UI.Controllers
         ISalary_strandardBll issbll = IocContain.CreateAll<ISalary_strandardBll>("yibll", "ssarybll");
         IusersBll iuser = IocContain.CreateAll<IusersBll>("yibll", "userbll");
         Ihuman_fileBll human = IocContain.CreateAll<Ihuman_fileBll>("yibll", "humanbll");
+        Isalary_grant_detailsBll grantdetail = IocContain.CreateAll<Isalary_grant_detailsBll>("yibll", "sgrantdetailbll");
+        Isalary_grantBll grant = IocContain.CreateAll<Isalary_grantBll>("yibll", "sgrantbll");
         // GET: salaryCriterion
         //薪酬标准登记
         public ActionResult salarystandard_register()
@@ -273,14 +275,35 @@ namespace UI.Controllers
         //薪酬标准变更
         [HttpGet]
         public ActionResult salarystandard_change(string id) {
-            List<salary_standard_details> list = isd.SelectWhere(e => e.standard_id == id);
-            ViewData["alary_details"] = list;
-            List<salary_standard> sary_stan = issbll.SelectWhere(e => e.standard_id == id);
-            ViewData["standard"] = sary_stan;
-            ViewData["user"] = "zhangsan";
-            ViewData["list"] = isbll.SelectAll();
-            ViewData["users"] = iuser.SelectAll();
-            return View();
+            //变更判断，被发放引用不能变更
+            //bool bol = false;
+            //List<salary_grant> grantlist=grant.SelectWhere(e=>e.check_status==0);
+            //for (int i = 0; i < grantlist.Count; i++)
+            //{
+            //    List<salary_grant_details> grantde = grantdetail.SelectWhere(e => e.salary_grant_id == grantlist[i].salary_grant_id);
+            //    for (int j = 0; j < grantde.Count; j++)
+            //    {
+            //        if (human.SelectWhere(e => e.human_id == grantde[j].human_id)[0].salary_standard_id == id)
+            //        {
+            //            bol = true;
+            //            break;
+            //        }
+            //    }
+            //}
+            if (true)
+            {
+                List<salary_standard_details> list = isd.SelectWhere(e => e.standard_id == id);
+                ViewData["alary_details"] = list;
+                List<salary_standard> sary_stan = issbll.SelectWhere(e => e.standard_id == id);
+                ViewData["standard"] = sary_stan;
+                ViewData["user"] = "zhangsan";
+                ViewData["list"] = isbll.SelectAll();
+                ViewData["users"] = iuser.SelectAll();
+                return View();
+            }
+            else {
+                return Content("<script>alert('该薪酬被使用中，不能变更！');</script>");
+            }
         }
         //变更中
         public ActionResult salarystandard_change_success() {

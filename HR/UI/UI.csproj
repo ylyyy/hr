@@ -172,7 +172,6 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\rolesController.cs" />
@@ -191,7 +190,6 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="Views\Index\HtmlHelperExt.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Antlr3.Runtime.dll" />
@@ -573,10 +571,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\Index\Index.cshtml" />
-    <Content Include="Views\Index\top.cshtml" />
-    <Content Include="Views\Index\left.cshtml" />
-    <Content Include="Views\Index\main.cshtml" />
     <Content Include="Views\salaryCriterion\salarystandard_register.cshtml" />
     <Content Include="Views\salaryCriterion\salarystandard_register_success_cg.cshtml" />
     <Content Include="Views\salaryCriterion\salarystandard_check_list.cshtml" />
