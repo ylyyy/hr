@@ -49,6 +49,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="StackExchange.Redis, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c219ff1ca8c2ce46, processorArchitecture=MSIL">
+      <HintPath>..\packages\StackExchange.Redis.2.0.601\lib\netstandard2.0\StackExchange.Redis.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -173,9 +177,10 @@
     <Compile Include="Controllers\employController.cs" />
     <Compile Include="Controllers\interviewController.cs" />
     <Compile Include="Controllers\MainController.cs" />
-    <Compile Include="Controllers\resumeController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\rolesController.cs" />
+    <Compile Include="Controllers\salaryCriterionController.cs" />
+    <Compile Include="Controllers\salaryGrantController.cs" />
     <Compile Include="Controllers\clientController.cs" />
     <Compile Include="Controllers\humanResourcesController.cs" />
     <Compile Include="Controllers\positionController.cs" />

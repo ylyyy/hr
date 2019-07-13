@@ -1,0 +1,234 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/javascript/jquery-1.7.2.js"></script>
+    <link rel="stylesheet" href="../../css/table.css" type="text/css" />
+    <title>salarystandard_check</title>
+</head>
+<body>
+    <form>
+
+        <input type="hidden" name="standard.ssdId" value="1259">
+
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="#0000CC">您正在做的业务是:人力资源管理--薪酬标准管理--薪酬标准登记复核</font>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div align="right">
+                        <input type="button" value="复核通过" class="BUTTON_STYLE1" onclick="fuhe()">
+                        <input type="button" value="返回" onclick="history.back();" class="BUTTON_STYLE1">
+                    </div>
+                </td>
+            </tr>
+        </table>
+        @{List<salary_standard_details> salary_details = ViewData["alary_details"] as List<salary_standard_details>;}
+        @{List<salary_standard> salary_standard = ViewData["standard"] as List<salary_standard>;}
+        <table width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight='#848284' bordercolordark='#eeeeee'
+               class="TABLE_STYLE1">
+            <tr>
+                    <td width="12%" class="TD_STYLE1">
+                        薪酬编号
+                    </td>
+                    <td width="15%" class="TD_STYLE2">
+                        <input type="text" name="standardId" id="standard_id" value="@salary_standard[0].standard_id" readonly="readonly"/>
+                    </td>
+                    <td width="12%" class="TD_STYLE1">
+                        薪酬标准名称
+                    </td>
+                    <td width="11%" class="TD_STYLE2">
+                        <input type="text" name="standardName" value="@salary_standard[0].standard_name" readonly="readonly" id="standardName" class="INPUT_STYLE2">
+
+                    </td>
+                    <td width="11%" class="TD_STYLE1">
+                        薪酬总额
+                    </td>
+                    <td width="17%" class="TD_STYLE2">
+                        <input type="text" name="salarySum" id="sumSalary" value="@salary_standard[0].salary_sum" readonly="readonly" class="INPUT_STYLE2">
+                    </td>
+                    <td width="12%" class="TD_STYLE1">
+                        &nbsp;
+                    </td>
+                    <td width="10%" class="TD_STYLE2">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        制定人
+                    </td>
+                    <td class="TD_STYLE2">
+                        <select id="designer" name="designer" class="INPUT_STYLE2">
+                            @foreach (users item in ViewData["users"] as List<users>)
+                            {
+                                <option value="@item.u_true_name" @((salary_standard[0].designer == item.u_true_name) ? "checked" : "")>@item.u_true_name</option>
+                            }
+                        </select>
+                    </td>
+                    <td class="TD_STYLE1">
+                        复核人
+                    </td>
+                    <td class="TD_STYLE2">
+                        @if (Session["user"] == null)
+                        {
+                            { Response.Redirect("/User/Login"); }
+                        }
+                        @{ users user = Session["user"] as users;}
+                        <input type="text" id="fhren" name="checker" value="@user.u_true_name" readonly="readonly" class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1">
+                        复核时间
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="text" name="checkTime" id="Tdate" readonly="readonly" class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1">
+                        &nbsp;
+                    </td>
+                    <td class="TD_STYLE2">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        复核意见
+                    </td>
+                    <td colspan="7" class="TD_STYLE2">
+                        <textarea id="fhyj" name="checkComment" rows="4" class="INPUT_STYLE2"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        序号
+                    </td>
+                    <td colspan="3" class="TD_STYLE1">
+                        薪酬项目名称
+                    </td>
+                    <td colspan="4" class="TD_STYLE1">
+                        金额
+                    </td>
+                </tr>
+            <tbody>
+                @for (int i = 0; i < salary_details.Count; i++)
+            {
+                    <tr class="TD_STYLE2">
+                        <td align="center">
+                            @salary_details[i].item_id<input type="hidden" id="salaryid @(i+1)" name="salaryid" value="@salary_details[i].item_id">
+                        </td>
+                        <td colspan="3">
+                            @salary_details[i].item_name<input type="hidden" id="details @(i+1)" name="details" value="@salary_details[i].item_name">
+                        </td>
+                        <td>
+                            <input type="text" id="salary @(i+1)" name="salarymoney" value="@salary_details[i].salary"
+                                   onkeyup="countMoney('@salary_details.Count','salary @(i+1)')" class="INPUT_STYLE2" readonly="readonly">
+                        </td>
+                        <td colspan="3">
+                            &nbsp;
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </form>
+    <script type="text/javascript">
+        function fuhe() {
+            $.post("/salaryCriterion/salarystandard_check_success", { "standard_id": $("#standard_id").val(), "fhr": $("#fhren").val(), "fhtime": $("#Tdate").val(), "fhyj": $("#fhyj").val() }, function (data) {
+                if (data == "true") {
+                    location.href = '/salaryCriterion/salarystandard_check_success';
+                } else {
+                    alert("复核失败！");
+                }
+            });
+        }
+        function check() {
+
+            var designer = document.getElementById("designer");
+            var standardName = document.getElementById("standardName");
+            if (designer.value.length <= 0) {
+                alert("制定人不可为空!!!");
+                return;
+            }
+            if (standardName.value.length <= 0) {
+                alert("薪酬标准名称不可为空!!!");
+                return;
+            }
+            document.forms[0].submit();
+        }
+        function countMoney(obj, o) {
+
+            if (isNaN(document.getElementById(o).value) || document.getElementById(o).value < 0) {
+                alert("金额填写错误!");
+                document.getElementById(o).value = "0.00";
+                return;
+            }
+            var sum = 0;
+            for (var i = 1; i <= obj; i++) {
+                var salary = document.getElementById("salary " + i).value;
+                if (salary == "") {
+                    salary = "0.00";
+                }
+                sum = Number(sum) + Number(salary);
+
+            }
+            document.getElementById("sumSalary").value = sum;
+
+        }
+        function time() {
+            var tdate = document.getElementById("Tdate");
+            var d = new Date();
+            var y = d.getFullYear();
+            var moth = d.getMonth() + 1;
+            var date = d.getDate();
+            var h = d.getHours();
+            var m = d.getMinutes();
+            var s = d.getSeconds();
+            var hh = 20 - 1 - h;
+            var mm = 60 - 1 - m;
+            var ss = 60 - s;
+            if (hh > 0) {
+                mm = mm + 60 * hh;
+            }
+            if (moth < 10) {
+                moth = "0" + moth;
+            }
+            if (date < 10) {
+                date = "0" + date;
+            }
+            if (h < 10) {
+                h = "0" + h;
+            }
+            if (m < 10) {
+                m = "0" + m;
+            }
+            if (s < 10) {
+                s = "0" + s;
+            }
+            if (mm < 10) {
+                mm = "0" + mm;
+            }
+            if (ss < 10) {
+                ss = "0" + ss;
+            }
+
+            tdate.value = y + "-" + moth + "-" + date + " " + h + ":" + m + ":" + s;
+
+        }
+        $(function () {
+            window.onload = time;
+            var out = window.setInterval(time, 1000);
+        });
+
+    </script>
+</body>
+</html>
