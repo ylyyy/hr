@@ -31,7 +31,7 @@
                 <br />
                 @{ users user = Session["user"] as users;}
                 欢迎你：@user.u_true_name &nbsp;
-                <input type="button" value="退出系统" class="BUTTON_STYLE1" onclick="parent.location.href='/User/Index'" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="button" value="退出系统" class="BUTTON_STYLE1" onclick="parent.location.href = '/User/Login'" />&nbsp;&nbsp;&nbsp;&nbsp;
             </td>
         </tr>
     </table>

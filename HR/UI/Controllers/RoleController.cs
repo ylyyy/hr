@@ -8,9 +8,11 @@ using IBLL;
 using IocContainer;
 using System.Data;
 using Newtonsoft.Json;
+using UI.Filters;
 
 namespace UI.Controllers
 {
+    [Login]
     public class RoleController : Controller
     {
         UserIBLL iab = IocContain.CreateAll<UserIBLL>("yibll", "UserBll");

@@ -148,8 +148,8 @@ namespace DAL
             }
             catch (Exception ex)
             {
+                WRZ(fileName, ex);
                 throw;
-
             }
             return dt;
         }

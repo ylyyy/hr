@@ -27,6 +27,8 @@ namespace UI.Controllers
         //}
         public ActionResult Login()
         {
+            Session["roid"] = null;
+            Session["user"] = null;
             return View();
         }
         [HttpPost]

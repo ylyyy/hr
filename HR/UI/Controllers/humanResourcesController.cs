@@ -271,6 +271,13 @@ namespace UI.Controllers
             hm.training_amount = (short)traina;
             int fileca = Convert.ToInt32(Request.Form["ifile_chang_amount"]);
             hm.file_chang_amount = (short)fileca;
+            if (hm.salary_standard_id != "")
+            {
+                salary_standard stan = issbll.SelectWhere(e => e.standard_id == hm.salary_standard_id).FirstOrDefault();
+                hm.salary_sum = stan.salary_sum;
+                hm.demand_salaray_sum = stan.salary_sum;
+                hm.paid_salary_sum = stan.salary_sum - (stan.salary_sum * Convert.ToDecimal(0.05));
+            }
             if (Request.Form["icheck_time"]!="")
             {
                 hm.check_time = Convert.ToDateTime(Request.Form["icheck_time"]);
@@ -467,6 +474,13 @@ namespace UI.Controllers
             if (Request.Form["irecovery_time"] != "")
             {
                 hm.recovery_time = Convert.ToDateTime(Request.Form["irecovery_time"]);
+            }
+            if (hm.salary_standard_id != "")
+            {
+                salary_standard stan = issbll.SelectWhere(e => e.standard_id == hm.salary_standard_id).FirstOrDefault();
+                hm.salary_sum = stan.salary_sum;
+                hm.demand_salaray_sum = stan.salary_sum;
+                hm.paid_salary_sum = stan.salary_sum - (stan.salary_sum * Convert.ToDecimal(0.05));
             }
             hm.register = Request.Form["iregister"];
             if (startDate != "")

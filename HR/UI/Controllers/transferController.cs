@@ -8,9 +8,12 @@ using IBLL;
 using IocContainer;
 using Newtonsoft.Json;
 using System.Transactions;
+using DAL;
+using UI.Filters;
 
 namespace UI.Controllers
 {
+    [Login]
     public class transferController : Controller
     {
         Ihuman_fileBll human = IocContain.CreateAll<Ihuman_fileBll>("yibll", "humanbll");
@@ -61,7 +64,7 @@ namespace UI.Controllers
         {
             human_file hf = human.SelectWhere(e=>e.huf_id==id).FirstOrDefault();
             ViewData["human_file"] = hf;
-            return View();
+          return View();
         }
         public ActionResult biaozhuen()
         {
@@ -147,7 +150,7 @@ namespace UI.Controllers
                 }
             }
         }
-        
+
         public ActionResult register_success()
         {
             return View();
@@ -171,7 +174,7 @@ namespace UI.Controllers
             return View(mc1);
         }
         public ActionResult checkUpdate(bool checkStatus, major_change mc)
-        {
+            {
             using (TransactionScope ts = new TransactionScope()) {
                 human_file hf = human.SelectWhere(e => e.human_id == mc.human_id).FirstOrDefault();
                 config_file_first_kind cffk = iffk.SelectWhere(e => e.first_kind_id == mc.new_first_kind_id).FirstOrDefault();
@@ -229,19 +232,19 @@ namespace UI.Controllers
                     if (mc.new_third_kind_id != "0")
                     {
                         mc.new_third_kind_name = cftk.third_kind_name;
-                    }
+        }
                     mc.new_first_kind_name = cffk.first_kind_name;
                     mc.new_major_kind_name = cmk.major_kind_name;
                     mc.new_major_name = cm.major_name;
                     mc.new_salary_standard_name = s.standard_name;
                     mc.check_status = 2;
                     if (mcbll.Update(mc)> 0)
-                    {
+        {
                         ts.Complete();
                         return Content("<script>location.href='/transfer/check_success';</script>");
                     }
                     else
-                    {
+            {
                         return View("<script>alert('审核失败');</script>");
                     }
                 }
@@ -249,12 +252,12 @@ namespace UI.Controllers
         }
         public ActionResult check_success() {
             return View();
-        }
+            }
         public ActionResult locate() {
             ViewData["first"] = iffk.SelectAll();
             ViewData["major_kind"] = ifmk.SelectAll();
-            return View();
-        }
+                return View();
+            }
         public ActionResult locate_list(string firstKindId, string secondKindId, string thirdKindId, string humanMajorKindId, string humanMajorId, string startDate, string endDate)
         {
             List<major_change> mc = null;
@@ -276,15 +279,15 @@ namespace UI.Controllers
                 DateTime end = Convert.ToDateTime(endDate);
                 mc = mcbll.SelectWhere(e => e.new_first_kind_id.Contains(firstKindId) && e.new_second_kind_id.Contains(secondKindId) && e.new_third_kind_id.Contains(thirdKindId) && e.new_major_kind_id.Contains(humanMajorKindId) && e.new_major_id.Contains(humanMajorId) && e.regist_time >= start && e.regist_time <= end && e.check_status == 1);
                 return View(mc);
-
-            }
+            
+        }
             else
-            {
+        {
                 mc = mcbll.SelectWhere(e => e.new_first_kind_id.Contains(firstKindId) && e.new_second_kind_id.Contains(secondKindId) && e.new_third_kind_id.Contains(thirdKindId) && e.new_major_kind_id.Contains(humanMajorKindId) && e.new_major_id.Contains(humanMajorId) && e.check_status == 1);
                 return View(mc);
-            }
         }
-
+     }
+    
         public  ActionResult detail(int id)
         {
             major_change  mc= mcbll.SelectWhere(e=>e.mch_id==id).FirstOrDefault();
