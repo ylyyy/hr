@@ -6,102 +6,289 @@ using System.Web.Mvc;
 using Entity;
 using IBLL;
 using IocContainer;
-using System.Data;
 using Newtonsoft.Json;
-using DAL;
+using System.Transactions;
 
 namespace UI.Controllers
 {
     public class transferController : Controller
     {
-        transferIBLL tib= IocContain.CreateAll<transferIBLL>("yibll", "transferBll");
+        Ihuman_fileBll human = IocContain.CreateAll<Ihuman_fileBll>("yibll", "humanbll");
+        ISalary_strandardBll issbll = IocContain.CreateAll<ISalary_strandardBll>("yibll", "ssarybll");
+        major_changeIBLL mcbll = IocContain.CreateAll<major_changeIBLL>("yibll", "major_changeBll");
+        Iconfig_file_first_kindBLL iffk = IocContain.CreateAll<Iconfig_file_first_kindBLL>("yibll", "config_file_first_kindBLL");
+        Iconfig_file_second_kindBLL ifsk = IocContain.CreateAll<Iconfig_file_second_kindBLL>("yibll", "config_file_second_kindBLL");
+        Iconfig_file_third_kindBLL iftk = IocContain.CreateAll<Iconfig_file_third_kindBLL>("yibll", "config_file_third_kindBLL");
+        Iconfig_major_kindBLL ifmk = IocContain.CreateAll<Iconfig_major_kindBLL>("yibll", "config_major_kindBLL");
+        Iconfig_majorBLL ifm = IocContain.CreateAll<Iconfig_majorBLL>("yibll", "config_majorBLL");
+
+
         // GET: transfer
-        public ActionResult Index()
+        //调动登记查询
+        public ActionResult register_locate()
         {
-          return View();
-        }
-        public ActionResult Index1() {
-            List<major_change> user = tib.SelectAll();
-            //SelectList userlist = new SelectList(user, "first_kind_id", "first_kind_name");
-
-            //ViewData["select1"] = userlist;
-
-            return Json(user,JsonRequestBehavior.AllowGet);
-        }
-        public ActionResult mhcx()
-        {
-             Session["yiji"]= Request["fkid"];
-             Session["erji"]= Request["configThird.secondKindId"];
-             Session["sanji"]= Request["configThird.thirdKindId"];
-            Session["ksdata"]= Request["utilbean.startDate"];
-            Session["jsdata"]= Request["utilbean.endDate"];
-            //string sql= string.Format(@"select * from major_change  where first_kind_id='{0}' or second_kind_id='{1}' or  third_kind_id='{2}' or (regist_time>='{3}' and check_time <='{4}') and check_status=0", yiji, erji, sanji,ksdata,jsdata);
-            //DataTable dt = DBHelper.MyDataAdapter(sql,"");
             return View();
         }
-        public ActionResult mhcx2()
+        //调动登记列表
+        public ActionResult register_list(string firstKindId,string secondKindId,string thirdKindId,string startDate,string endDate)
         {
-            var yiji = Session["yiji"];
-            var erji = Session["erji"];
-            var sanji = Session["sanji"];
-            var ksdata = Session["ksdata"];
-            var jsdata = Session["jsdata"];
-            string sql = string.Format(@"select * from major_change  where first_kind_id='{0}' or second_kind_id='{1}' or  third_kind_id='{2}' or (regist_time>='{3}' or check_time <='{4}') and check_status=0", yiji, erji, sanji, ksdata, jsdata);
-            DataTable dt = DBHelper.MyDataAdapter(sql,"");
-            return Content(JsonConvert.SerializeObject(dt));
+            string[] tiao = { firstKindId, secondKindId, thirdKindId, startDate, endDate };
+            Session["tiaoJian"] = tiao;
+            return View();
         }
-        public ActionResult Edit(int id) {
-            var list=tib.SelectWhere(e=>e.mch_id==id);
-            major_change mc = new major_change
+        public ActionResult register_xiangQing(int currentPage)
+        {
+            int rows = 0;
+            Dictionary<string, object> di = new Dictionary<string, object>();
+            List<human_file> list = new List<human_file>();
+            string[] s = Session["tiaoJian"] as string[];
+            if (s[0] == "0"|| s[1]=="0"|| s[2] == "0" || s[3] == "" || s[4] == "")
             {
-                mch_id=list[0].mch_id,
-                human_name = list[0].human_name,
-                first_kind_name = list[0].first_kind_name,
-                second_kind_name = list[0].second_kind_name,
-                third_kind_name = list[0].third_kind_name,
-                major_kind_name = list[0].major_kind_name,
-                major_name=list[0].major_name,
-                salary_standard_name=list[0].salary_standard_name,
-                salary_sum= list[0].salary_sum,
-                register=list[0].register,
-                change_reason=list[0].register,
-                new_salary_sum=list[0].new_salary_sum
-            };
+                list = human.FenYe(e => e.check_status == 1, out rows, currentPage, 2);
+            }
+            else
+            {
+                DateTime t1 = Convert.ToDateTime(s[3]);
+                DateTime t2 = Convert.ToDateTime(s[4]);
+                list = human.FenYe(e => e.first_kind_id == s[0] &&e.check_status ==1&& e.second_kind_id == s[1] && e.third_kind_id == s[2] && e.regist_time >= t1 && e.regist_time <= t2, out rows, currentPage, 2);
+            }
+            di.Add("rows", rows);
+            di.Add("list", list);
+            di.Add("pages", rows % 2 > 0 ? (rows / 2) + 1 : (rows / 2));
+            return Content(JsonConvert.SerializeObject(di));
+        }
+        public ActionResult register(int id)
+        {
+            human_file hf = human.SelectWhere(e=>e.huf_id==id).FirstOrDefault();
+            ViewData["human_file"] = hf;
+            return View();
+        }
+        public ActionResult biaozhuen()
+        {
+            return Content(JsonConvert.SerializeObject(issbll.SelectAll()));
+        }
+        public ActionResult zonge(string standard_id)
+        {
+            salary_standard s = issbll.SelectWhere(e=>e.standard_id == standard_id).FirstOrDefault();
+            return Content(JsonConvert.SerializeObject(s));
+        }
+        public ActionResult registerAddUpdate(major_change mc)
+        {
+            if (mc.major_kind_id == mc.new_major_kind_id && mc.major_id == mc.new_major_id)
+            {
+                return Content("<script>alert('不可以调动到当前单位');</script>");
+            }
+            else
+            {
+                major_change mc1 = mcbll.SelectWhere(e => e.human_id == mc.human_id).FirstOrDefault();
+                config_file_first_kind cffk = iffk.SelectWhere(e => e.first_kind_id == mc.new_first_kind_id).FirstOrDefault();
+                config_major_kind cmk = ifmk.SelectWhere(e => e.major_kind_id == mc.new_major_kind_id).FirstOrDefault();
+                salary_standard s = issbll.SelectWhere(e => e.standard_id== mc.new_salary_standard_id).FirstOrDefault();
+                config_major cm = ifm.SelectWhere(e => e.major_id == mc.new_major_id && e.major_kind_id == mc.new_major_kind_id).FirstOrDefault();
+                if (mc1 == null)
+                {
+                    if (mc.new_second_kind_id != "0")
+                    {
+                        config_file_second_kind cfsk = ifsk.SelectWhere(e => e.second_kind_id == mc.new_second_kind_id && e.first_kind_id == mc.new_first_kind_id).FirstOrDefault();
+                        mc.new_second_kind_name = cfsk.second_kind_name;
+                    }
+                    if (mc.new_third_kind_id!= "0")
+                    {
+                        config_file_third_kind cftk = iftk.SelectWhere(e => e.third_kind_id == mc.new_third_kind_id && e.second_kind_id == mc.new_second_kind_id && e.first_kind_id == mc.first_kind_id).FirstOrDefault();
+                        mc.new_third_kind_name = cftk.third_kind_name;
+                    }
+                    mc.new_first_kind_name = cffk.first_kind_name;
+                    mc.new_major_kind_name = cmk.major_kind_name;
+                    mc.new_major_name = cm.major_name;
+                    mc.new_salary_standard_name = s.standard_name;
+                    mc.regist_time = DateTime.Now;
+                    mc.check_status = 0;
+                    if (mcbll.Add(mc) > 0)
+                    {
+                        return Content("<script>alert('调动成功');location.href='/transfer/register_success';</script>");
+                    }
+                    else
+                    {
+                        return View("<script>alert('调动失败');</script>");
+                    }
+                }
+                else
+                {
+                    if (mc.new_second_kind_id != "0")
+                    {
+                        config_file_second_kind cfsk = ifsk.SelectWhere(e => e.second_kind_id == mc.new_second_kind_id && e.first_kind_id == mc.new_first_kind_id).FirstOrDefault();
+                        mc1.new_second_kind_id = cfsk.second_salary_id;
+                        mc1.new_second_kind_name = cfsk.second_kind_name;
+                    }
+                    if (mc.new_third_kind_id != "0")
+                    {
+                        config_file_third_kind cftk = iftk.SelectWhere(e => e.third_kind_id == mc.new_third_kind_id && e.second_kind_id == mc.new_second_kind_id && e.first_kind_id == mc.first_kind_id).FirstOrDefault();
+                        mc1.new_third_kind_id = cftk.third_kind_id;
+                        mc1.new_third_kind_name = cftk.third_kind_name;
+                    }
+                    mc1.new_first_kind_id = cffk.first_kind_id;
+                    mc1.new_first_kind_name = cffk.first_kind_name;
+                    mc1.new_major_kind_id = cmk.major_kind_id;
+                    mc1.new_major_kind_name = cmk.major_kind_name;
+                    mc1.new_major_id = cmk.major_kind_id;
+                    mc1.new_major_name = cm.major_name;
+                    mc1.new_salary_standard_id = s.standard_id;
+                    mc1.new_salary_standard_name = s.standard_name;
+                    mc1.regist_time = DateTime.Now;
+                    mc1.check_status = 0;
+                    if (mcbll.Update(mc1) > 0)
+                    {
+                        return Content("<script>alert('调动成功');location.href='/transfer/register_success';</script>");
+                    }
+                    else
+                    {
+                        return View("<script>alert('调动失败');</script>");
+                    }
+                }
+            }
+        }
+        
+        public ActionResult register_success()
+        {
+            return View();
+        }
+        public ActionResult check_list()
+        {
+            return View();
+        }
+        public ActionResult check_listALL(int currentPage) {
+            int rows = 0;
+            Dictionary<string, object> di = new Dictionary<string, object>();
+            List<major_change> list = mcbll.FenYe(e=>e.mch_id,e =>e.check_status == 0,out rows,currentPage,2);
+            di.Add("rows", rows);
+            di.Add("list", list);
+            di.Add("pages", rows % 2 > 0 ? (rows / 2) + 1 : (rows / 2));
+            return Content(JsonConvert.SerializeObject(di));
+        }
+        public ActionResult check(int id)
+        {
+            major_change mc1 = mcbll.SelectWhere(e => e.mch_id == id).FirstOrDefault();
+            return View(mc1);
+        }
+        public ActionResult checkUpdate(bool checkStatus, major_change mc)
+        {
+            using (TransactionScope ts = new TransactionScope()) {
+                human_file hf = human.SelectWhere(e => e.human_id == mc.human_id).FirstOrDefault();
+                config_file_first_kind cffk = iffk.SelectWhere(e => e.first_kind_id == mc.new_first_kind_id).FirstOrDefault();
+                config_major_kind cmk = ifmk.SelectWhere(e => e.major_kind_id == mc.new_major_kind_id).FirstOrDefault();
+                salary_standard s = issbll.SelectWhere(e => e.standard_id == mc.new_salary_standard_id).FirstOrDefault();
+                config_major cm = ifm.SelectWhere(e => e.major_id == mc.new_major_id && e.major_kind_id == mc.new_major_kind_id).FirstOrDefault();
+                config_file_second_kind cfsk = ifsk.SelectWhere(e => e.second_kind_id == mc.new_second_kind_id && e.first_kind_id == mc.new_first_kind_id).FirstOrDefault();
+                config_file_third_kind cftk = iftk.SelectWhere(e => e.third_kind_id == mc.new_third_kind_id && e.second_kind_id == mc.new_second_kind_id && e.first_kind_id == mc.first_kind_id).FirstOrDefault();
+                if (checkStatus)
+                {
+                    if (mc.new_second_kind_id != "0")
+                    {
+                        mc.new_second_kind_name = cfsk.second_kind_name;
+                        hf.second_kind_id = cfsk.second_kind_id;
+                        hf.second_kind_name= cfsk.second_kind_name;
+                    }
+                    if (mc.new_third_kind_id != "0")
+                    {
+                        hf.third_kind_id = cftk.third_kind_id;
+                        hf.third_kind_name = cftk.third_kind_name;
+                        mc.new_third_kind_name = cftk.third_kind_name;
+                    }
+                    mc.new_first_kind_name = cffk.first_kind_name;
+                    mc.new_major_kind_name = cmk.major_kind_name;
+                    mc.new_major_name = cm.major_name;
+                    mc.new_salary_standard_name = s.standard_name;
+                    mc.check_status = 1;
+                    hf.first_kind_id = cffk.first_kind_id;
+                    hf.first_kind_name = cffk.first_kind_name;
+                    hf.human_major_kind_id = cmk.major_kind_id;
+                    hf.human_major_kind_name = cmk.major_kind_name;
+                    hf.human_major_id = cm.major_kind_id;
+                    hf.hunma_major_name = cm.major_name;
+                    hf.salary_standard_id = s.standard_id;
+                    hf.salary_standard_name = s.standard_name;
+                    hf.salary_sum = s.salary_sum;
+                    int a = mcbll.Update(mc);
+                    int b = human.Update(hf);
+                    if ( a+b> 1)
+                    {
+                        ts.Complete();
+                        return Content("<script>location.href='/transfer/check_success';</script>");
+                    }
+                    else
+                    {
+                        return View("<script>alert('审核失败');</script>");
+                    }
+                }
+                else
+                {
+                    if (mc.new_second_kind_id != "0")
+                    {
+                        mc.new_second_kind_name = cfsk.second_kind_name;
+                    }
+                    if (mc.new_third_kind_id != "0")
+                    {
+                        mc.new_third_kind_name = cftk.third_kind_name;
+                    }
+                    mc.new_first_kind_name = cffk.first_kind_name;
+                    mc.new_major_kind_name = cmk.major_kind_name;
+                    mc.new_major_name = cm.major_name;
+                    mc.new_salary_standard_name = s.standard_name;
+                    mc.check_status = 2;
+                    if (mcbll.Update(mc)> 0)
+                    {
+                        ts.Complete();
+                        return Content("<script>location.href='/transfer/check_success';</script>");
+                    }
+                    else
+                    {
+                        return View("<script>alert('审核失败');</script>");
+                    }
+                }
+            }
+        }
+        public ActionResult check_success() {
+            return View();
+        }
+        public ActionResult locate() {
+            ViewData["first"] = iffk.SelectAll();
+            ViewData["major_kind"] = ifmk.SelectAll();
+            return View();
+        }
+        public ActionResult locate_list(string firstKindId, string secondKindId, string thirdKindId, string humanMajorKindId, string humanMajorId, string startDate, string endDate)
+        {
+            List<major_change> mc = null;
+            if (startDate != "" && endDate == "")
+            {
+                DateTime start = Convert.ToDateTime(startDate);
+                mc = mcbll.SelectWhere(e => e.new_first_kind_id.Contains(firstKindId) && e.new_second_kind_id.Contains(secondKindId) && e.new_third_kind_id.Contains(thirdKindId) && e.new_major_kind_id.Contains(humanMajorKindId) && e.new_major_id.Contains(humanMajorId) && e.regist_time >= start && e.check_status == 1);
+                return View(mc);
+            }
+            else if (startDate == "" && endDate != "")
+            {
+                DateTime end = Convert.ToDateTime(endDate);
+                mc = mcbll.SelectWhere(e => e.new_first_kind_id.Contains(firstKindId) && e.new_second_kind_id.Contains(secondKindId) && e.new_third_kind_id.Contains(thirdKindId) && e.new_major_kind_id.Contains(humanMajorKindId) && e.new_major_id.Contains(humanMajorId) && e.regist_time <= end && e.check_status == 1);
+                return View(mc);
+            }
+            else if (startDate != "" && endDate != "")
+            {
+                DateTime start = Convert.ToDateTime(startDate);
+                DateTime end = Convert.ToDateTime(endDate);
+                mc = mcbll.SelectWhere(e => e.new_first_kind_id.Contains(firstKindId) && e.new_second_kind_id.Contains(secondKindId) && e.new_third_kind_id.Contains(thirdKindId) && e.new_major_kind_id.Contains(humanMajorKindId) && e.new_major_id.Contains(humanMajorId) && e.regist_time >= start && e.regist_time <= end && e.check_status == 1);
+                return View(mc);
 
+            }
+            else
+            {
+                mc = mcbll.SelectWhere(e => e.new_first_kind_id.Contains(firstKindId) && e.new_second_kind_id.Contains(secondKindId) && e.new_third_kind_id.Contains(thirdKindId) && e.new_major_kind_id.Contains(humanMajorKindId) && e.new_major_id.Contains(humanMajorId) && e.check_status == 1);
+                return View(mc);
+            }
+        }
 
+        public  ActionResult detail(int id)
+        {
+            major_change  mc= mcbll.SelectWhere(e=>e.mch_id==id).FirstOrDefault();
             return View(mc);
         }
-       
-        public ActionResult Upd()
-        {
-            var id = Request["mch_id"];
-            var yiji = Request["majorChange.newFirstKindId"];
-            var erji = Request["majorChange.newSecondKindId"];
-            var sanji = Request["majorChange.newThirdKindId"];
-            var zwfl = Request["majorChange.newMajorKindId"];
-            var zwmc = Request["majorChange.newMajorId"];
-            var xcbz = Request["majorChange.newSalaryStandardId"];
-            var FText = Request["FText"];
-            var SText = Request["SText"];
-            var TText = Request["TText"];
-            var KText = Request["KText"];
-            var MText = Request["MText"];
-            var SaText = Request["SaText"];
-            string sql = string.Format(@"update major_change set check_status=1,new_first_kind_id='{0}',new_first_kind_name='{1}',new_second_kind_id='{2}',new_second_kind_name='{3}',new_third_kind_id='{4}',new_third_kind_name='{5}',new_major_kind_id='{6}',new_major_kind_name='{7}',new_major_id='{8}',new_major_name='{9}',salary_standard_id='{10}',salary_standard_name='{11}' where mch_id='{12}'", yiji,FText,erji,SText,sanji,TText,zwfl,KText,zwmc,MText,xcbz,SaText,id);
-            int num = DBHelper.InsertUpdateDelte(sql);
-            if (num > 0)
-            {
-                return Content("ok");
-            }
-            else {
-                return View();
-            }
-            
-        }
-        public ActionResult djcg()
-        {
-            return View();
-        }
-     }
-    
+    }
 }

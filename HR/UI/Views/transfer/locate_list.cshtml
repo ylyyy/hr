@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Entity.major_change>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>locate_list</title>
+    <link rel="stylesheet" href="../../css/table.css"
+          type="text/css">
+</head>
+<body>
+    <font color="black"> 您在做的业务是-人力资源-调动管理-调动查询列表 </font>
+    <br /><br /><br />	
+    <table width="100%" border="1" cellpadding=0 cellspacing=1
+				bordercolorlight=#848284 bordercolordark=#eeeeee
+				class="TABLE_STYLE1">
+        <tr height="21">
+            <td width="19%" class="TD_STYLE1">
+                I级机构
+            </td>
+            <td width="19%" class="TD_STYLE1">
+                II级机构
+            </td>
+            <td width="19%" class="TD_STYLE1">
+                Ⅲ级机构
+            </td>
+            <td width="19%" class="TD_STYLE1">
+                薪酬标准
+            </td>
+            <td width="19%" class="TD_STYLE1">
+                名字
+            </td>
+            <td width="5%" class="TD_STYLE1">
+                查看
+            </td>
+
+        </tr>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.new_first_kind_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.new_second_kind_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.new_third_kind_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.new_salary_standard_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.human_name)
+            </td>
+            <td>
+                <a href="/transfer/detail/@item.mch_id">查看</a>
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

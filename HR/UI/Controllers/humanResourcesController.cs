@@ -9,9 +9,11 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
+using UI.Filters;
 
 namespace UI.Controllers
 {
+    [Login]
     public class humanResourcesController : Controller
     {
         // GET: humanResources
